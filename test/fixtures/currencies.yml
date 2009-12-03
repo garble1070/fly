@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: FLC
+  name: Fly Credits
+  ratio_to_flc: 1.5
+
+two:
+  id: USD
+  name: U.S. Dollars
+  ratio_to_flc: 244.40
