@@ -1,6 +1,7 @@
 # A route that our airplanes are allowed to fly, with mileage. Includes the
 # option to specify a route for all aircraft types or one at a time
 class Route < ActiveRecord::Base
+  belongs_to :aircrafttype
   
   named_scope :city_pair_is, lambda { |dep_code,arr_code| 
     {:conditions => { "dep_airport_code" => dep_code,
@@ -61,7 +62,7 @@ class Route < ActiveRecord::Base
     
   end
   
-    #  ** INSTANCE METHODS **  #
+    #  ** INSTANCE METHODS ** 
 
   # Returns the airport object for the departure airport on this route
   def dep_airport
