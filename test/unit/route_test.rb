@@ -1,22 +1,7 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
 class RouteTest < ActiveSupport::TestCase
-  
-  def test_link_to_airports
-    @route = Route.find(1)
-    assert_not_nil(@route)
-
-    dep_airport_lax = @route.dep_airport
-    assert_not_nil(dep_airport_lax)
-    @lax = Airport.get("LAX")
-    assert dep_airport_lax == @lax
-
-    arr_airport_zrh = @route.arr_airport
-    assert_not_nil(arr_airport_zrh)
-    @zrh = Airport.get("ZRH")
-    assert arr_airport_zrh == @zrh
-end
-  
+    
   def test_retrieve
     @zrh = Airport.get("ZRH")
     assert_not_nil(@zrh)

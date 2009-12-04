@@ -3,4 +3,8 @@ class Flight < ActiveRecord::Base
   belongs_to :plane
   belongs_to :route
   
+  #**********************************************#
+  #               INSTANCE METHODS               #
+  #**********************************************#
+  
 end

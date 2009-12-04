@@ -1,13 +1,27 @@
 # A currency, i.e. FLC (Fly Credits) or USD
 class Currency < ActiveRecord::Base
   
-  # TODO create methods to access accounts
+  #**********************************************#
+  #            CLASS INSTANCE METHODS            #
+  #**********************************************#
   
   class << self
+    
+    # Returns a currency object based on its code (passed as a string by argument)
     def get(code)
       #TODO check for a string
       find(:first, :conditions => "code = '#{code}'")
     end
+  end
+  
+  
+  #**********************************************#
+  #               INSTANCE METHODS               #
+  #**********************************************#
+  
+  # Returns an array of accounts that are denominated in this currency
+  def accounts
+    Account.currency_is(self.code)
   end
   
 end

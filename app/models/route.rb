@@ -7,17 +7,22 @@ class Route < ActiveRecord::Base
     {:conditions => { "dep_airport_code" => dep_code,
                            "arr_airport_code" => arr_code}}}
   
+  named_scope :dep_airport_is, lambda { |dep_code|
+    {:conditions => { "dep_airport_code" => dep_code}}}
+  
+  named_scope :arr_airport_is, lambda { |arr_code|
+    {:conditions => { "arr_airport_code" => arr_code}}}
+  
   named_scope :aircrafttype_is, lambda { |type_id|
     {:conditions => { "aircrafttype_id" => type_id}}}
   
+  #**********************************************#
+  #            CLASS INSTANCE METHODS            #
+  #**********************************************#
+  
   class << self
     
-    #**********************************************#
-    #              CLASS ATTRIBUTES                #
-    #**********************************************#
-    
-    # Returns the route obj based on 2 airport objects and an aircrafttype object
-    
+    # Returns the route obj based on 2 airport objects and an aircrafttype object    
     def get (dep_airport,arr_airport,aircrafttype)
       arg_kind_of(Aircrafttype,aircrafttype)
       arg_kind_of(Airport,dep_airport)
@@ -25,7 +30,7 @@ class Route < ActiveRecord::Base
       if dep_airport == arr_airport
         raise ArgumentError.new("Departing and arriving airports are the same.")
       end      
-
+      
       aircrafttype_id = need(aircrafttype.id)
       dep_airport_code = need(dep_airport.code)
       arr_airport_code = need(arr_airport.code)
@@ -43,27 +48,14 @@ class Route < ActiveRecord::Base
       end  
     end
     
-    #TODO:  break this out to activerecord base class
-    # Returns a target object or raises an exception if nil
-    def need(target)
-      if target
-        target
-      else
-        raise RuntimeError.new("Expecting object to be not nil.")
-      end
-    end
-    
-    # Approximates static typing for arguments
-    def arg_kind_of(klass,object)
-      if object.class != klass
-        raise ArgumentError.new("Argument class mismatch for #{object.to_s}.")
-      end
-    end
     
   end
   
-    #  ** INSTANCE METHODS ** 
-
+  
+  #**********************************************#
+  #               INSTANCE METHODS               #
+  #**********************************************#
+  
   # Returns the airport object for the departure airport on this route
   def dep_airport
     Airport.get(self.dep_airport_code)

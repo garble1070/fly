@@ -14,7 +14,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
     t.string   "currency_code", :limit => 3
-    t.float    "balance"
+    t.float    "balance", :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "avg_pax_load"
     t.integer  "avg_speed"
     t.integer  "range"
-    t.string  "starting_airport_code", :limit => 3
+    t.string   "starting_airport_code", :limit => 3
     t.integer  "starting_pax_count", :default => 0, :null => false
     t.integer  "starting_miles_count", :default => 0, :null => false
     t.datetime "created_at"
