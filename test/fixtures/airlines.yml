@@ -3,20 +3,20 @@
 one:
   id: 1
   name: Swiss Int'l Air Lines
-  country_id: CH
+  country_code: CH
   user_id: 15
   satisfaction_rating: 9.0
 
 two:
   id: 2
   name: Lufthansa
-  country_id: DE
+  country_code: DE
   user_id: 16
   satisfaction_rating: 3.5
 
 three:
   id: 3
   name: United Airlines
-  country_id: US
+  country_code: US
   user_id: 16
   satisfaction_rating: 3.5

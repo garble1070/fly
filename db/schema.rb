@@ -13,7 +13,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
-    t.string   "currency_id", :limit => 3
+    t.string   "currency_code", :limit => 3
     t.float    "balance"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -35,16 +35,17 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
   create_table "airlines", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.string   "country_id",          :default => "",  :null => false
+    t.string   "country_code",          :limit => 2
     t.float    "satisfaction_rating", :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "airports", :force => true do |t|
+    t.string   "code", :limit => 3
     t.string   "name"
     t.string   "city"
-    t.integer  "country_id"
+    t.string  "country_code", :limit => 2
     t.string   "longitude"
     t.string   "latitude"
     t.integer  "timezone_id"
@@ -53,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
   end
 
   create_table "countries", :force => true do |t|
+    t.string "code", :limit => 2
     t.string  "name"
     t.string  "printable_name"
     t.string  "iso3",           :limit => 3
@@ -60,6 +62,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
   end
 
   create_table "currencies", :force => true do |t|
+    t.string   "code", :limit => 3
     t.string   "name"
     t.float    "ratio_to_flc"
     t.datetime "created_at"
@@ -92,7 +95,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "avg_pax_load"
     t.integer  "avg_speed"
     t.integer  "range"
-    t.integer  "starting_airport"
+    t.string  "starting_airport_code", :limit => 3
     t.integer  "starting_pax_count"
     t.integer  "starting_miles_count"
     t.datetime "created_at"
@@ -100,8 +103,8 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
   end
 
   create_table "routes", :force => true do |t|
-    t.string   "dep_airport_id"
-    t.string   "arr_airport_id"
+    t.string   "dep_airport_code", :limit => 3
+    t.string   "arr_airport_code", :limit => 3
     t.integer  "aircrafttype_id", :default => 0, :null => false
     t.integer  "distance_miles"
     t.datetime "created_at"

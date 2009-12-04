@@ -2,12 +2,12 @@
 # option to specify a route for all aircraft types or one at a time
 class Route < ActiveRecord::Base
   
-      named_scope :city_pair_is, lambda { |dep_id,arr_id| 
-         {:conditions => { "dep_airport_id" => dep_id,
-                           "arr_airport_id" => arr_id}}}
-
-      named_scope :aircrafttype_is, lambda { |type_id|
-          {:conditions => { "aircrafttype_id" => type_id}}}
+  named_scope :city_pair_is, lambda { |dep_code,arr_code| 
+    {:conditions => { "dep_airport_code" => dep_code,
+                           "arr_airport_code" => arr_code}}}
+  
+  named_scope :aircrafttype_is, lambda { |type_id|
+    {:conditions => { "aircrafttype_id" => type_id}}}
   
   class << self
     
@@ -16,18 +16,20 @@ class Route < ActiveRecord::Base
     #**********************************************#
     
     # Returns the route obj based on 2 airport objects and an aircrafttype object
-    def identify(dep_airport,arr_airport,aircrafttype)
-      if aircrafttype.class != Aircrafttype
-        raise ArgumentError.new("Arguments do not include a valid aircrafttype.")
-      end
-      if (dep_airport.class != Airport) || (arr_airport.class != Airport)
-        raise ArgumentError.new("Arguments do not include 2 valid airport objects.")
-      end
+    
+    def get (dep_airport,arr_airport,aircrafttype)
+      arg_kind_of(Aircrafttype,aircrafttype)
+      arg_kind_of(Airport,dep_airport)
+      arg_kind_of(Airport,arr_airport)
       if dep_airport == arr_airport
         raise ArgumentError.new("Departing and arriving airports are the same.")
       end      
-      aircrafttype_id = aircrafttype.id
-      routes = Route.city_pair_is(dep_airport.id,arr_airport.id)
+
+      aircrafttype_id = need(aircrafttype.id)
+      dep_airport_code = need(dep_airport.code)
+      arr_airport_code = need(arr_airport.code)
+      routes = Route.city_pair_is(dep_airport_code,arr_airport_code)
+      
       exact_route = routes.aircrafttype_is(aircrafttype_id)[0]
       generic_route = routes.aircrafttype_is(0)[0]
       
@@ -40,17 +42,36 @@ class Route < ActiveRecord::Base
       end  
     end
     
+    #TODO:  break this out to activerecord base class
+    # Returns a target object or raises an exception if nil
+    def need(target)
+      if target
+        target
+      else
+        raise RuntimeError.new("Expecting object to be not nil.")
+      end
+    end
+    
+    # Approximates static typing for arguments
+    def arg_kind_of(klass,object)
+      if object.class != klass
+        raise ArgumentError.new("Argument class mismatch for #{object.to_s}.")
+      end
+    end
+    
   end
   
-  
+    #  ** INSTANCE METHODS **  #
+
   # Returns the airport object for the departure airport on this route
   def dep_airport
-    Airport.find(dep_airport_id)
+    Airport.get(self.dep_airport_code)
   end
   
   # Returns the airport object for the arrival airport on this route
   def arr_airport
-    Airport.find(arr_airport_id)
+    Airport.get(self.arr_airport_code)
   end
+  
   
 end

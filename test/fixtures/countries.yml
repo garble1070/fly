@@ -1,14 +1,16 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  id: US
+  id: 1
+  code: US
   name: United States of America
   printable_name: USA
   iso3: USA
   numcode: 400
 
 two:
-  id: CH
+  id: 2
+  code: CH
   name: Switzerland
   printable_name: Switzerland
   iso3: SUI

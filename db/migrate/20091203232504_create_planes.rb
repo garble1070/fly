@@ -8,7 +8,7 @@ class CreatePlanes < ActiveRecord::Migration
       t.integer :avg_pax_load
       t.integer :avg_speed
       t.integer :range
-      t.integer :starting_airport
+      t.string :starting_airport
       t.integer :starting_pax_count
       t.integer :starting_miles_count
       t.timestamps

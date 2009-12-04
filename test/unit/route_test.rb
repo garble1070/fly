@@ -1,4 +1,4 @@
-require '../test_helper'
+require File.dirname(__FILE__) + '/../test_helper'
 
 class RouteTest < ActiveSupport::TestCase
   
@@ -8,38 +8,39 @@ class RouteTest < ActiveSupport::TestCase
 
     dep_airport_lax = @route.dep_airport
     assert_not_nil(dep_airport_lax)
-    @lax = Airport.find("LAX")
+    @lax = Airport.get("LAX")
     assert dep_airport_lax == @lax
 
     arr_airport_zrh = @route.arr_airport
     assert_not_nil(arr_airport_zrh)
-    @zrh = Airport.find("ZRH")
+    @zrh = Airport.get("ZRH")
     assert arr_airport_zrh == @zrh
 end
   
-  def test_identify
-    @zrh = Airport.find("ZRH")
+  def test_retrieve
+    @zrh = Airport.get("ZRH")
     assert_not_nil(@zrh)
-    @iad = Airport.find("IAD")
+    @iad = Airport.get("IAD")
     assert_not_nil(@iad)
     @a330 = Aircrafttype.find(1)
     assert_not_nil(@a330)
     @b747 = Aircrafttype.find(2)
     assert_not_nil(@b747)
     
-    @route1 = Route.identify(@zrh,@iad,@a330)
+    @route1 = Route.get(@zrh,@iad,@a330)
     assert_not_nil(@route1)
-    miles1 = @route1.distance_miles
-    assert miles1 == 4250
+    assert @route1.distance_miles == 4250
 
-    @route2 = Route.identify(@zrh,@iad,@b747)
+    @route2 = Route.get(@zrh,@iad,@b747)
     assert_not_nil(@route2)
-    miles2 = @route2.distance_miles
-    assert miles2 == 4228
+    assert @route2.distance_miles == 4228
 
-    assert_raise(ArgumentError){Route.identify(@zrh,@zrh,@b747)}
-    assert_raise(ArgumentError){Route.identify(@zrh,nil,@b747)}
-    assert_raise(ArgumentError){Route.identify(@zrh,@iad,nil)}
+    assert_raise(ArgumentError){Route.get(@zrh,@zrh,@b747)}
+    assert_raise(ArgumentError){Route.get(@zrh,nil,@b747)}
+    assert_raise(ArgumentError){Route.get(@zrh,@iad,nil)}
+    assert_raise(RuntimeError){Route.get(Airport.new,@iad,@b747)}
+    assert_raise(RuntimeError){Route.get(@zrh,Airport.new,@b747)}
+    assert_raise(RuntimeError){Route.get(@zrh,@iad,Aircrafttype.new)}
 
   end
 end

@@ -8,7 +8,7 @@ one:
   avg_pax_load: 240
   avg_speed: 500
   range: 8400
-  starting_airport: ZRH
+  starting_airport_code: ZRH
   starting_pax_count: 0
   starting_miles_count: 0
   
@@ -20,7 +20,7 @@ two:
   avg_pax_load: 320
   avg_speed: 500
   range: 7500
-  starting_airport: IAD
+  starting_airport_code: IAD
   starting_pax_count: 0
   starting_miles_count: 0
 

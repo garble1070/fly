@@ -1,28 +1,31 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
 
 one:
-  id: LAX
+  id: 1
+  code: LAX
   name: Los Angeles International
   city: Los Angeles
-  country_id: US
+  country_code: US
   longitude: MyString
   latitude: MyString
   timezone_id: 1
 
 two:
-  id: ZRH
+  id: 2
+  code: ZRH
   name: Zurich Kloten
   city: Zurich
-  country_id: CH
+  country_code: CH
   longitude: MyString
   latitude: MyString
   timezone_id: 8
 
 three:
-  id: IAD
+  id: 3
+  code: IAD
   name: Washington Dulles
   city: Washington, D.C.
-  country_id: US
+  country_code: US
   longitude: MyString
   latitude: MyString
   timezone_id: 4
