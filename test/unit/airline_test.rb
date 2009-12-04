@@ -17,6 +17,14 @@ class AirlineTest < ActiveSupport::TestCase
     assert @my_plane.id > 0
     assert @my_plane.starting_pax_count == 60000
     assert @my_plane.starting_miles_count == 100000
+    assert @a330.avg_pax_load_default == @my_plane.avg_pax_load
+    assert @a330.avg_speed_default == @my_plane.avg_speed
+    assert @a330.range_default == @my_plane.range
+    
+    @my_plane2 = @airline.acquire_plane(@a330,@lax)
+    assert_not_nil(@my_plane2)
+    assert @my_plane2.starting_pax_count == 0
+    assert @my_plane2.starting_miles_count == 0
 
     assert_raise(ArgumentError){@airline.acquire_plane(@lax,@lax)}
     assert_raise(ArgumentError){@airline.acquire_plane(@a330,@a330)}

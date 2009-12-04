@@ -1587,3 +1587,229 @@
   [4;36;1mAirline Load (0.0ms)[0m   [0;1mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 2) [0m
   [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.user_id = 16) [0m
   [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mDROP TABLE `accounts`[0m
+  [4;36;1mSQL (110.0ms)[0m   [0;1mCREATE TABLE `accounts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `currency_code` varchar(3), `balance` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (47.0ms)[0m   [0;1mDROP TABLE `aircrafttypes`[0m
+  [4;35;1mSQL (109.0ms)[0m   [0mCREATE TABLE `aircrafttypes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(255), `name` varchar(255), `avg_pax_load_default` int(11), `avg_pax_load_max` int(11), `avg_speed_default` int(11), `avg_speed_max` int(11), `range_default` int(11), `range_max` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (32.0ms)[0m   [0mDROP TABLE `airlines`[0m
+  [4;36;1mSQL (94.0ms)[0m   [0;1mCREATE TABLE `airlines` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `user_id` int(11), `country_code` varchar(2), `satisfaction_rating` float DEFAULT 0.0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mDROP TABLE `airports`[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCREATE TABLE `airports` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(3), `name` varchar(255), `city` varchar(255), `country_code` varchar(2), `longitude` varchar(255), `latitude` varchar(255), `timezone_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mDROP TABLE `countries`[0m
+  [4;36;1mSQL (94.0ms)[0m   [0;1mCREATE TABLE `countries` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(2), `name` varchar(255), `printable_name` varchar(255), `iso3` varchar(3), `numcode` int(11)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mDROP TABLE `currencies`[0m
+  [4;35;1mSQL (110.0ms)[0m   [0mCREATE TABLE `currencies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(3), `name` varchar(255), `ratio_to_flc` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mDROP TABLE `flights`[0m
+  [4;36;1mSQL (94.0ms)[0m   [0;1mCREATE TABLE `flights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `plane_id` int(11), `route_id` int(11), `boarding_started` datetime, `boarding_scheduled_duration` int(11), `boarding_delay` int(11), `taxi_started` datetime, `taxi_scheduled_duration` int(11), `taxi_delay` int(11), `inflight_started` datetime, `inflight_scheduled_duration` int(11), `inflight_delay` int(11), `maintenance_started` datetime, `maintenance_scheduled_duration` int(11), `maintenance_delay` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (62.0ms)[0m   [0;1mDROP TABLE `planes`[0m
+  [4;35;1mSQL (110.0ms)[0m   [0mCREATE TABLE `planes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `airline_id` int(11), `aircrafttype_id` int(11), `avg_pax_load` int(11), `avg_speed` int(11), `range` int(11), `starting_airport_code` varchar(3), `starting_pax_count` int(11), `starting_miles_count` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mDROP TABLE `routes`[0m
+  [4;36;1mSQL (94.0ms)[0m   [0;1mCREATE TABLE `routes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `dep_airport_code` varchar(3), `arr_airport_code` varchar(3), `aircrafttype_id` int(11) DEFAULT 0 NOT NULL, `distance_miles` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mDROP TABLE `users`[0m
+  [4;35;1mSQL (78.0ms)[0m   [0mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `first_name` varchar(255), `last_name` varchar(255), `crypted_password` varchar(255), `admin` tinyint(1), `remember_token` varchar(255), `remember_token_expires_at` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM `schema_migrations`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlane Create (0.0ms)[0m   [0mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 13:08:29', 60000, NULL, NULL, NULL, 100000, 1, 1, '2009-12-04 13:08:29')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (32.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCountry Load (0.0ms)[0m   [0mSELECT * FROM `countries` WHERE (code = 'US') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;35;1mCountry Load (0.0ms)[0m   [0mSELECT * FROM `countries` WHERE (code = 'CH') LIMIT 1[0m
+  [4;36;1mAirline Load (0.0ms)[0m   [0;1mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (code = 'FLC') LIMIT 1[0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'IAD') LIMIT 1[0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAircrafttype Load (0.0ms)[0m   [0mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 2) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 1)) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 2)) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 15) [0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.user_id = 15) [0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 16) [0m
+  [4;36;1mAirline Load (0.0ms)[0m   [0;1mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 2) [0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.user_id = 16) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlane Create (0.0ms)[0m   [0mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:14:49', 60000, NULL, NULL, NULL, 100000, 1, 1, '2009-12-04 21:14:49')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (532.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlane Create (0.0ms)[0m   [0mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:18:56', 60000, NULL, NULL, NULL, 100000, 1, 1, '2009-12-04 21:18:56')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlane Create (0.0ms)[0m   [0mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:20:43', 60000, 240, 8200, 500, 100000, 1, 1, '2009-12-04 21:20:43')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlane Create (0.0ms)[0m   [0;1mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:20:43', NULL, 240, 8200, 500, NULL, 1, 1, '2009-12-04 21:20:43')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (47.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mDROP TABLE `accounts`[0m
+  [4;36;1mSQL (78.0ms)[0m   [0;1mCREATE TABLE `accounts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `currency_code` varchar(3), `balance` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mDROP TABLE `aircrafttypes`[0m
+  [4;35;1mSQL (109.0ms)[0m   [0mCREATE TABLE `aircrafttypes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(255), `name` varchar(255), `avg_pax_load_default` int(11), `avg_pax_load_max` int(11), `avg_speed_default` int(11), `avg_speed_max` int(11), `range_default` int(11), `range_max` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mDROP TABLE `airlines`[0m
+  [4;36;1mSQL (156.0ms)[0m   [0;1mCREATE TABLE `airlines` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `user_id` int(11), `country_code` varchar(2), `satisfaction_rating` float DEFAULT 0.0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (79.0ms)[0m   [0;1mDROP TABLE `airports`[0m
+  [4;35;1mSQL (93.0ms)[0m   [0mCREATE TABLE `airports` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(3), `name` varchar(255), `city` varchar(255), `country_code` varchar(2), `longitude` varchar(255), `latitude` varchar(255), `timezone_id` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (32.0ms)[0m   [0mDROP TABLE `countries`[0m
+  [4;36;1mSQL (93.0ms)[0m   [0;1mCREATE TABLE `countries` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(2), `name` varchar(255), `printable_name` varchar(255), `iso3` varchar(3), `numcode` int(11)) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mDROP TABLE `currencies`[0m
+  [4;35;1mSQL (93.0ms)[0m   [0mCREATE TABLE `currencies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(3), `name` varchar(255), `ratio_to_flc` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (32.0ms)[0m   [0mDROP TABLE `flights`[0m
+  [4;36;1mSQL (125.0ms)[0m   [0;1mCREATE TABLE `flights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `plane_id` int(11), `route_id` int(11), `boarding_started` datetime, `boarding_scheduled_duration` int(11), `boarding_delay` int(11), `taxi_started` datetime, `taxi_scheduled_duration` int(11), `taxi_delay` int(11), `inflight_started` datetime, `inflight_scheduled_duration` int(11), `inflight_delay` int(11), `maintenance_started` datetime, `maintenance_scheduled_duration` int(11), `maintenance_delay` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (46.0ms)[0m   [0;1mDROP TABLE `planes`[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCREATE TABLE `planes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `airline_id` int(11), `aircrafttype_id` int(11), `avg_pax_load` int(11), `avg_speed` int(11), `range` int(11), `starting_airport_code` varchar(3), `starting_pax_count` int(11) DEFAULT 0 NOT NULL, `starting_miles_count` int(11) DEFAULT 0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mDROP TABLE `routes`[0m
+  [4;36;1mSQL (109.0ms)[0m   [0;1mCREATE TABLE `routes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `dep_airport_code` varchar(3), `arr_airport_code` varchar(3), `aircrafttype_id` int(11) DEFAULT 0 NOT NULL, `distance_miles` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (47.0ms)[0m   [0;1mDROP TABLE `users`[0m
+  [4;35;1mSQL (203.0ms)[0m   [0mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `first_name` varchar(255), `last_name` varchar(255), `crypted_password` varchar(255), `admin` tinyint(1), `remember_token` varchar(255), `remember_token_expires_at` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM `schema_migrations`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlane Create (0.0ms)[0m   [0mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:23:04', 60000, 240, 8200, 500, 100000, 1, 1, '2009-12-04 21:23:04')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlane Create (0.0ms)[0m   [0;1mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:23:04', 0, 240, 8200, 500, 0, 1, 1, '2009-12-04 21:23:04')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (47.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mPlane Create (0.0ms)[0m   [0mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:23:46', 60000, 240, 8200, 500, 100000, 1, 1, '2009-12-04 21:23:46')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mPlane Create (0.0ms)[0m   [0;1mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `range`, `avg_speed`, `starting_miles_count`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'LAX', '2009-12-04 21:23:46', 0, 240, 8200, 500, 0, 1, 1, '2009-12-04 21:23:46')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCountry Load (0.0ms)[0m   [0;1mSELECT * FROM `countries` WHERE (code = 'US') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mCountry Load (0.0ms)[0m   [0;1mSELECT * FROM `countries` WHERE (code = 'CH') LIMIT 1[0m
+  [4;35;1mAirline Load (16.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (code = 'FLC') LIMIT 1[0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'IAD') LIMIT 1[0m
+  [4;35;1mAircrafttype Load (0.0ms)[0m   [0mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 2) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 1)) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 2)) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`dep_airport_code` = 'ZRH' AND `routes`.`arr_airport_code` = 'IAD' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mUser Load (0.0ms)[0m   [0mSELECT * FROM `users` WHERE (`users`.`id` = 15) [0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.user_id = 15) [0m
+  [4;36;1mUser Load (0.0ms)[0m   [0;1mSELECT * FROM `users` WHERE (`users`.`id` = 16) [0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 2) [0m
+  [4;36;1mAirline Load (0.0ms)[0m   [0;1mSELECT * FROM `airlines` WHERE (`airlines`.user_id = 16) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m

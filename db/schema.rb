@@ -96,8 +96,8 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "avg_speed"
     t.integer  "range"
     t.string  "starting_airport_code", :limit => 3
-    t.integer  "starting_pax_count"
-    t.integer  "starting_miles_count"
+    t.integer  "starting_pax_count", :default => 0, :null => false
+    t.integer  "starting_miles_count", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

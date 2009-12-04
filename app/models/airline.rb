@@ -14,11 +14,16 @@ class Airline < ActiveRecord::Base
     @new_plane.aircrafttype_id = need(aircrafttype.id)
     @new_plane.starting_airport_code = need(airport.code)
     
+    @new_plane.avg_pax_load = aircrafttype.avg_pax_load_default
+    @new_plane.avg_speed = aircrafttype.avg_speed_default
+    @new_plane.range = aircrafttype.range_default 
+
     params.each do |key,value|
       if @new_plane.attributes.has_key?(key.to_s)
         @new_plane.send("#{key.to_s}=",value)
       end
     end
+    
     if @new_plane.save
       @new_plane
     else
