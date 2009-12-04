@@ -2,7 +2,7 @@
 # option to specify a route for all aircraft types or one at a time
 class Route < ActiveRecord::Base
   
-      named_scope :citypair_is, lambda { |dep_id,arr_id| 
+      named_scope :city_pair_is, lambda { |dep_id,arr_id| 
          {:conditions => { "dep_airport_id" => dep_id,
                            "arr_airport_id" => arr_id}}}
 
@@ -18,13 +18,16 @@ class Route < ActiveRecord::Base
     # Returns the route obj based on 2 airport objects and an aircrafttype object
     def identify(dep_airport,arr_airport,aircrafttype)
       if aircrafttype.class != Aircrafttype
-        raise "Arguments do not include a valid aircrafttype"
+        raise ArgumentError.new("Arguments do not include a valid aircrafttype.")
       end
       if (dep_airport.class != Airport) || (arr_airport.class != Airport)
-        raise "Arguments do not include 2 valid airport objects"
+        raise ArgumentError.new("Arguments do not include 2 valid airport objects.")
       end
+      if dep_airport == arr_airport
+        raise ArgumentError.new("Departing and arriving airports are the same.")
+      end      
       aircrafttype_id = aircrafttype.id
-      routes = Route.citypair_is(dep_airport.id,arr_airport.id)
+      routes = Route.city_pair_is(dep_airport.id,arr_airport.id)
       exact_route = routes.aircrafttype_is(aircrafttype_id)[0]
       generic_route = routes.aircrafttype_is(0)[0]
       

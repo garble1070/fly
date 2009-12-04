@@ -4,30 +4,23 @@ one:
   id: 1
   name: HB-IGC
   airline_id: 1
-  aircrafttype_id: 2
-  range: 8300
-  avg_speed: 1
-  status: 0
-  last_airport_id: LAX
-  next_airport_id: 
-  pax_current: 0
-  pax_counter: 33704
-  pax_cycle_counter: 2533
-  miles_counter: 26733
-  miles_cycle_counter: 955432
-
+  aircrafttype_id: 1
+  avg_pax_load: 240
+  avg_speed: 500
+  range: 8400
+  starting_airport: ZRH
+  starting_pax_count: 0
+  starting_miles_count: 0
+  
 two:
   id: 2
   name: N967UA
   airline_id: 3
   aircrafttype_id: 2
-  range: 7700
+  avg_pax_load: 320
   avg_speed: 500
-  status: 3
-  last_airport_id: ZRH
-  next_airport_id: IAD
-  pax_current: 220
-  pax_counter: 12433
-  pax_cycle_counter: 4522
-  miles_counter: 1822
-  miles_cycle_counter: 745044
+  range: 7500
+  starting_airport: IAD
+  starting_pax_count: 0
+  starting_miles_count: 0
+

@@ -421,3 +421,339 @@ Migrating to CreatePlanes (20091203232504)
   [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'ZRH' AND `routes`.`dep_airport_id` = 'LAX' AND `routes`.`aircrafttype_id` = 0)) [0m
   [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'ZRH' AND `routes`.`dep_airport_id` = 'LAX' AND `routes`.`aircrafttype_id` = 2)) [0m
   [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'ZRH' AND `routes`.`dep_airport_id` = 'LAX' AND `routes`.`aircrafttype_id` = 2)) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20091203192737)
+Migrating to CreateAirlines (20091203193345)
+Migrating to CreateCurrencies (20091203193516)
+Migrating to CreateAccounts (20091203193734)
+Migrating to CreateCountries (20091203194732)
+Migrating to CreateAirports (20091203214829)
+Migrating to CreateRoutes (20091203225438)
+Migrating to CreateAircrafttypes (20091203231857)
+Migrating to CreatePlanes (20091203232504)
+Migrating to CreateFlights (20091204035504)
+  [4;36;1mSQL (109.0ms)[0m   [0;1mCREATE TABLE `flights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `plane_id` int(11), `route_id` int(11), `boarding_started` datetime, `boarding_scheduled_duration` int(11), `boarding_delay` int(11), `taxi_started` datetime, `taxi_scheduled_duration` int(11), `taxi_delay` int(11), `inflight_started` datetime, `inflight_scheduled_duration` int(11), `inflight_delay` int(11), `maintenance_started` datetime, `maintenance_scheduled_duration` int(11), `maintenance_delay` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091204035504')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `aircrafttypes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airlines`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `currencies`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mSHOW FIELDS FROM `flights`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `flights`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `flights`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `planes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `planes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `planes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `routes`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mdescribe `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateFlights (20091204035504)
+  [4;36;1mSQL (63.0ms)[0m   [0;1mDROP TABLE `flights`[0m
+  [4;35;1mSQL (46.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20091204035504'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `aircrafttypes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airlines`[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `planes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `planes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `planes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePlanes (20091203232504)
+  [4;36;1mSQL (63.0ms)[0m   [0;1mDROP TABLE `planes`[0m
+  [4;35;1mSQL (46.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20091203232504'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `aircrafttypes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airlines`[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `currencies`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSHOW FIELDS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20091203192737)
+Migrating to CreateAirlines (20091203193345)
+Migrating to CreateCurrencies (20091203193516)
+Migrating to CreateAccounts (20091203193734)
+Migrating to CreateCountries (20091203194732)
+Migrating to CreateAirports (20091203214829)
+Migrating to CreateRoutes (20091203225438)
+Migrating to CreateAircrafttypes (20091203231857)
+Migrating to CreatePlanes (20091203232504)
+  [4;36;1mSQL (109.0ms)[0m   [0;1mCREATE TABLE `planes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `airline_id` int(11), `aircrafttype_id` int(11), `avg_pax_load` int(11), `avg_speed` int(11), `range` int(11), `starting_airport` int(11), `starting_pax_count` int(11), `starting_miles_count` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (63.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091203232504')[0m
+Migrating to CreateFlights (20091204035504)
+  [4;36;1mSQL (78.0ms)[0m   [0;1mCREATE TABLE `flights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `plane_id` int(11), `route_id` int(11), `boarding_started` datetime, `boarding_scheduled_duration` int(11), `boarding_delay` int(11), `taxi_started` datetime, `taxi_scheduled_duration` int(11), `taxi_delay` int(11), `inflight_started` datetime, `inflight_scheduled_duration` int(11), `inflight_delay` int(11), `maintenance_started` datetime, `maintenance_scheduled_duration` int(11), `maintenance_delay` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091204035504')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `aircrafttypes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `airlines`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mdescribe `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mdescribe `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `countries`[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mdescribe `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mdescribe `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `flights`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mdescribe `flights`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `flights`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `planes`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mdescribe `planes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `planes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `routes`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mdescribe `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateFlights (20091204035504)
+  [4;36;1mSQL (62.0ms)[0m   [0;1mDROP TABLE `flights`[0m
+  [4;35;1mSQL (63.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20091204035504'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `aircrafttypes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `planes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `planes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `planes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreatePlanes (20091203232504)
+  [4;36;1mSQL (62.0ms)[0m   [0;1mDROP TABLE `planes`[0m
+  [4;35;1mSQL (63.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20091203232504'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mdescribe `aircrafttypes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `countries`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mdescribe `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateAircrafttypes (20091203231857)
+  [4;36;1mSQL (63.0ms)[0m   [0;1mDROP TABLE `aircrafttypes`[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mDELETE FROM schema_migrations WHERE version = '20091203231857'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `countries`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mSHOW FIELDS FROM `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `currencies`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `routes`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSHOW KEYS FROM `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20091203192737)
+Migrating to CreateAirlines (20091203193345)
+Migrating to CreateCurrencies (20091203193516)
+Migrating to CreateAccounts (20091203193734)
+Migrating to CreateCountries (20091203194732)
+Migrating to CreateAirports (20091203214829)
+Migrating to CreateRoutes (20091203225438)
+Migrating to CreateAircrafttypes (20091203231857)
+  [4;36;1mSQL (125.0ms)[0m   [0;1mCREATE TABLE `aircrafttypes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(255), `name` varchar(255), `avg_pax_load_default` int(11), `avg_pax_load_max` int(11), `avg_speed_default` int(11), `avg_speed_max` int(11), `range_default` int(11), `range_max` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (78.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091203231857')[0m
+Migrating to CreatePlanes (20091203232504)
+  [4;36;1mSQL (126.0ms)[0m   [0;1mCREATE TABLE `planes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `airline_id` int(11), `aircrafttype_id` int(11), `avg_pax_load` int(11), `avg_speed` int(11), `range` int(11), `starting_airport` int(11), `starting_pax_count` int(11), `starting_miles_count` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091203232504')[0m
+Migrating to CreateFlights (20091204035504)
+  [4;36;1mSQL (94.0ms)[0m   [0;1mCREATE TABLE `flights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `plane_id` int(11), `route_id` int(11), `boarding_started` datetime, `boarding_scheduled_duration` int(11), `boarding_delay` int(11), `taxi_started` datetime, `taxi_scheduled_duration` int(11), `taxi_delay` int(11), `inflight_started` datetime, `inflight_scheduled_duration` int(11), `inflight_delay` int(11), `maintenance_started` datetime, `maintenance_scheduled_duration` int(11), `maintenance_delay` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;35;1mSQL (32.0ms)[0m   [0mINSERT INTO schema_migrations (version) VALUES ('20091204035504')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `accounts`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `accounts`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `aircrafttypes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `aircrafttypes`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mSHOW FIELDS FROM `airlines`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `airlines`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `airlines`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (16.0ms)[0m   [0mdescribe `airports`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `countries`[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mdescribe `countries`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `countries`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `currencies`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSHOW KEYS FROM `currencies`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `flights`[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mdescribe `flights`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `flights`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `planes`[0m
+  [4;35;1mSQL (15.0ms)[0m   [0mdescribe `planes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `planes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW FIELDS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mdescribe `routes`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW KEYS FROM `routes`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW KEYS FROM `users`[0m

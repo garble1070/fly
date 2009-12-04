@@ -5,17 +5,12 @@ class CreatePlanes < ActiveRecord::Migration
       t.string :name
       t.integer :airline_id
       t.integer :aircrafttype_id
-      t.integer :range
+      t.integer :avg_pax_load
       t.integer :avg_speed
-      t.string :status
-      t.integer :last_airport_id
-      t.integer :next_airport_id
-      t.integer :pax_current
-      t.integer :pax_counter
-      t.integer :pax_cycle_counter
-      t.integer :miles_counter
-      t.integer :miles_cycle_counter
-
+      t.integer :range
+      t.integer :starting_airport
+      t.integer :starting_pax_count
+      t.integer :starting_miles_count
       t.timestamps
     end
   end

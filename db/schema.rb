@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203232504) do
+ActiveRecord::Schema.define(:version => 20091204035504) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -22,9 +22,12 @@ ActiveRecord::Schema.define(:version => 20091203232504) do
   create_table "aircrafttypes", :force => true do |t|
     t.string   "code"
     t.string   "name"
-    t.integer  "max_pax"
-    t.integer  "range_default"
+    t.integer  "avg_pax_load_default"
+    t.integer  "avg_pax_load_max"
     t.integer  "avg_speed_default"
+    t.integer  "avg_speed_max"
+    t.integer  "range_default"
+    t.integer  "range_max"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -63,20 +66,35 @@ ActiveRecord::Schema.define(:version => 20091203232504) do
     t.datetime "updated_at"
   end
 
+  create_table "flights", :force => true do |t|
+    t.integer  "plane_id"
+    t.integer  "route_id"
+    t.datetime "boarding_started"
+    t.integer  "boarding_scheduled_duration"
+    t.integer  "boarding_delay"
+    t.datetime "taxi_started"
+    t.integer  "taxi_scheduled_duration"
+    t.integer  "taxi_delay"
+    t.datetime "inflight_started"
+    t.integer  "inflight_scheduled_duration"
+    t.integer  "inflight_delay"
+    t.datetime "maintenance_started"
+    t.integer  "maintenance_scheduled_duration"
+    t.integer  "maintenance_delay"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "planes", :force => true do |t|
     t.string   "name"
     t.integer  "airline_id"
     t.integer  "aircrafttype_id"
-    t.integer  "range"
+    t.integer  "avg_pax_load"
     t.integer  "avg_speed"
-    t.string   "status"
-    t.integer  "last_airport_id"
-    t.integer  "next_airport_id"
-    t.integer  "pax_current"
-    t.integer  "pax_counter"
-    t.integer  "pax_cycle_counter"
-    t.integer  "miles_counter"
-    t.integer  "miles_cycle_counter"
+    t.integer  "range"
+    t.integer  "starting_airport"
+    t.integer  "starting_pax_count"
+    t.integer  "starting_miles_count"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

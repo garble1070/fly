@@ -4,9 +4,12 @@ class CreateAircrafttypes < ActiveRecord::Migration
       t.integer :id
       t.string :code
       t.string :name
-      t.integer :max_pax
-      t.integer :range_default
+      t.integer :avg_pax_load_default
+      t.integer :avg_pax_load_max
       t.integer :avg_speed_default
+      t.integer :avg_speed_max
+      t.integer :range_default
+      t.integer :range_max
 
       t.timestamps
     end

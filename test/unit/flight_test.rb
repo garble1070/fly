@@ -1,6 +1,6 @@
 require '../test_helper'
 
-class AircrafttypeTest < ActiveSupport::TestCase
+class FlightTest < ActiveSupport::TestCase
   # Replace this with your real tests.
   test "the truth" do
     assert true

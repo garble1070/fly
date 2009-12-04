@@ -36,6 +36,10 @@ end
     assert_not_nil(@route2)
     miles2 = @route2.distance_miles
     assert miles2 == 4228
-    
+
+    assert_raise(ArgumentError){Route.identify(@zrh,@zrh,@b747)}
+    assert_raise(ArgumentError){Route.identify(@zrh,nil,@b747)}
+    assert_raise(ArgumentError){Route.identify(@zrh,@iad,nil)}
+
   end
 end
