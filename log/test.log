@@ -137,3 +137,121 @@
   [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
   [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.currency_id = 'FLC') [0m
   [4;36;1mSQL (31.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'IAD') [0m
+  [4;35;1mAircrafttype Load (0.0ms)[0m   [0mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 2) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 1)) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 2)) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;36;1mAirport Load (16.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'IAD') [0m
+  [4;35;1mAircrafttype Load (0.0ms)[0m   [0mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 2) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 1)) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 2)) [0m
+  [4;36;1mRoute Load (0.0ms)[0m   [0;1mSELECT * FROM `routes` WHERE ((`routes`.`arr_airport_id` = 'IAD' AND `routes`.`dep_airport_id` = 'ZRH' AND `routes`.`aircrafttype_id` = 0)) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mRoute Load (0.0ms)[0m   [0mSELECT * FROM `routes` WHERE (`routes`.`id` = 1) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'LAX') [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`id` = 'ZRH') [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m

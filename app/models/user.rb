@@ -1,4 +1,4 @@
-# The unique user of the system, including login credentials
+# A unique user of the system, including login credentials
 class User < ActiveRecord::Base
   has_many :accounts
   has_many :airlines

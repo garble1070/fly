@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  id: 1
+  code: A330-3
+  name: Airbus A330-300
+  max_pax: 300
+  range_default: 8600
+  avg_speed_default: 500
+
+two:
+  id: 2
+  code: B747-4e
+  name: Boeing 747-400ER
+  max_pax: 400
+  range_default: 7800
+  avg_speed_default: 500

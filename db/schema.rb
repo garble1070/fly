@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091203214829) do
+ActiveRecord::Schema.define(:version => 20091203232504) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
@@ -19,9 +19,20 @@ ActiveRecord::Schema.define(:version => 20091203214829) do
     t.datetime "updated_at"
   end
 
+  create_table "aircrafttypes", :force => true do |t|
+    t.string   "code"
+    t.string   "name"
+    t.integer  "max_pax"
+    t.integer  "range_default"
+    t.integer  "avg_speed_default"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "airlines", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.string   "country_id",          :default => "",  :null => false
     t.float    "satisfaction_rating", :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -45,8 +56,6 @@ ActiveRecord::Schema.define(:version => 20091203214829) do
     t.integer "numcode"
   end
 
-  add_index "countries", ["id"], :name => "id", :unique => true
-
   create_table "currencies", :force => true do |t|
     t.string   "name"
     t.float    "ratio_to_flc"
@@ -54,7 +63,32 @@ ActiveRecord::Schema.define(:version => 20091203214829) do
     t.datetime "updated_at"
   end
 
-  add_index "currencies", ["id"], :name => "id", :unique => true
+  create_table "planes", :force => true do |t|
+    t.string   "name"
+    t.integer  "airline_id"
+    t.integer  "aircrafttype_id"
+    t.integer  "range"
+    t.integer  "avg_speed"
+    t.string   "status"
+    t.integer  "last_airport_id"
+    t.integer  "next_airport_id"
+    t.integer  "pax_current"
+    t.integer  "pax_counter"
+    t.integer  "pax_cycle_counter"
+    t.integer  "miles_counter"
+    t.integer  "miles_cycle_counter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "routes", :force => true do |t|
+    t.string   "dep_airport_id"
+    t.string   "arr_airport_id"
+    t.integer  "aircrafttype_id", :default => 0, :null => false
+    t.integer  "distance_miles"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email"

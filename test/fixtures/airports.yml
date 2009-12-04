@@ -17,3 +17,14 @@ two:
   longitude: MyString
   latitude: MyString
   timezone_id: 8
+
+three:
+  id: IAD
+  name: Washington Dulles
+  city: Washington, D.C.
+  country_id: US
+  longitude: MyString
+  latitude: MyString
+  timezone_id: 4
+
+  
