@@ -10,6 +10,7 @@ class UserTest < ActiveSupport::TestCase
     my_users_accounts = @user.accounts
     assert_kind_of(Array,my_users_accounts) 
     assert my_users_accounts.include?(@account)
+    assert @account.user == @user
     
     @user1 = User.find(16)
     @airline = Airline.find(2)
@@ -18,6 +19,7 @@ class UserTest < ActiveSupport::TestCase
     my_users_airlines = @user1.airlines
     assert_kind_of(Array,my_users_airlines) 
     assert my_users_airlines.include?(@airline)
+    assert @airline.user == @user1
   end
 
 end

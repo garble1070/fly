@@ -10,6 +10,7 @@ class CountryTest < ActiveSupport::TestCase
     my_countrys_airports = @country.airports
     assert_kind_of(Array,my_countrys_airports) 
     assert my_countrys_airports.include?(@airport)
+    assert @airport.country == @country
     
     @country1 = Country.get("CH")
     @airline = Airline.find(1)
@@ -18,6 +19,7 @@ class CountryTest < ActiveSupport::TestCase
     my_countrys_airlines = @country1.airlines
     assert_kind_of(Array,my_countrys_airlines) 
     assert my_countrys_airlines.include?(@airline)
+    assert @airline.country == @country1
   end
 
 

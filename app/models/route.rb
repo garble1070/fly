@@ -1,7 +1,8 @@
 # A route that our airplanes are allowed to fly, with mileage. Includes the
 # option to specify a route for all aircraft types or one at a time
 class Route < ActiveRecord::Base
-  belongs_to :aircrafttype
+  # belongs_to :aircrafttype   *** DO NOT UNCOMMENT THIS .. WILL BREAK STUFF
+  has_many :flights
   
   named_scope :city_pair_is, lambda { |dep_code,arr_code| 
     {:conditions => { "dep_airport_code" => dep_code,

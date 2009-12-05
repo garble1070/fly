@@ -2,6 +2,17 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class AirlineTest < ActiveSupport::TestCase
   
+  def test_associations
+    @airline = Airline.find(3)
+    @plane = Plane.find(2)
+    assert_not_nil(@airline)
+    assert_not_nil(@plane)
+    my_airlines_planes = @airline.planes
+    assert_kind_of(Array,my_airlines_planes) 
+    assert my_airlines_planes.include?(@plane)
+    assert @plane.airline == @airline
+  end
+  
   def test_create_new_plane
     @airline = Airline.find(1)
     assert_not_nil(@airline)
@@ -11,7 +22,7 @@ class AirlineTest < ActiveSupport::TestCase
     assert_not_nil(@lax)
     
     @my_plane = @airline.acquire_plane(@a330,@lax,
-          {:starting_pax_count => 60000, :starting_miles_count => 100000})
+                                       {:starting_pax_count => 60000, :starting_miles_count => 100000})
     assert_not_nil(@my_plane)
     assert_kind_of(Fixnum,@my_plane.id)
     assert @my_plane.id > 0
@@ -25,15 +36,15 @@ class AirlineTest < ActiveSupport::TestCase
     assert_not_nil(@my_plane2)
     assert @my_plane2.starting_pax_count == 0
     assert @my_plane2.starting_miles_count == 0
-
+    
     assert_raise(ArgumentError){@airline.acquire_plane(@lax,@lax)}
     assert_raise(ArgumentError){@airline.acquire_plane(@a330,@a330)}
     assert_raise(ArgumentError){@airline.acquire_plane(@a330,@lax,4)}
     assert_raise(RuntimeError){@airline.acquire_plane(Aircrafttype.new,@lax)}
     assert_raise(RuntimeError){@airline.acquire_plane(@a330,Airport.new)}
     assert_raise(RuntimeError){Airline.new.acquire_plane(@a330,@lax)}
-
-  
+    
+    
   end
-
+  
 end

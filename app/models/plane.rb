@@ -2,6 +2,7 @@
 class Plane < ActiveRecord::Base
   belongs_to :airline
   belongs_to :aircrafttype
+  has_many :flights
   
   #**********************************************#
   #               INSTANCE METHODS               #

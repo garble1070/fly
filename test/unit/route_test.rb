@@ -2,6 +2,17 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class RouteTest < ActiveSupport::TestCase
     
+  def test_associations
+    @route = Route.find(2)
+    @flight = Flight.find(221)
+    assert_not_nil(@route)
+    assert_not_nil(@flight)
+    my_routes_flights = @route.flights
+    assert_kind_of(Array,my_routes_flights) 
+    assert my_routes_flights.include?(@flight)
+    assert @flight.route == @route
+  end
+
   def test_retrieve
     @zrh = Airport.get("ZRH")
     assert_not_nil(@zrh)
