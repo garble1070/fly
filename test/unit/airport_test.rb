@@ -2,7 +2,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 
 class AirportTest < ActiveSupport::TestCase
   
-  def test_link_to_routes_
+  def test_link_to_route_class
     @route = Route.find(1)
     assert_not_nil(@route)
     
@@ -21,7 +21,7 @@ class AirportTest < ActiveSupport::TestCase
     assert @arr_airport_zrh == @zrh
 end
 
-def test_link_from_routes
+def test_link_from_route_class
     @zrh = Airport.get("ZRH")
     assert_not_nil(@zrh)
     
@@ -57,16 +57,20 @@ def test_link_from_routes
     assert routes_with_lax.include?(@arr_city_lax_route)
   end
   
-  def test_link_to_planes
+  def test_link_to_plane_class
     @plane = Plane.find(1)
     assert_not_nil(@plane)
     
     @starting_airport_zrh = @plane.starting_airport
     assert_not_nil(@starting_airport_zrh)
     
+    @starting_airport_zrh_obj = @plane.starting_airport_obj
+    assert_not_nil(@starting_airport_zrh_obj)
+    
     @zrh = Airport.get("ZRH")
     assert_not_nil(@zrh)
     assert @starting_airport_zrh == @zrh
+    assert @starting_airport_zrh_obj == @zrh
   end
   
 end

@@ -7,4 +7,14 @@ class Flight < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
+  # Returns this flight's plane object
+  def plane_obj
+    self.plane
+  end
+  
+  # Returns this flight's route object
+  def route_obj
+    self.route
+  end
+  
 end

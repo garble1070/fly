@@ -12,8 +12,18 @@ class Airline < ActiveRecord::Base
   #**********************************************#
   
   #Returns this airline's country object
-  def country
+  def country_obj
     Country.get(self.country_code)
+  end
+
+  # Alias for 'country_obj', to match rails convention
+  def country
+    self.country_obj
+  end
+  
+  #Returns this airline's user object
+  def user_obj
+    self.user
   end
 
   # Creats a new Plane object, saves it to the database. Returns the object if save is successful.

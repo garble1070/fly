@@ -12,7 +12,6 @@ class Airport < ActiveRecord::Base
     
     # Returns an airport object based on its code (passed as a string by argument)
     def get(code)
-      #TODO check for a string
       find(:first, :conditions => "code = '#{code}'")
     end
   end
@@ -22,9 +21,14 @@ class Airport < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
-  # Returns this airport's country object
-  def country
+  #Returns this airport's country object
+  def country_obj
     Country.get(self.country_code)
+  end
+
+  # Alias for 'country_obj', to match rails convention
+  def country
+    self.country_obj
   end
   
   # Returns an array of routes that feature this airport as the departure city

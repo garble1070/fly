@@ -9,7 +9,6 @@ class Country < ActiveRecord::Base
 
     # Returns a country object based on its code (passed as a string by argument)
     def get(code)
-      #TODO check for a string
       find(:first, :conditions => "code = '#{code}'")
     end
   end

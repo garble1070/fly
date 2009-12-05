@@ -58,13 +58,23 @@ class Route < ActiveRecord::Base
   #**********************************************#
   
   # Returns the airport object for the departure airport on this route
-  def dep_airport
+  def dep_airport_obj
     Airport.get(self.dep_airport_code)
   end
   
+  # Alias for 'dep_airport_obj', to match rails convention
+  def dep_airport
+    self.dep_airport_obj
+  end
+  
   # Returns the airport object for the arrival airport on this route
-  def arr_airport
+  def arr_airport_obj
     Airport.get(self.arr_airport_code)
+  end
+
+  # Alias for 'arr_airport_obj', to match rails convention
+  def arr_airport
+    self.arr_airport_obj
   end
   
   
