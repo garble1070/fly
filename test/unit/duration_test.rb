@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class GenClassesTest < ActiveSupport::TestCase
+class DurationTest < ActiveSupport::TestCase
 
   def test_duration
     a = Duration.new(15)
@@ -11,6 +11,7 @@ class GenClassesTest < ActiveSupport::TestCase
     assert a.in_seconds == 15
     assert b.in_seconds == 15
     assert c.in_seconds == 15
+    assert d.output == 15
     assert d.in_seconds == 15
     assert d.in_minutes == 0.25
     
@@ -22,6 +23,7 @@ class GenClassesTest < ActiveSupport::TestCase
     assert f.in_seconds == 15*60
     assert g.in_seconds == 15*60
     assert g.in_hours == 0.25
+    assert g.output == 15
     
     h = Duration.new(15,:hours)
     i = Duration.new(15,:hrs)
@@ -30,7 +32,9 @@ class GenClassesTest < ActiveSupport::TestCase
     assert h.in_seconds == 15*3600
     assert i.in_seconds == 15*3600
     assert j.in_seconds == 15*3600
+    assert j.output == 15
     
     assert_raise(ArgumentError){Duration.new(15,:bob)}
+    assert_raise(RuntimeError){a.output}
   end
 end
