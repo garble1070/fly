@@ -1,5 +1,5 @@
 # A class that allows you to manage time durations easily
-class Duration
+class DurationInSeconds
 
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
@@ -28,8 +28,9 @@ class Duration
   #               INSTANCE METHODS               #
   #**********************************************#  
   
-  # Takes a value and a symbol identifying the time duration to capture
-  def initialize(value,symbol)
+  # Takes a value and a symbol identifying the time duration to capture. If no symbol is
+  # provided, assumes seconds.
+  def initialize(value,symbol=:seconds)
     case symbol 
       when :hours    then @duration = value*3600
       when :minutes  then @duration = value*60      

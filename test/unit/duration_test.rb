@@ -1,28 +1,31 @@
 require File.dirname(__FILE__) + '/../test_helper'
 
-class DurationTest < ActiveSupport::TestCase
+class DurationInSecondsTest < ActiveSupport::TestCase
 
   def test_duration
-    a = Duration.new(15,:seconds)
+    a = DurationInSeconds.new(15,:seconds)
     assert a.in_seconds == 15
 
-    b = Duration.new_using_seconds(15)
+    b = DurationInSeconds.new_using_seconds(15)
     assert b.in_seconds == 15    
     assert b.in_minutes == 0.25
     
-    c = Duration.new(15,:minutes)
+    c = DurationInSeconds.new(15,:minutes)
     assert c.in_seconds == 15*60
 
-    d = Duration.new_using_minutes(15)
+    d = DurationInSeconds.new_using_minutes(15)
     assert d.in_seconds == 15*60
     assert d.in_hours == 0.25
         
-    e = Duration.new(15,:hours)
+    e = DurationInSeconds.new(15,:hours)
     assert e.in_seconds == 15*3600
 
-    f = Duration.new_using_hours(15)
+    f = DurationInSeconds.new_using_hours(15)
     assert f.in_minutes == 15*60
        
-    assert_raise(ArgumentError){Duration.new(15,:bob)}
+    g = DurationInSeconds.new(15)
+    assert g.in_seconds == 15
+    
+    assert_raise(ArgumentError){DurationInSeconds.new(15,:bob)}
   end
 end
