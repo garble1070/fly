@@ -25,7 +25,5 @@ class QuantityOfPassengersTest < ActiveSupport::TestCase
     
     d = c - b
     assert d.quantity == 25
-    
-    assert_raise(TypeError){d + "abc"}
   end
 end
