@@ -21,7 +21,16 @@ class PlaneCreatorTest < ActiveSupport::TestCase
         
     config_params = [@airline,@a330,@lax, @sixty_thousand_pax, @one_hundred_k_miles]
     @plane_creator = PlaneCreator.new(config_params)
+    assert_not_nil(@plane_creator)
+    assert @plane_creator.required_param_types_present?
     
+    
+    
+    incomplete_config_params = [@airline,@a330]
+    @plane_creator = PlaneCreator.new(incomplete_config_params)
+    assert_not_nil(@plane_creator)
+    assert_raise(RuntimeError) {@plane_creator.manufacture_item}
+
   end
   
   
