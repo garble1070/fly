@@ -29,3 +29,4 @@ class Plane < ActiveRecord::Base
   end
   
 end
+

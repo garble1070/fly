@@ -17,24 +17,6 @@ class AirlineTest < ActiveSupport::TestCase
     assert @plane.airline == @airline
   end
   
-=begin
-  def test_create_new_plane_better
-    @airline = Airline.find(1)
-    assert_not_nil(@airline)
-    
-    @a330 = Aircrafttype.find(1)
-    assert_not_nil(@a330)
-    
-    @lax = Airport.get("LAX")
-    assert_not_nil(@lax)
-
-    @plane_creator = PlaneCreator.new
-    @plane_creator << @airline
-    @plane_creator << @a330
-    @plane_creator << @lax
-
-  end
-=end
   
   def test_create_new_plane
     @airline = Airline.find(1)
