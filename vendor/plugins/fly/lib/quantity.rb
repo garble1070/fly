@@ -1,18 +1,16 @@
-# A class that allows the user to manage quantities easily
+# A class that allows the user to manage quantities easily.
 class Quantity
-  
+    
   attr_accessor :quantity
-  attr_reader :type
   
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#  
-  
+    
   # Takes a value identifying the quantity to capture; zero is assumed if no argument is
   # provided
   def initialize(value=0)
     @quantity = value
-    @type = nil
   end
   
   # Increases the quantity object by the input amount; returns original object
@@ -42,9 +40,9 @@ class Quantity
   end
   
   # Applies an operator (passed as a string in the first argument) to create a mathematical 
-  # expression using the '@quantity' variable as the source operand and the 2nd argument as
-  # the target operand.  Works when the latter argument is numeric OR if it has a '@quantity' 
-  # instance variable.
+  # expression using the '@quantity' variable as the source operand and the 2nd 
+  # argument as the target operand.  Works when the latter argument is numeric OR if it has 
+  # a '@quantity' instance variable.
   def apply_math_operator(operator_as_string, target)
     original_number = self.quantity
     has_instance_variable = target.instance_variable_defined?("@quantity")
@@ -53,13 +51,67 @@ class Quantity
   end
 end
 
-# Class inherits from "Quantity" superclass
-class QuantityOfPassengers < Quantity
+# A class that allows the user to manage distances easily
+class DistanceInMiles < Quantity
+    
+  #**********************************************#
+  #               INSTANCE METHODS               #
+  #**********************************************#  
   
-  # Takes a value identifying the quantity to capture; zero is assumed if no argument is
-  # provided.  Sets @type as "passengers".
-  def initialize(value=0)
-    @quantity = value
-    @type = "passengers"
+  # Returns the value from '@quantity'
+  def distance_in_miles
+    @quantity
   end
+  
+  # Sets the value for '@quantity'
+  def distance_in_miles=(input)
+    @quantity=input
+  end
+end
+
+# A class that allows the user to manage passenger counts easily
+class NumberOfPassengers < Quantity
+    
+  #**********************************************#
+  #               INSTANCE METHODS               #
+  #**********************************************#  
+  
+  # Returns the value from '@quantity'
+  def number_of_passengers
+    @quantity
+  end
+  
+  # Sets the value for '@quantity'
+  def number_of_passengers=(input)
+    @quantity=input
+  end
+end
+
+# A class that allows the user to manage durations easily
+class DurationInSeconds < Quantity
+  
+  #**********************************************#
+  #               INSTANCE METHODS               #
+  #**********************************************#  
+  
+  # Returns the value from '@quantity'
+  def duration_in_seconds
+    @quantity
+  end
+  
+  # Sets the value for '@quantity'
+  def duration_in_seconds=(input)
+    @quantity=input
+  end
+    
+  # Outputs the stored duration in minutes
+  def duration_in_minutes
+    @quantity.quo(60)
+  end
+    
+  # Outputs the stored duration in hours
+  def duration_in_hours
+    @quantity.quo(3600)
+  end
+
 end
