@@ -18,7 +18,6 @@ class PlaneCreator
   # Sets the instance variables '@required_param_types' and '@optional_param_types'
   def set_expected_param_types
     @required_param_types = ["Aircrafttype","Airline","Airport"]
-    @optional_param_types = ["Name","StartingPaxCount","StartingMilesCount"]
   end
   
   # Stores the object in the '@config_params' hash
@@ -57,7 +56,7 @@ class PlaneCreator
       @config_params.fetch(key)
     end
   end
-    
+  
   # If present, deletes a specified object from the param list.
   def delete_param(obj)
     key = generate_key_from_object(obj)
@@ -93,25 +92,35 @@ class PlaneCreator
     return true
   end
   
-  # Instantiates and returns a new item object
+  # Instantiates a new item object; inserts params; returns object
   def generate_new_item_object
-    new_item = Plane.new
-    new_item.airline_id             = param_by_classname("Airline").id
-    new_item.starting_airport_code  = param_by_classname("Airport").code
-    new_item.aircrafttype_id        = param_by_classname("Aircrafttype").id
-    new_item.avg_pax_load           = param_by_classname("Aircrafttype").avg_pax_load_default
-    new_item.avg_speed              = param_by_classname("Aircrafttype").avg_speed_default
-    new_item.range                  = param_by_classname("Aircrafttype").range_default 
+    @new_item = Plane.new
+    insert_required_params_into_new_item_object
+    insert_optional_params_into_new_item_object
+    return @new_item
+  end
+  
+  # Inserts required params into new item object
+  def insert_required_params_into_new_item_object
+    @new_item.airline_id             = param_by_classname("Airline").id
+    @new_item.starting_airport_code  = param_by_classname("Airport").code
+    @new_item.aircrafttype_id        = param_by_classname("Aircrafttype").id
+    @new_item.avg_pax_load           = param_by_classname("Aircrafttype").avg_pax_load_default
+    @new_item.avg_speed              = param_by_classname("Aircrafttype").avg_speed_default
+    @new_item.range                  = param_by_classname("Aircrafttype").range_default 
+  end
+  
+  # Inserts optional params into new item object
+  def insert_optional_params_into_new_item_object
     if param_classname_present?("String")
-      new_item.name                 = param_by_classname("String")
+      @new_item.name                 = param_by_classname("String")
     end
     if param_classname_present?("StartingPaxCount")
-      new_item.starting_pax_count   = param_by_classname("StartingPaxCount").quantity
+      @new_item.starting_pax_count   = param_by_classname("StartingPaxCount").quantity
     end
     if param_classname_present?("StartingMilesCount")
-      new_item.starting_miles_count = param_by_classname("StartingMilesCount").quantity
-    end
-    return new_item
+      @new_item.starting_miles_count = param_by_classname("StartingMilesCount").quantity
+    end    
   end
   
 end

@@ -30,11 +30,7 @@ class Airline < ActiveRecord::Base
   def acquire_plane(param_array)
     param_array << self
     new_plane = PlaneCreator.new(param_array).manufacture
-    if new_plane.save
-      return new_plane
-    else
-      return nil
-    end
+    return new_plane.save ? new_plane : nil
   end
   
   
