@@ -41,6 +41,12 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     @pc.delete_by_classname("Airport")
     assert @pc.param_classname_present?("Airport") == false
     
+    @pc << @airline << @lax << @sixty_thousand_pax << @one_hundred_k_miles
+    assert @pc.required_param_types_present? == false
+    assert_raise(RuntimeError) {@pc.manufacture_item}
+    @pc << @b747
+    assert @pc.required_param_types_present? == true
+    
     config_params = [@airline,@a330,@lax, @sixty_thousand_pax, @one_hundred_k_miles]
     @plane_creator = PlaneCreator.new(config_params)
     assert_not_nil(@plane_creator)
@@ -48,10 +54,6 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     
     
     
-    incomplete_config_params = [@airline,@a330]
-    @plane_creator = PlaneCreator.new(incomplete_config_params)
-    assert_not_nil(@plane_creator)
-    assert_raise(RuntimeError) {@plane_creator.manufacture_item}
 
   end
   

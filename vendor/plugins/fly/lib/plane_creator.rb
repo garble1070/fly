@@ -6,11 +6,11 @@ class PlaneCreator
   #**********************************************#  
   
   # Constructor; accepts optional array of config params
-  def initialize(config_params=[])
+  def initialize(param_array=[])
     set_expected_param_types
-    @config_params = config_params
-    @config_param_types = config_params.collect do |obj|
-      obj.class.name
+    @config_params = {}
+    param_array.each do |obj|
+      insert_param_using_object(obj)
     end
   end
   
@@ -20,63 +20,60 @@ class PlaneCreator
     @optional_param_types = ["Name","StartingPaxCount","StartingMilesCount"]
   end
   
+  # Stores the object in the '@config_params' hash
+  def insert_param_using_object(obj)
+    key = generate_key_from_object(obj)
+    @config_params[key] = obj
+  end
+  
+  # Returns a de-camelized string representing the object's class name
+  def generate_key_from_object(obj)
+    obj.class.name.underscore.to_sym
+  end
+  
   # Adds individual objects to the '@config_params' array; if one of that type
   # already exists, the previous object is overwritten
   def add_param(obj)
-    puts "before add: " + @config_params.inspect
-    classname = obj.class.name
-    if param_classname_present?(classname)
-      delete_by_classname(classname)
-    end
-    @config_param_types << classname
-    @config_params << obj
-    puts "after " + @config_params.inspect
-
+    insert_param_using_object(obj)
+    return self
   end
   
   # Alias for 'add_param'
   def <<(obj)
     self.add_param(obj)
   end
-
+  
   # If present, deletes a param object using a string that represents that param's class name.
   def delete_by_classname(string)
-    puts "Running delete_by_classname with arg #{string}"
-    existing_object = find_by_classname(string)
-    puts "existing object is #{existing_object.inspect}"
-    @config_params.delete(existing_object)
-    @config_param_types.delete(string)
+    key = string.underscore.to_sym
+    @config_params.delete(key)
   end
   
   # Finds a param object using a string that represents that param's class name.
   def find_by_classname(string)
-    @config_params.each do |obj|
-      if obj.class.name == string
-        return obj
-        found_flag = true
-      end
+    key = string.underscore.to_sym
+    if @config_params.key?(key)
+      @config_params.fetch(key)
     end
-    return nil
   end
   
   # If present, deletes a specified object from the param list.
   def delete_param(obj)
-    if param_present?(obj)
-      @config_param_types.delete(obj.class.name)
-      @config_params.delete(obj)
-    end
+    key = generate_key_from_object(obj)
+    @config_params.delete(key)
   end
   
   # Tests to see whether or not an object is present in the param list
   def param_present?(obj)
-    @config_params.include?(obj)
+    @config_params.value?(obj)
   end
   
   # Tests to see whether or not a string is present in the param classname list
   def param_classname_present?(string)
-    @config_param_types.include?(string)
+    key = string.underscore.to_sym
+    @config_params.key?(key)
   end
-
+  
   # Generates and returns a new item based on params previously provided, or raises
   # an exception if required params are not available
   def manufacture_item
@@ -90,7 +87,7 @@ class PlaneCreator
   # Tests to see if all required param types are present 
   def required_param_types_present?
     results_array = @required_param_types.collect do |string|
-      @config_param_types.include?(string)
+      param_classname_present?(string)
     end
     unless results_array.include?(false)
       return true
@@ -101,6 +98,8 @@ class PlaneCreator
   # Instantiates a new item object instance
   def generate_new_item_object
     new_item = Plane.new
+    
+    
     return new_item
 =begin
     new_item.airline_id = need(id)
