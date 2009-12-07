@@ -23,12 +23,15 @@ class PlaneCreator
   # Adds individual objects to the '@config_params' array; if one of that type
   # already exists, the previous object is overwritten
   def add_param(obj)
+    puts "before add: " + @config_params.inspect
     classname = obj.class.name
-    if @config_param_types.include?(classname)
+    if param_classname_present?(classname)
       delete_by_classname(classname)
     end
     @config_param_types << classname
     @config_params << obj
+    puts "after " + @config_params.inspect
+
   end
   
   # Alias for 'add_param'
@@ -38,7 +41,9 @@ class PlaneCreator
 
   # If present, deletes a param object using a string that represents that param's class name.
   def delete_by_classname(string)
+    puts "Running delete_by_classname with arg #{string}"
     existing_object = find_by_classname(string)
+    puts "existing object is #{existing_object.inspect}"
     @config_params.delete(existing_object)
     @config_param_types.delete(string)
   end

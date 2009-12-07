@@ -10,6 +10,9 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     @a330 = Aircrafttype.find(1)
     assert_not_nil(@a330)
     
+    @b747 = Aircrafttype.find(2)
+    assert_not_nil(@b747)
+
     @lax = Airport.get("LAX")
     assert_not_nil(@lax)
     
@@ -18,7 +21,26 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     
     @one_hundred_k_miles = StartingMilesCount.new(100000)
     assert_not_nil(@one_hundred_k_miles)
-        
+    
+    @pc = PlaneCreator.new
+    @pc.add_param(@a330)
+    assert @pc.param_present?(@a330) == true
+    assert @pc.param_present?(@b747) == false
+    assert @pc.param_present?(@lax) == false
+    assert @pc.find_by_classname("Aircrafttype") == @a330
+    
+    @pc.add_param(@b747)
+    assert @pc.find_by_classname("Aircrafttype") == @b747    
+    @pc.delete_param(@b747)
+    assert_nil(@pc.find_by_classname("Aircrafttype"))
+    
+    assert @pc.param_classname_present?("Airport") == false
+    @pc << @lax
+    assert @pc.param_classname_present?("Airport") == true
+    assert @pc.param_present?(@lax) == true
+    @pc.delete_by_classname("Airport")
+    assert @pc.param_classname_present?("Airport") == false
+    
     config_params = [@airline,@a330,@lax, @sixty_thousand_pax, @one_hundred_k_miles]
     @plane_creator = PlaneCreator.new(config_params)
     assert_not_nil(@plane_creator)
