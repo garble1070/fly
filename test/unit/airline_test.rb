@@ -17,7 +17,7 @@ class AirlineTest < ActiveSupport::TestCase
     assert @plane.airline == @airline
   end
   
-  def test_create_new_plane
+  def test_acquire_new_plane
     @airline = Airline.find(1)
     assert_not_nil(@airline)
     
@@ -28,7 +28,7 @@ class AirlineTest < ActiveSupport::TestCase
     assert_not_nil(@lax)
     
     config_params = [@airline,@a330,@lax]
-    @finished_plane = @airline.acquire_plane(config_params)
+    @finished_plane = @airline.acquire_new_plane(config_params)
     assert_not_nil(@finished_plane)
     assert_kind_of(Plane,@finished_plane)
     

@@ -79,9 +79,11 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     assert @finished_plane.avg_speed == @a330.avg_speed_default
     assert @finished_plane.range == @a330.range_default
     
-    @finished_plane2 = @airline.acquire_plane([@a330,@lax])
-    assert_not_nil(@finished_plane2)
+    @plane_creator.delete_by_classname("StartingPaxCount")
+    @plane_creator.delete_by_classname("StartingMilesCount")
 
+    @finished_plane2 = @plane_creator.manufacture
+    assert_not_nil(@finished_plane2)
     assert @finished_plane2.starting_pax_count == 0
     assert @finished_plane2.starting_miles_count == 0
 
