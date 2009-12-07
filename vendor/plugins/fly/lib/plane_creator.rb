@@ -5,13 +5,14 @@ class PlaneCreator
   #               INSTANCE METHODS               #
   #**********************************************#  
   
-  # Constructor; accepts optional array of config params
+  # Constructor; accepts optional array of config param objects
   def initialize(param_array=[])
     set_expected_param_types
     @config_params = {}
     param_array.each do |obj|
       insert_param_using_object(obj)
     end
+    return self
   end
   
   # Sets the instance variables '@required_param_types' and '@optional_param_types'
@@ -50,13 +51,13 @@ class PlaneCreator
   end
   
   # Finds a param object using a string that represents that param's class name.
-  def find_by_classname(string)
+  def param_by_classname(string)
     key = string.underscore.to_sym
     if @config_params.key?(key)
       @config_params.fetch(key)
     end
   end
-  
+    
   # If present, deletes a specified object from the param list.
   def delete_param(obj)
     key = generate_key_from_object(obj)
@@ -76,7 +77,7 @@ class PlaneCreator
   
   # Generates and returns a new item based on params previously provided, or raises
   # an exception if required params are not available
-  def manufacture_item
+  def manufacture
     if required_param_types_present?
       generate_new_item_object
     else
@@ -86,30 +87,31 @@ class PlaneCreator
   
   # Tests to see if all required param types are present 
   def required_param_types_present?
-    results_array = @required_param_types.collect do |string|
-      param_classname_present?(string)
+    @required_param_types.each do |string|
+      return false unless param_classname_present?(string)
     end
-    unless results_array.include?(false)
-      return true
-    end
-    return false
+    return true
   end
   
-  # Instantiates a new item object instance
+  # Instantiates and returns a new item object
   def generate_new_item_object
     new_item = Plane.new
-    
-    
+    new_item.airline_id             = param_by_classname("Airline").id
+    new_item.starting_airport_code  = param_by_classname("Airport").code
+    new_item.aircrafttype_id        = param_by_classname("Aircrafttype").id
+    new_item.avg_pax_load           = param_by_classname("Aircrafttype").avg_pax_load_default
+    new_item.avg_speed              = param_by_classname("Aircrafttype").avg_speed_default
+    new_item.range                  = param_by_classname("Aircrafttype").range_default 
+    if param_classname_present?("String")
+      new_item.name                 = param_by_classname("String")
+    end
+    if param_classname_present?("StartingPaxCount")
+      new_item.starting_pax_count   = param_by_classname("StartingPaxCount").quantity
+    end
+    if param_classname_present?("StartingMilesCount")
+      new_item.starting_miles_count = param_by_classname("StartingMilesCount").quantity
+    end
     return new_item
-=begin
-    new_item.airline_id = need(id)
-    new_item.aircrafttype_id = need(aircrafttype.id)
-    new_item.starting_airport_code = need(airport.code)
-    
-    new_item.avg_pax_load = aircrafttype.avg_pax_load_default
-    new_item.avg_speed = aircrafttype.avg_speed_default
-    new_item.range = aircrafttype.range_default 
-=end
   end
   
 end
