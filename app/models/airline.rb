@@ -13,7 +13,7 @@ class Airline < ActiveRecord::Base
   
   #Returns this airline's country object
   def country_obj
-    Country.get(self.country_code)
+    Country.find(self.country_code)
   end
 
   # Alias for 'country_obj', to match rails convention

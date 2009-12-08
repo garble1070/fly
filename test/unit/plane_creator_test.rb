@@ -12,7 +12,7 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     @b747 = Aircrafttype.find(2)
     assert_not_nil(@b747)
 
-    @lax = Airport.get("LAX")
+    @lax = Airport.find("LAX")
     assert_not_nil(@lax)
         
     @pc = PlaneCreator.new
@@ -52,7 +52,7 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     @b747 = Aircrafttype.find(2)
     assert_not_nil(@b747)
 
-    @lax = Airport.get("LAX")
+    @lax = Airport.find("LAX")
     assert_not_nil(@lax)
     
     @sixty_thousand_pax = StartingPaxCount.new(60000)

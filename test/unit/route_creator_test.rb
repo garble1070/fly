@@ -3,10 +3,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 class RouteCreatorTest < ActiveSupport::TestCase
   
   def test_basics
-    @lax_dep = DepartureAirport.get("LAX")
+    @lax_dep = DepartureAirport.find("LAX")
     assert_not_nil(@lax_dep)
         
-    @zrh_dep = DepartureAirport.get("ZRH")
+    @zrh_dep = DepartureAirport.find("ZRH")
     assert_not_nil(@zrh_dep)
 
     @rc = RouteCreator.new
@@ -34,16 +34,16 @@ class RouteCreatorTest < ActiveSupport::TestCase
     @b747 = Aircrafttype.find(2)
     assert_not_nil(@b747)
 
-    @zrh_dep = DepartureAirport.get("ZRH")
+    @zrh_dep = DepartureAirport.find("ZRH")
     assert_not_nil(@zrh_dep)
             
-    @zrh = Airport.get("ZRH")
+    @zrh = Airport.find("ZRH")
     assert_not_nil(@zrh)
             
-    @iad_arr = ArrivalAirport.get("IAD")
+    @iad_arr = ArrivalAirport.find("IAD")
     assert_not_nil(@iad_arr)
     
-    @iad = Airport.get("IAD")
+    @iad = Airport.find("IAD")
     assert_not_nil(@iad)
             
     @longer_miles = DistanceInMiles.new(4250)

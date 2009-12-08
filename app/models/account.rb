@@ -12,7 +12,7 @@ class Account < ActiveRecord::Base
   
   # Returns this account's currency object
   def currency_obj
-    Currency.get(self.currency_code)
+    Currency.find(self.currency_code)
   end
 
   # Alias for 'currency_obj', to match rails convention

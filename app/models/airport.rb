@@ -11,8 +11,12 @@ class Airport < ActiveRecord::Base
   class << self
     
     # Returns an airport object based on its code (passed as a string by argument)
-    def get(code)
-      find(:first, :conditions => "code = '#{code}'")
+    def find(*args)
+      if args[0].is_a?(String)
+        find(:first, :conditions => "code = '#{args[0]}'")
+      else
+        super(*args)
+      end
     end
   end
   
@@ -23,7 +27,7 @@ class Airport < ActiveRecord::Base
   
   #Returns this airport's country object
   def country_obj
-    Country.get(self.country_code)
+    Country.find(self.country_code)
   end
 
   # Alias for 'country_obj', to match rails convention

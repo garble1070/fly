@@ -3,10 +3,10 @@ require File.dirname(__FILE__) + '/../test_helper'
 class CountryTest < ActiveSupport::TestCase
 
   def test_associations_with_airport_class
-    @country = Country.get("US")
+    @country = Country.find("US")
     assert_not_nil(@country)
 
-    @airport = Airport.get("LAX")
+    @airport = Airport.find("LAX")
     assert_not_nil(@airport)
 
     my_countrys_airports = @country.airports
@@ -18,7 +18,7 @@ class CountryTest < ActiveSupport::TestCase
   end
   
   def test_associations_with_airline_class
-    @country = Country.get("CH")
+    @country = Country.find("CH")
     assert_not_nil(@country)
 
     @airline = Airline.find(1)

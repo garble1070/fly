@@ -23,8 +23,17 @@ class Route < ActiveRecord::Base
   
   class << self
     
+    def find (*args)
+      if args[0].is_a?(Array)
+        param_array = args[0]
+        get_route_obj(param_array[0],param_array[1],param_array[2])
+      else
+        super(*args)
+      end
+    end
+
     # Returns the route obj based on 2 airport objects and an aircrafttype object    
-    def get (dep_airport,arr_airport,aircrafttype)
+    def get_route_obj (dep_airport,arr_airport,aircrafttype)
       arg_kind_of(Aircrafttype,aircrafttype)
       arg_kind_of(Airport,dep_airport)
       arg_kind_of(Airport,arr_airport)
@@ -59,7 +68,7 @@ class Route < ActiveRecord::Base
   
   # Returns the airport object for the departure airport on this route
   def dep_airport_obj
-    Airport.get(self.dep_airport_code)
+    Airport.find(self.dep_airport_code)
   end
   
   # Alias for 'dep_airport_obj', to match rails convention
@@ -69,7 +78,7 @@ class Route < ActiveRecord::Base
   
   # Returns the airport object for the arrival airport on this route
   def arr_airport_obj
-    Airport.get(self.arr_airport_code)
+    Airport.find(self.arr_airport_code)
   end
 
   # Alias for 'arr_airport_obj', to match rails convention

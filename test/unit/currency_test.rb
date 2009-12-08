@@ -3,7 +3,7 @@ require File.dirname(__FILE__) + '/../test_helper'
 class CurrencyTest < ActiveSupport::TestCase
 
   def test_associations_with_account_class
-    @currency = Currency.get("FLC")
+    @currency = Currency.find("FLC")
     assert_not_nil(@currency)
 
     @account = Account.find(1)

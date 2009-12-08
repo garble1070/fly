@@ -8,8 +8,12 @@ class Currency < ActiveRecord::Base
   class << self
     
     # Returns a currency object based on its code (passed as a string by argument)
-    def get(code)
-      find(:first, :conditions => "code = '#{code}'")
+    def find(*args)
+      if args[0].is_a?(String)
+        find(:first, :conditions => "code = '#{args[0]}'")
+      else
+        super(*args)
+      end
     end
   end
   

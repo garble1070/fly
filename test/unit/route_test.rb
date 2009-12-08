@@ -18,10 +18,10 @@ class RouteTest < ActiveSupport::TestCase
   end
 
   def test_retrieve
-    @zrh = Airport.get("ZRH")
+    @zrh = Airport.find("ZRH")
     assert_not_nil(@zrh)
     
-    @iad = Airport.get("IAD")
+    @iad = Airport.find("IAD")
     assert_not_nil(@iad)
     
     @a330 = Aircrafttype.find(1)
@@ -30,20 +30,20 @@ class RouteTest < ActiveSupport::TestCase
     @b747 = Aircrafttype.find(2)
     assert_not_nil(@b747)
     
-    @route1 = Route.get(@zrh,@iad,@a330)
+    @route1 = Route.find([@zrh,@iad,@a330])
     assert_not_nil(@route1)
     assert @route1.distance_miles == 4250
 
-    @route2 = Route.get(@zrh,@iad,@b747)
+    @route2 = Route.find([@zrh,@iad,@b747])
     assert_not_nil(@route2)
     assert @route2.distance_miles == 4228
 
-    assert_raise(ArgumentError){Route.get(@zrh,@zrh,@b747)}
-    assert_raise(ArgumentError){Route.get(@zrh,nil,@b747)}
-    assert_raise(ArgumentError){Route.get(@zrh,@iad,nil)}
-    assert_raise(RuntimeError){Route.get(Airport.new,@iad,@b747)}
-    assert_raise(RuntimeError){Route.get(@zrh,Airport.new,@b747)}
-    assert_raise(RuntimeError){Route.get(@zrh,@iad,Aircrafttype.new)}
+    assert_raise(ArgumentError){Route.find([@zrh,@zrh,@b747])}
+    assert_raise(ArgumentError){Route.find([@zrh,nil,@b747])}
+    assert_raise(ArgumentError){Route.find([@zrh,@iad,nil])}
+    assert_raise(RuntimeError){Route.find([Airport.new,@iad,@b747])}
+    assert_raise(RuntimeError){Route.find([@zrh,Airport.new,@b747])}
+    assert_raise(RuntimeError){Route.find([@zrh,@iad,Aircrafttype.new])}
 
   end
 end

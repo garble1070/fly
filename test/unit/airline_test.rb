@@ -24,7 +24,7 @@ class AirlineTest < ActiveSupport::TestCase
     @a330 = Aircrafttype.find(1)
     assert_not_nil(@a330)
     
-    @lax = Airport.get("LAX")
+    @lax = Airport.find("LAX")
     assert_not_nil(@lax)
     
     config_params = [@airline,@a330,@lax]

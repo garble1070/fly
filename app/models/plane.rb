@@ -10,7 +10,7 @@ class Plane < ActiveRecord::Base
   
   # Returns an airport object that represents this plane's starting location
   def starting_airport_obj
-    Airport.get(self.starting_airport_code)
+    Airport.find(self.starting_airport_code)
   end
   
   # Alias for 'starting_airport_obj', to match rails convention

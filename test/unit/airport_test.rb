@@ -9,20 +9,20 @@ class AirportTest < ActiveSupport::TestCase
     @dep_airport_lax = @route.dep_airport
     assert_not_nil(@dep_airport_lax)
     
-    @lax = Airport.get("LAX")
+    @lax = Airport.find("LAX")
     assert_not_nil(@lax)
     assert @dep_airport_lax == @lax
     
     @arr_airport_zrh = @route.arr_airport
     assert_not_nil(@arr_airport_zrh)
     
-    @zrh = Airport.get("ZRH")
+    @zrh = Airport.find("ZRH")
     assert_not_nil(@zrh)
     assert @arr_airport_zrh == @zrh
 end
 
 def test_link_from_route_class
-    @zrh = Airport.get("ZRH")
+    @zrh = Airport.find("ZRH")
     assert_not_nil(@zrh)
     
     routes_with_dep_city_zrh = @zrh.routes_by_dep_city
@@ -32,7 +32,7 @@ def test_link_from_route_class
     assert_not_nil(@dep_city_zrh_route)
     assert routes_with_dep_city_zrh.include?(@dep_city_zrh_route)
 
-    @iad = Airport.get("IAD")
+    @iad = Airport.find("IAD")
     assert_not_nil(@iad)
     
     routes_with_arr_city_iad = @iad.routes_by_arr_city
@@ -42,7 +42,7 @@ def test_link_from_route_class
     assert_not_nil(@arr_city_iad_route)
     assert routes_with_arr_city_iad.include?(@arr_city_iad_route)
     
-    @lax = Airport.get("LAX")
+    @lax = Airport.find("LAX")
     assert_not_nil(@lax)
     
     routes_with_lax = @lax.routes_all
@@ -67,7 +67,7 @@ def test_link_from_route_class
     @starting_airport_zrh_obj = @plane.starting_airport_obj
     assert_not_nil(@starting_airport_zrh_obj)
     
-    @zrh = Airport.get("ZRH")
+    @zrh = Airport.find("ZRH")
     assert_not_nil(@zrh)
     assert @starting_airport_zrh == @zrh
     assert @starting_airport_zrh_obj == @zrh
