@@ -34,10 +34,10 @@ class PlaneCreator < Creator
       @new_item.name                 = param_by_classname("String")
     end
     if param_classname_present?("StartingPaxCount")
-      @new_item.starting_pax_count   = param_by_classname("StartingPaxCount").quantity
+      @new_item.starting_pax_count   = param_by_classname("StartingPaxCount").starting_pax_count
     end
     if param_classname_present?("StartingMilesCount")
-      @new_item.starting_miles_count = param_by_classname("StartingMilesCount").quantity
+      @new_item.starting_miles_count = param_by_classname("StartingMilesCount").starting_miles_count
     end    
   end
   

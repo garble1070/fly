@@ -116,6 +116,22 @@ class DurationInSeconds < Quantity
 
 end
 
+# A class that allows the user to manage boarding durations easily
+class BoardingDurationInSeconds < DurationInSeconds
+end
+
+# A class that allows the user to manage taxi durations easily
+class TaxiDurationInSeconds < DurationInSeconds
+end
+
+# A class that allows the user to manage inflight durations easily
+class InflightDurationInSeconds < DurationInSeconds
+end
+
+# A class that allows the user to manage maintenance durations easily
+class MaintenanceDurationInSeconds < DurationInSeconds
+end
+
 # A class that allows the user to manage passenger counts easily
 class StartingPaxCount < Quantity
   

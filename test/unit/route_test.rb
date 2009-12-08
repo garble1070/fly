@@ -39,8 +39,6 @@ class RouteTest < ActiveSupport::TestCase
     assert @route2.distance_miles == 4228
 
     assert_raise(ArgumentError){Route.find([@zrh,@zrh,@b747])}
-    assert_raise(ArgumentError){Route.find([@zrh,nil,@b747])}
-    assert_raise(ArgumentError){Route.find([@zrh,@iad,nil])}
     assert_raise(RuntimeError){Route.find([Airport.new,@iad,@b747])}
     assert_raise(RuntimeError){Route.find([@zrh,Airport.new,@b747])}
     assert_raise(RuntimeError){Route.find([@zrh,@iad,Aircrafttype.new])}

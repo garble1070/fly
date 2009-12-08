@@ -34,10 +34,7 @@ class Route < ActiveRecord::Base
 
     # Returns the route obj based on 2 airport objects and an aircrafttype object    
     def get_route_obj (dep_airport,arr_airport,aircrafttype)
-      arg_kind_of(Aircrafttype,aircrafttype)
-      arg_kind_of(Airport,dep_airport)
-      arg_kind_of(Airport,arr_airport)
-      if dep_airport == arr_airport
+      if dep_airport.code == arr_airport.code
         raise ArgumentError.new("Departing and arriving airports are the same.")
       end      
       

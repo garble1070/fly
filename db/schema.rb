@@ -73,20 +73,16 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "plane_id"
     t.integer  "route_id"
     t.datetime "boarding_started"
-    t.integer  "boarding_scheduled_duration"
-    t.integer  "boarding_delay"
-    t.booloean "taxi_auto_start_flag"
+    t.integer  "boarding_duration"
+    t.boolean  "taxi_auto_start_flag", :default => 1
     t.datetime "taxi_started"
-    t.integer  "taxi_scheduled_duration"
-    t.integer  "taxi_delay"
-    t.booloean "inflight_auto_start_flag"
+    t.integer  "taxi_duration"
+    t.boolean  "inflight_auto_start_flag", :default => 1
     t.datetime "inflight_started"
-    t.integer  "inflight_scheduled_duration"
-    t.integer  "inflight_delay"
-    t.booloean "maintenance_auto_start_flag"
+    t.integer  "inflight_duration"
+    t.boolean  "maintenance_auto_start_flag", :default => 1
     t.datetime "maintenance_started"
-    t.integer  "maintenance_scheduled_duration"
-    t.integer  "maintenance_delay"
+    t.integer  "maintenance_duration"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

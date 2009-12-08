@@ -22,7 +22,7 @@ class RouteCreator < Creator
   def insert_required_params_into_new_item_object
     @new_item.dep_airport_code   = param_by_classname("DepartureAirport").code
     @new_item.arr_airport_code   = param_by_classname("ArrivalAirport").code
-    @new_item.distance_miles = param_by_classname("DistanceInMiles").quantity
+    @new_item.distance_miles = param_by_classname("DistanceInMiles").distance_in_miles
   end
   
   # Inserts optional params into new item object

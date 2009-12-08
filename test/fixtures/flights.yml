@@ -4,32 +4,27 @@ one:
   id: 220
   plane_id: 1
   route_id: 1
-  boarding_started: 2009-12-03 17:55:04
-  boarding_scheduled_duration: 60
-  boarding_delay: 0
-  taxi_started: 2009-12-03 18:55:04
-  taxi_scheduled_duration: 65
-  taxi_delay: -5
-  inflight_started: 2009-12-03 19:55:04
-  inflight_scheduled_duration: 170
-  inflight_delay: 10
-  maintenance_started: 2009-12-03 22:55:04
-  maintenance_scheduled_duration: 60
-  maintenance_delay: 0
+  boarding_started: 
+  boarding_duration: 60
+  taxi_auto_start_flag: 1
+  taxi_started: 
+  taxi_duration: 65
+  inflight_auto_start_flag: 1
+  inflight_started: 
+  inflight_duration: 170
+  maintenance_auto_start_flag: 1
+  maintenance_started: 
+  maintenance_duration: 60
 
 two:
   id: 221
   plane_id: 2
   route_id: 2
   boarding_started: 2009-12-02 20:55:04
-  boarding_scheduled_duration: 60
-  boarding_delay: 0
+  boarding_duration: 60
   taxi_started: 2009-12-02 21:55:04
-  taxi_scheduled_duration: 65
-  taxi_delay: -5
+  taxi_duration: 65
   inflight_started: 2009-12-02 22:55:04
-  inflight_scheduled_duration: 170
-  inflight_delay: 10
+  inflight_duration: 170
   maintenance_started: 2009-12-03 01:55:04
-  maintenance_scheduled_duration: 60
-  maintenance_delay: 0
+  maintenance_duration: 60
