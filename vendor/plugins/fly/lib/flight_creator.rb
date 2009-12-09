@@ -58,3 +58,8 @@ class FlightCreator < Creator
   
 end
 
+class DepartureAirport < Airport
+end
+ 
+class ArrivalAirport < Airport
+end

@@ -42,24 +42,8 @@ class Airport < ActiveRecord::Base
   def country
     self.country_obj
   end
-  
-  # Returns an array of routes that feature this airport as the departure city
-  def routes_by_dep_city
-    Route.dep_airport_is(self.code)
-  end
-  
-  # Returns an array of routes that feature this airport as the arival city
-  def routes_by_arr_city
-    Route.arr_airport_is(self.code)    
-  end
-  
-  # Returns an array of routes that feature this airport as either the departure 
-  # or the arrival city
-  def routes_all
-    routes_by_dep_city + routes_by_arr_city
-  end
-  
-  # ..
+    
+  # Returns an array representing lat/lng coordinates
   def geo_coords
     [self.lat,self.lng]
   end
