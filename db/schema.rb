@@ -9,12 +9,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20091204035504) do
+ActiveRecord::Schema.define(:version => 20091209053835) do
 
   create_table "accounts", :force => true do |t|
     t.integer  "user_id"
     t.string   "currency_code", :limit => 3
-    t.float    "balance", :default => 0.0, :null => false
+    t.float    "balance",                    :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "avg_speed_max"
     t.integer  "range_default"
     t.integer  "range_max"
-    t.float    "boarding_duration_default", :default => 0.0, :null => false
+    t.float  "boarding_duration_default", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -36,36 +36,43 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
   create_table "airlines", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.string   "country_code",          :limit => 2
-    t.float    "satisfaction_rating", :default => 0.0, :null => false
-    t.float    "maintenance_duration_default", :default => 0.0, :null => false    
+    t.string   "country_code",                 :limit => 2
+    t.float    "satisfaction_rating",                       :default => 0.0, :null => false
+    t.float  "maintenance_duration_default",              :default => 0.0,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "airports", :force => true do |t|
-    t.string   "code", :limit => 3
+    t.string   "code",                  :limit => 4
+    t.string   "iata"
+    t.string   "icao"
     t.string   "name"
+    t.string   "display_name"
     t.string   "city"
-    t.string   "country_code", :limit => 2
-    t.string   "longitude"
-    t.string   "latitude"
+    t.string   "country_code",          :limit => 2
+    t.string   "country"
+    t.float    "lng",  :default => 0.0, :null => false
+    t.float    "lat",  :default => 0.0, :null => false
     t.integer  "timezone_id"
-    t.float    "taxi_duration_default", :default => 0.0, :null => false    
+    t.string   "dst_code"
+    t.integer  "altitude"
+    t.float    "taxi_duration_default",     :default => 0, :null => false
+    t.integer  "terminal_cost_new",       :default => 0, :null => false
+    t.integer  "boarding_gate_cost_new_default",              :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "countries", :force => true do |t|
-    t.string "code", :limit => 2
+    t.string  "code",           :limit => 2
     t.string  "name"
-    t.string  "printable_name"
+    t.string  "display_name"
     t.string  "iso3",           :limit => 3
-    t.integer "numcode"
   end
 
   create_table "currencies", :force => true do |t|
-    t.string   "code", :limit => 3
+    t.string   "code",         :limit => 3
     t.string   "name"
     t.float    "ratio_to_flc"
     t.datetime "created_at"
@@ -76,16 +83,25 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "plane_id"
     t.integer  "route_id"
     t.datetime "boarding_started"
-    t.float    "boarding_duration", :default => 0.0, :null => false
-    t.boolean  "taxi_auto_start_flag", :default => 1
+    t.float  "boarding_duration"
+    t.boolean  "taxi_auto_start_flag",        :default => true
     t.datetime "taxi_started"
-    t.float    "taxi_duration", :default => 0.0, :null => false
-    t.boolean  "inflight_auto_start_flag", :default => 1
+    t.float  "taxi_duration"
+    t.boolean  "inflight_auto_start_flag",    :default => true
     t.datetime "inflight_started"
-    t.float    "inflight_duration", :default => 0.0, :null => false
-    t.boolean  "maintenance_auto_start_flag", :default => 1
+    t.float  "inflight_duration"
+    t.boolean  "maintenance_auto_start_flag", :default => true
     t.datetime "maintenance_started"
-    t.float    "maintenance_duration", :default => 0.0, :null => false
+    t.float  "maintenance_duration"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "terminals", :force => true do |t|
+    t.integer  "airport_id"
+    t.integer  "user_id"
+    t.integer  "boarding_gate_count"
+    t.integer  "boarding_gate_cost_new"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -98,8 +114,8 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "avg_speed"
     t.integer  "range"
     t.string   "starting_airport_code", :limit => 3
-    t.integer  "starting_pax_count", :default => 0, :null => false
-    t.integer  "starting_miles_count", :default => 0, :null => false
+    t.integer  "starting_pax_count",                 :default => 0, :null => false
+    t.integer  "starting_miles_count",               :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

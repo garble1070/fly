@@ -10,7 +10,7 @@ one:
   avg_speed_max: 600
   range_default: 8200
   range_max: 8900
-  boarding_duration_default: 60
+  boarding_duration_default: 60.0
   
 two:
   id: 2
@@ -22,4 +22,4 @@ two:
   avg_speed_max: 550
   range_default: 7200
   range_max: 7900
-  boarding_duration_default: 60
+  boarding_duration_default: 60.0

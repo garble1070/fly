@@ -6,7 +6,7 @@ one:
   country_code: CH
   user_id: 15
   satisfaction_rating: 9.0
-  maintenance_duration_default: 80
+  maintenance_duration_default: 80.0
 
 two:
   id: 2
@@ -14,7 +14,7 @@ two:
   country_code: DE
   user_id: 16
   satisfaction_rating: 3.5
-  maintenance_duration_default: 80
+  maintenance_duration_default: 80.0
 
 three:
   id: 3
@@ -22,6 +22,6 @@ three:
   country_code: US
   user_id: 16
   satisfaction_rating: 3.5
-  maintenance_duration_default: 80
+  maintenance_duration_default: 80.0
 
   

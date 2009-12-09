@@ -2,7 +2,14 @@ module ActiveRecord
   class Base
     named_scope :ordered_by, lambda { |s| { :order => s } }
     named_scope :has_link, lambda { |x_model,x| {:conditions => { "#{x_model}_id" => x }}}
-    
+
+    plugins_base_url = File::join RAILS_ROOT, "vendor", "plugins"
+    geokit_init_file = File::join plugins_base_url, "geokit", "init"
+    geokit_rails_init_file = File::join plugins_base_url, "geokit-rails", "init"
+
+    require geokit_init_file
+    require geokit_rails_init_file
+
     #**********************************************#
     #            CLASS INSTANCE METHODS            #
     #**********************************************#

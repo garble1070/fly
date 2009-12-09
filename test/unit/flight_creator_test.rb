@@ -28,7 +28,9 @@ class FlightCreatorTest < ActiveSupport::TestCase
     assert @new_flight.boarding_duration == 60
     assert @new_flight.taxi_duration == 70
     assert @new_flight.maintenance_duration ==  80
-    assert @new_flight.inflight_duration == (5994.quo(500)*3600)
+    puts @new_flight.inflight_duration
+    puts 5994.quo(500)*3600
+    assert @new_flight.inflight_duration == 5994.quo(500)*3600
     
     @alternative_route = Route.find([@iad, @zrh])
     @boarding = BoardingDurationInSeconds.new(15)
