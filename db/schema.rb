@@ -81,7 +81,8 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
 
   create_table "flights", :force => true do |t|
     t.integer  "plane_id"
-    t.integer  "route_id"
+    t.string   "dep_airport_code"
+    t.string   "arr_airport_code"
     t.datetime "boarding_started"
     t.float  "boarding_duration"
     t.boolean  "taxi_auto_start_flag",        :default => true
@@ -116,14 +117,6 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.string   "starting_airport_code", :limit => 3
     t.integer  "starting_pax_count",                 :default => 0, :null => false
     t.integer  "starting_miles_count",               :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "routes", :force => true do |t|
-    t.string   "dep_airport_code", :limit => 3
-    t.string   "arr_airport_code", :limit => 3
-    t.integer  "distance_miles"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

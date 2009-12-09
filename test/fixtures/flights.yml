@@ -3,7 +3,8 @@
 one:
   id: 220
   plane_id: 1
-  route_id: 1
+  dep_airport_code: sfo
+  arr_airport_code: jfk
   boarding_started: 
   boarding_duration: 60
   taxi_auto_start_flag: 1
@@ -19,7 +20,8 @@ one:
 two:
   id: 221
   plane_id: 2
-  route_id: 2
+  dep_airport_code: oak
+  arr_airport_code: mia
   boarding_started: 2009-12-02 20:55:04
   boarding_duration: 60
   taxi_started: 2009-12-02 21:55:04

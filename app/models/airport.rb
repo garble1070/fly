@@ -59,5 +59,10 @@ class Airport < ActiveRecord::Base
     routes_by_dep_city + routes_by_arr_city
   end
   
+  # ..
+  def geo_coords
+    [self.lat,self.lng]
+  end
+  
 end
 

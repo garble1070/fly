@@ -2439,3 +2439,20 @@ airports_011:
   icao: KBHM
   lat: 33.5629
   created_at: 0000-00-00 00:00:00
+  
+airports_123: 
+  id: 123
+  code: DCA	
+  iata: DCA	
+  icao: KDCA	
+  name: Ronald Reagan Washington Natl	
+  display_name: Ronald Reagan Washington Natl Airport	
+  city: Washington	
+  country_code: US	
+  country: United States	
+  lng: -77.037722	
+  lat: 38.852083	
+  timezone_id: -5	
+  dst_code: A	
+  altitude: 15
+
