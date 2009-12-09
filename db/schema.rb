@@ -126,6 +126,8 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "crypted_password"
+    t.string   "home_airport_code_real"
+    t.string   "home_airport_code_game"
     t.boolean  "admin"
     t.string   "remember_token"
     t.datetime "remember_token_expires_at"

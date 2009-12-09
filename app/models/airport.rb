@@ -34,19 +34,23 @@ class Airport < ActiveRecord::Base
   #**********************************************#
   
   #Returns this airport's country object
-  def country_obj
+  def country
     Country.find(self.country_code)
   end
 
-  # Alias for 'country_obj', to match rails convention
-  def country
-    self.country_obj
-  end
-    
   # Returns an array representing lat/lng coordinates
   def geo_coords
     [self.lat,self.lng]
   end
   
+  def users_in_real_life
+    User.home_airport_code_in_real_life_is(self.code)
+  end
+  
+  def users_in_game
+    User.home_airport_code_in_game_is(self.code)
+  end
+
+
 end
 

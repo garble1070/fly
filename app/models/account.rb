@@ -11,19 +11,9 @@ class Account < ActiveRecord::Base
   #**********************************************#
   
   # Returns this account's currency object
-  def currency_obj
+  def currency
     Currency.find(self.currency_code)
   end
 
-  # Alias for 'currency_obj', to match rails convention
-  def currency
-    self.currency_obj
-  end
-  
-  # Returns this account's user object
-  def user_obj
-    self.user
-  end
-  
   
 end

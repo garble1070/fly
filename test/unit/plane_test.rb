@@ -13,7 +13,6 @@ class PlaneTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_planes_flights) 
     assert my_planes_flights.include?(@flight)
 
-    assert @flight.plane_obj == @plane
     assert @flight.plane == @plane
   end
 

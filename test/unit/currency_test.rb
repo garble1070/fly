@@ -13,7 +13,6 @@ class CurrencyTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_currencys_accounts) 
     assert my_currencys_accounts.include?(@account)
 
-    assert @account.currency_obj == @currency
     assert @account.currency == @currency
   end
 

@@ -13,7 +13,6 @@ class UserTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_users_accounts) 
     assert my_users_accounts.include?(@account)
 
-    assert @account.user_obj == @user
     assert @account.user == @user
   end
   
@@ -28,8 +27,22 @@ class UserTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_users_airlines) 
     assert my_users_airlines.include?(@airline)
 
-    assert @airline.user_obj == @user
     assert @airline.user == @user
+  end
+
+  def test_associations_with_airport_class
+    @user = User.find(15)
+    assert_not_nil(@user)
+
+    @lax = Airport.find("lax")
+    assert_not_nil(@lax)
+
+    @dfw = Airport.find("dfw")
+    assert_not_nil(@dfw)
+
+    assert @user.home_airport_real == @lax
+    assert @user.home_airport_game == @dfw
+    
   end
 
 end

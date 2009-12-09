@@ -25,13 +25,18 @@ class AirportTest < ActiveSupport::TestCase
     @starting_airport_zrh = @plane.starting_airport
     assert_not_nil(@starting_airport_zrh)
     
-    @starting_airport_zrh_obj = @plane.starting_airport_obj
-    assert_not_nil(@starting_airport_zrh_obj)
-    
     @zrh = Airport.find("ZRH")
     assert_not_nil(@zrh)
     assert @starting_airport_zrh == @zrh
-    assert @starting_airport_zrh_obj == @zrh
+  end
+  
+  def test_link_to_user_class
+
+    @lax = Airport.find("LAX")
+    assert_not_nil(@lax)
+
+    assert @lax.users_in_real_life == [User.find(15)]
+    assert @lax.users_in_game == [User.find(16)]
   end
   
 end

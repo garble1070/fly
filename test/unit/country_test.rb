@@ -13,7 +13,6 @@ class CountryTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_countrys_airports) 
     assert my_countrys_airports.include?(@airport)
 
-    assert @airport.country_obj == @country
     assert @airport.country == @country
   end
   
@@ -28,7 +27,6 @@ class CountryTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_countrys_airlines) 
     assert my_countrys_airlines.include?(@airline)
 
-    assert @airline.country_obj == @country
     assert @airline.country == @country
   end
 
