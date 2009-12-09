@@ -20,10 +20,21 @@ class FlightCreator < Creator
 
   # Inserts required params into new item object
   def insert_required_params_into_new_item_object
-    @new_item.plane_id                = param_by_classname("Plane").id
-    @new_item.route_id                = param_by_classname("Route").id
-  end
+    @new_item.plane_id              = param_by_classname("Plane").id
+    @new_item.route_id              = param_by_classname("Route").id
+    @new_item.boarding_duration     = param_by_classname("Plane").aircrafttype.boarding_duration_default
+    @new_item.taxi_duration         = param_by_classname("Route").dep_airport.taxi_duration_default
+    @new_item.inflight_duration     = calculate_inflight_duration
+    @new_item.maintenance_duration  = param_by_classname("Plane").airline.maintenance_duration_default
+  end  
   
+  # Use plane info and route info to caluclate duration of flight
+  def calculate_inflight_duration
+    distance_miles = param_by_classname("Route").distance_miles
+    speed_mph = param_by_classname("Plane").avg_speed
+    distance_miles.quo(speed_mph) * 3600
+  end
+
   # Inserts optional params into new item object
   def insert_optional_params_into_new_item_object
     if param_classname_present?("BoardingDurationInSeconds")

@@ -4,33 +4,22 @@ one:
   id: 1
   dep_airport_code: LAX
   arr_airport_code: ZRH
-  aircrafttype_id: 0
   distance_miles: 5994
 
 two:
   id: 2
   dep_airport_code: ZRH
   arr_airport_code: LAX
-  aircrafttype_id: 0
   distance_miles: 5994
 
 three:
   id: 3
   dep_airport_code: IAD
   arr_airport_code: ZRH
-  aircrafttype_id: 0
   distance_miles: 4228
 
 four:
   id: 4
   dep_airport_code: ZRH
   arr_airport_code: IAD
-  aircrafttype_id: 0
   distance_miles: 4228
-
-five:
-  id: 5
-  dep_airport_code: ZRH
-  arr_airport_code: IAD
-  aircrafttype_id: 1
-  distance_miles: 4250

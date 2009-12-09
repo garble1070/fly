@@ -28,7 +28,7 @@ def test_link_from_route_class
     routes_with_dep_city_zrh = @zrh.routes_by_dep_city
     assert_kind_of(Array,routes_with_dep_city_zrh) 
     
-    @dep_city_zrh_route = Route.find(4)
+    @dep_city_zrh_route = Route.find(2)
     assert_not_nil(@dep_city_zrh_route)
     assert routes_with_dep_city_zrh.include?(@dep_city_zrh_route)
 
@@ -38,7 +38,7 @@ def test_link_from_route_class
     routes_with_arr_city_iad = @iad.routes_by_arr_city
     assert_kind_of(Array,routes_with_arr_city_iad) 
     
-    @arr_city_iad_route = Route.find(5)
+    @arr_city_iad_route = Route.find(4)
     assert_not_nil(@arr_city_iad_route)
     assert routes_with_arr_city_iad.include?(@arr_city_iad_route)
     

@@ -1,7 +1,6 @@
 # A route that our airplanes are allowed to fly, with mileage. Includes the
 # option to specify a route for all aircraft types or one at a time
 class Route < ActiveRecord::Base
-  # belongs_to :aircrafttype   *** DO NOT UNCOMMENT THIS .. WILL BREAK STUFF
   has_many :flights
   
   named_scope :city_pair_is, lambda { |dep_code,arr_code| 
@@ -14,9 +13,7 @@ class Route < ActiveRecord::Base
   named_scope :arr_airport_is, lambda { |arr_code|
     {:conditions => { "arr_airport_code" => arr_code}}}
   
-  named_scope :aircrafttype_is, lambda { |type_id|
-    {:conditions => { "aircrafttype_id" => type_id}}}
-  
+
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
@@ -26,35 +23,22 @@ class Route < ActiveRecord::Base
     def find (*args)
       if args[0].is_a?(Array)
         param_array = args[0]
-        get_route_obj(param_array[0],param_array[1],param_array[2])
+        find_route_obj(param_array[0],param_array[1])
       else
         super(*args)
       end
     end
 
-    # Returns the route obj based on 2 airport objects and an aircrafttype object    
-    def get_route_obj (dep_airport,arr_airport,aircrafttype)
+    # Returns the route obj based on 2 airport objects (departure, arrival)    
+    def find_route_obj (dep_airport,arr_airport)
       if dep_airport.code == arr_airport.code
         raise ArgumentError.new("Departing and arriving airports are the same.")
       end      
-      
-      aircrafttype_id = need(aircrafttype.id)
-      dep_airport_code = need(dep_airport.code)
-      arr_airport_code = need(arr_airport.code)
-      routes = Route.city_pair_is(dep_airport_code,arr_airport_code)
-      
-      exact_route = routes.aircrafttype_is(aircrafttype_id)[0]
-      generic_route = routes.aircrafttype_is(0)[0]
-      
-      if exact_route
-        exact_route
-      elsif generic_route
-        generic_route
-      else
-        nil
-      end  
+      routes = Route.city_pair_is(dep_airport.code,arr_airport.code)
+      if routes.length > 0
+        routes[0]
+      end
     end
-    
     
   end
   

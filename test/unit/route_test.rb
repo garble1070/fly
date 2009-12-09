@@ -23,25 +23,12 @@ class RouteTest < ActiveSupport::TestCase
     
     @iad = Airport.find("IAD")
     assert_not_nil(@iad)
-    
-    @a330 = Aircrafttype.find(1)
-    assert_not_nil(@a330)
-    
-    @b747 = Aircrafttype.find(2)
-    assert_not_nil(@b747)
-    
-    @route1 = Route.find([@zrh,@iad,@a330])
+        
+    @route1 = Route.find([@zrh,@iad])
     assert_not_nil(@route1)
-    assert @route1.distance_miles == 4250
+    assert @route1.distance_miles == 4228
 
-    @route2 = Route.find([@zrh,@iad,@b747])
-    assert_not_nil(@route2)
-    assert @route2.distance_miles == 4228
-
-    assert_raise(ArgumentError){Route.find([@zrh,@zrh,@b747])}
-    assert_raise(RuntimeError){Route.find([Airport.new,@iad,@b747])}
-    assert_raise(RuntimeError){Route.find([@zrh,Airport.new,@b747])}
-    assert_raise(RuntimeError){Route.find([@zrh,@iad,Aircrafttype.new])}
+    assert_raise(ArgumentError){Route.find([@zrh,@zrh])}
 
   end
 end

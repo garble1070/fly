@@ -91,6 +91,20 @@ end
 class DurationInSeconds < Quantity
   
   #**********************************************#
+  #         CLASS INSTANCE METHODS               #
+  #**********************************************#  
+  
+class << self
+  def new_in_minutes(value)
+    self.new(value*60) 
+  end
+  
+  def new_in_hours(value)
+    self.new(value*3600)
+  end
+end
+
+  #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#  
   

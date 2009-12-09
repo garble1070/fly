@@ -9,6 +9,7 @@ one:
   longitude: MyString
   latitude: MyString
   timezone_id: 1
+  taxi_duration_default: 70
 
 two:
   id: 2
@@ -19,6 +20,7 @@ two:
   longitude: MyString
   latitude: MyString
   timezone_id: 8
+  taxi_duration_default: 70
 
 three:
   id: 3
@@ -29,5 +31,6 @@ three:
   longitude: MyString
   latitude: MyString
   timezone_id: 4
+  taxi_duration_default: 70
 
   

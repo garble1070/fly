@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "avg_speed_max"
     t.integer  "range_default"
     t.integer  "range_max"
+    t.float    "boarding_duration_default", :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -37,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "user_id"
     t.string   "country_code",          :limit => 2
     t.float    "satisfaction_rating", :default => 0.0, :null => false
+    t.float    "maintenance_duration_default", :default => 0.0, :null => false    
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -45,10 +47,11 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.string   "code", :limit => 3
     t.string   "name"
     t.string   "city"
-    t.string  "country_code", :limit => 2
+    t.string   "country_code", :limit => 2
     t.string   "longitude"
     t.string   "latitude"
     t.integer  "timezone_id"
+    t.float    "taxi_duration_default", :default => 0.0, :null => false    
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -73,16 +76,16 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
     t.integer  "plane_id"
     t.integer  "route_id"
     t.datetime "boarding_started"
-    t.integer  "boarding_duration"
+    t.float    "boarding_duration", :default => 0.0, :null => false
     t.boolean  "taxi_auto_start_flag", :default => 1
     t.datetime "taxi_started"
-    t.integer  "taxi_duration"
+    t.float    "taxi_duration", :default => 0.0, :null => false
     t.boolean  "inflight_auto_start_flag", :default => 1
     t.datetime "inflight_started"
-    t.integer  "inflight_duration"
+    t.float    "inflight_duration", :default => 0.0, :null => false
     t.boolean  "maintenance_auto_start_flag", :default => 1
     t.datetime "maintenance_started"
-    t.integer  "maintenance_duration"
+    t.float    "maintenance_duration", :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -104,7 +107,6 @@ ActiveRecord::Schema.define(:version => 20091204035504) do
   create_table "routes", :force => true do |t|
     t.string   "dep_airport_code", :limit => 3
     t.string   "arr_airport_code", :limit => 3
-    t.integer  "aircrafttype_id", :default => 0, :null => false
     t.integer  "distance_miles"
     t.datetime "created_at"
     t.datetime "updated_at"
