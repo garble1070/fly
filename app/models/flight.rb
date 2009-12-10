@@ -2,19 +2,20 @@
 class Flight < ActiveRecord::Base
   belongs_to :plane
   
+  belongs_to :dep_airport, 
+      :class_name => "Airport", 
+      :primary_key => "code",
+      :foreign_key => "dep_airport_code"
+  
+  belongs_to :arr_airport, 
+      :class_name => "Airport", 
+      :primary_key => "code",
+      :foreign_key => "arr_airport_code"
+
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
-  
-  # Returns the airport object for the departure airport on this route
-  def dep_airport
-    Airport.find(self.dep_airport_code)
-  end
-  
-  # Returns the airport object for the arrival airport on this route
-  def arr_airport
-    Airport.find(self.arr_airport_code)
-  end
+ 
 
   
 end

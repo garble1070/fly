@@ -1,6 +1,9 @@
 # A country where airports are located and airlines are headquartered
 class Country < ActiveRecord::Base
   
+    has_many :airports, :foreign_key => "country_code", :primary_key => "code"
+    has_many :airlines, :foreign_key => "country_code", :primary_key => "code"
+
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
@@ -21,14 +24,5 @@ class Country < ActiveRecord::Base
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
-  
-  # Returns an array of airlines that are associated with this country
-  def airlines
-    Airline.country_is(self.code)
-  end
-  
-  # Returns an array of airports that are associated with this country
-  def airports
-    Airport.country_is(self.code)
-  end
+
 end

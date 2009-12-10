@@ -1,6 +1,7 @@
 # An airline, can be only owned by one user at a time.
 class Airline < ActiveRecord::Base
   belongs_to :user
+  belongs_to :country, :foreign_key => "country_code"
   has_many :planes
 
   named_scope :country_is, lambda { |country_code|
@@ -11,11 +12,6 @@ class Airline < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
-  #Returns this airline's country object
-  def country
-    Country.find(self.country_code)
-  end
-
   # Creats a new Plane object, saves it to the database. Returns the object if save is 
   # successful.
   def acquire_new_plane(param_array)

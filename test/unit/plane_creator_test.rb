@@ -69,6 +69,8 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     
     @finished_plane = @plane_creator.manufacture
     assert_not_nil(@finished_plane)
+    @finished_plane.save
+
     assert @finished_plane.airline == @airline
     assert @finished_plane.starting_airport == @lax
     assert @finished_plane.aircrafttype == @a330

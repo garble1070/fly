@@ -50,8 +50,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.string   "name"
     t.string   "display_name"
     t.string   "city"
-    t.string   "country_code",          :limit => 2
-    t.string   "country"
+    t.string   "country_code", :limit => 2
     t.float    "lng",  :default => 0.0, :null => false
     t.float    "lat",  :default => 0.0, :null => false
     t.integer  "timezone_id"

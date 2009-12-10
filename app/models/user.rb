@@ -53,13 +53,7 @@ class User < ActiveRecord::Base
   def home_airport_game 
     Airport.find(home_airport_code_game)
   end
-  
-  # Returns an array of terminal objects that represents the complete set of
-  # terminals operated by this user
-  def terminals
-    Terminal.owned_by_user(self.id)
-  end
-  
+    
   # Returns an array of airport objects that represents the complete set of
   # locations where this user is operating terminals
   def airport_terminal_locations

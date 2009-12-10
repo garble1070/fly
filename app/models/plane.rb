@@ -3,15 +3,15 @@ class Plane < ActiveRecord::Base
   belongs_to :airline
   belongs_to :aircrafttype
   has_many :flights
+  has_one :starting_airport, 
+      :class_name => "Airport", 
+      :foreign_key => "code",
+      :primary_key => "starting_airport_code"
   
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
-  
-  # Returns an airport object that represents this plane's starting location
-  def starting_airport
-    Airport.find(self.starting_airport_code)
-  end
+
     
   # Creats a new Flight object, saves it to the database. Returns the object if save is 
   # successful.

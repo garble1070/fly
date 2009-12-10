@@ -1,5 +1,6 @@
 # A currency, i.e. FLC (Fly Credits) or USD
 class Currency < ActiveRecord::Base
+  has_many :accounts, :foreign_key => "currency_code", :primary_key => "code"
   
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
@@ -22,9 +23,5 @@ class Currency < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
-  # Returns an array of accounts that are denominated in this currency
-  def accounts
-    Account.currency_is(self.code)
-  end
   
 end

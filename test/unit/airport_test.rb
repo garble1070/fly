@@ -35,8 +35,8 @@ class AirportTest < ActiveSupport::TestCase
     @lax = Airport.find("LAX")
     assert_not_nil(@lax)
 
-    assert @lax.users_in_real_life == [User.find(15)]
-    assert @lax.users_in_game == [User.find(16)]
+    assert @lax.users_based_here_in_real_life == [User.find(15)]
+    assert @lax.users_based_here_in_game == [User.find(16)]
   end
   
 end
