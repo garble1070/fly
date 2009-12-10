@@ -56,5 +56,9 @@ class User < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
+  # returns an array of all flights associated with this user
+  def flights
+    Flight.user_is(self)
+  end
     
 end

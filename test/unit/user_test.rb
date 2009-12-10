@@ -66,4 +66,24 @@ class UserTest < ActiveSupport::TestCase
     
   end
   
+  def test_associations_with_flight_class
+    @user = User.find(16)
+    assert_not_nil(@user)
+
+    my_flights = @user.flights
+    my_planes = @user.planes
+    calculated_flights = my_planes.collect do |plane|
+      plane.flights
+    end
+    calculated_flights.flatten!
+    
+    @flight = Flight.find(222)
+    assert my_flights.include?(@flight)
+    assert calculated_flights.include?(@flight)
+
+    my_flights_sorted = my_flights.sort {|x,y| y.id <=> x.id }
+    calculated_flights_sorted = calculated_flights.sort {|x,y| y.id <=> x.id }
+    assert calculated_flights_sorted == my_flights_sorted
+  end
+  
 end
