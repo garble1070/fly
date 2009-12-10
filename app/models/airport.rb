@@ -1,7 +1,6 @@
 # Airport that accepts passenger traffic in our system
 class Airport < ActiveRecord::Base
   
-
    acts_as_mappable :default_units => :miles, 
                    :default_formula => :sphere, 
                    :distance_field_name => :distance,

@@ -59,8 +59,10 @@ class FlightCreator < Creator
   
 end
 
+# Subclasses 'Airport' to create a 'DepartureAirport' class
 class DepartureAirport < Airport
 end
  
+# Subclasses 'Airport' to create a 'ArrivalAirport' class
 class ArrivalAirport < Airport
 end

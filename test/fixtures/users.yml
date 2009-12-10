@@ -27,3 +27,31 @@ two:
   admin: false
   remember_token: MyString
   remember_token_expires_at: 2009-12-03 11:27:37
+
+three:
+  id: 17
+  email: bob@smith.com
+  first_name: Bob
+  last_name: Smith
+  crypted_password: MyString
+  home_airport_code_real: ZRH
+  home_airport_code_game: CDG
+  created_at: 2009-12-03 11:27:37
+  updated_at: 2009-12-03 11:27:37
+  admin: false
+  remember_token: MyString
+  remember_token_expires_at: 2009-12-03 11:27:37
+
+four:
+  id: 18
+  email: mike@jones.com
+  first_name: Mike
+  last_name: Jones
+  crypted_password: MyString
+  home_airport_code_real: ALB
+  home_airport_code_game: ORD
+  created_at: 2009-12-03 11:27:37
+  updated_at: 2009-12-03 11:27:37
+  admin: false
+  remember_token: MyString
+  remember_token_expires_at: 2009-12-03 11:27:37

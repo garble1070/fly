@@ -4,6 +4,24 @@ class User < ActiveRecord::Base
   has_many :airlines
   has_many :terminals
   
+  has_many :friendships
+  has_many :friends, 
+           :through => :friendships,
+           :conditions => "status = 'accepted'", 
+           :order => :first_name
+
+  has_many :requested_friends, 
+           :through => :friendships, 
+           :source => :friend,
+           :conditions => "status = 'requested'", 
+           :order => :created_at
+
+  has_many :pending_friends, 
+           :through => :friendships, 
+           :source => :friend,
+           :conditions => "status = 'pending'", 
+           :order => :created_at
+
   named_scope :home_airport_code_in_real_life_is, lambda { |airport_code|
     {:conditions => { "home_airport_code_real" => airport_code}}}
   
