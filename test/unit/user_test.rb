@@ -37,20 +37,12 @@ class UserTest < ActiveSupport::TestCase
     @lax = Airport.find("lax")
     assert_not_nil(@lax)
     
-    @iad = Airport.find("iad")
-    assert_not_nil(@iad)
-    
     @dfw = Airport.find("dfw")
     assert_not_nil(@dfw)
     
     assert @user.home_airport_real == @lax
     assert @user.home_airport_game == @dfw
     
-    my_airports = @user.airport_terminal_locations
-    assert_kind_of(Array,my_airports) 
-    assert my_airports.include?(@lax)
-    assert my_airports.include?(@iad)
-    assert my_airports.include?(@dfw)
   end
   
   def test_associations_with_terminal_class

@@ -39,4 +39,22 @@ class AirportTest < ActiveSupport::TestCase
     assert @lax.users_based_here_in_game == [User.find(16)]
   end
   
+    def test_associations_with_airline_class
+    @swissair = Airline.find(1)
+    assert_not_nil(@swissair)
+    
+    @lufthansa = Airline.find(2)
+    assert_not_nil(@lufthansa)
+
+    @lax = Airport.find("LAX")
+    assert_not_nil(@lax)
+
+    my_airlines = Airline.operating_airport_is(@lax)
+    assert_kind_of(Array,my_airlines) 
+    assert my_airlines.include?(@swissair)
+    assert my_airlines.include?(@lufthansa)
+    
+    assert my_airlines == @lax.operating_airlines
+  end
+ 
 end

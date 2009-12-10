@@ -107,7 +107,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
 
   create_table "terminals", :force => true do |t|
     t.string  "airport_code"
-    t.integer  "user_id"
+    t.integer  "airline_id"
     t.integer  "boarding_gate_count"
     t.integer  "boarding_gate_cost_new"
     t.datetime "created_at"

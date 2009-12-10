@@ -3,41 +3,41 @@
 one:
   id: 1
   airport_code: LAX
-  user_id: 15
+  airline_id: 1
   boarding_gate_count: 3
   boarding_gate_cost_new: 1000
 
 two:
   id: 2
   airport_code: IAD
-  user_id: 15
+  airline_id: 1
   boarding_gate_count: 3
   boarding_gate_cost_new: 1000
 
 three:
   id: 3
   airport_code: DFW
-  user_id: 15
+  airline_id: 1
   boarding_gate_count: 3
   boarding_gate_cost_new: 1000
 
 four:
   id: 4
   airport_code: LAX
-  user_id: 16
+  airline_id: 2
   boarding_gate_count: 3
   boarding_gate_cost_new: 1000
 
 five:
   id: 5
   airport_code: LGB
-  user_id: 16
+  airline_id: 2
   boarding_gate_count: 3
   boarding_gate_cost_new: 1000
 
 six:
   id: 6
   airport_code: JFK
-  user_id: 16
+  airline_id: 2
   boarding_gate_count: 3
   boarding_gate_cost_new: 1000

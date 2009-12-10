@@ -13,13 +13,13 @@ class TerminalTest < ActiveSupport::TestCase
   end
   
   def test_associations_with_user_class
-    @my_lax_terminal = Terminal.find(1)
-    assert_not_nil(@my_lax_terminal)
+    @my_jfk_terminal = Terminal.find(6)
+    assert_not_nil(@my_jfk_terminal)
 
-    @user = User.find(15)
-    assert_not_nil(@user)
+    @my_airline = Airline.find(2)
+    assert_not_nil(@my_airline)
     
-    assert @my_lax_terminal.user == @user
+    assert @my_jfk_terminal.airline == @my_airline
     
   end
   

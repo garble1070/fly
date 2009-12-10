@@ -2,8 +2,21 @@
 class User < ActiveRecord::Base
   has_many :accounts
   has_many :airlines
-  has_many :terminals
+  has_many :terminals,
+     :through => :airlines
+  has_many :planes ,
+           :through => :airlines
+  has_one :home_airport_real, 
   
+      :class_name => "Airport",
+      :foreign_key => "code",
+      :primary_key => "home_airport_code_real"
+      
+  has_one :home_airport_game, 
+      :class_name => "Airport",
+      :foreign_key => "code",
+      :primary_key => "home_airport_code_game"
+            
   has_many :friendships
   has_many :friends, 
            :through => :friendships,
@@ -42,23 +55,5 @@ class User < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
-  # Returns an airport object that represents this user's home airport
-  # in real life
-  def home_airport_real 
-    Airport.find(home_airport_code_real)
-  end
-  
-  # Returns an airport object that represents this user's home airport
-  # in the game
-  def home_airport_game 
-    Airport.find(home_airport_code_game)
-  end
     
-  # Returns an array of airport objects that represents the complete set of
-  # locations where this user is operating terminals
-  def airport_terminal_locations
-    self.terminals.collect do |term_obj|
-      term_obj.airport
-    end
-  end
 end

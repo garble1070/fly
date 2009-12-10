@@ -16,6 +16,29 @@ class AirlineTest < ActiveSupport::TestCase
     assert @plane.airline == @airline
   end
   
+  def test_associations_with_airport_class
+    @airline = Airline.find(1)
+    assert_not_nil(@airline)
+    
+    @lax = Airport.find("lax")
+    assert_not_nil(@lax)
+    
+    @iad = Airport.find("iad")
+    assert_not_nil(@iad)
+    
+    @dfw = Airport.find("dfw")
+    assert_not_nil(@dfw)
+
+    my_airports = Airport.operating_airline_is(@airline)
+    assert_kind_of(Array,my_airports) 
+    assert my_airports.include?(@lax)
+    assert my_airports.include?(@iad)
+    assert my_airports.include?(@dfw)
+    
+    assert my_airports == @airline.operating_airports
+  
+  end
+  
   def test_acquire_new_plane
     @airline = Airline.find(1)
     assert_not_nil(@airline)

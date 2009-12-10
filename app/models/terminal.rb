@@ -1,9 +1,11 @@
 class Terminal < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :airport, :foreign_key => "airport_code"
+  belongs_to :airline
+  belongs_to :airport, 
+    :foreign_key => "airport_code", 
+    :primary_key => "code"
 
-  named_scope :owned_by_user, lambda { |user_id|
-    {:conditions => { "user_id" => user_id}}}
+  named_scope :owned_by_airline, lambda { |airline_id|
+    {:conditions => { "airline_id" => airline_id}}}
   
 
   

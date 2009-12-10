@@ -3,10 +3,17 @@ class Airline < ActiveRecord::Base
   belongs_to :user
   belongs_to :country, :foreign_key => "country_code"
   has_many :planes
+  has_many :terminals
 
   named_scope :country_is, lambda { |country_code|
     {:conditions => { "country_code" => country_code}}}
   
+  named_scope :operating_airport_is, lambda{|airport| {
+    :select=>"`airlines`.*",
+    :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
+    :conditions=>["`terminals`.airport_code = ?", airport.code]
+  }}
+
   
   #**********************************************#
   #               INSTANCE METHODS               #
@@ -20,5 +27,7 @@ class Airline < ActiveRecord::Base
     return new_plane.save ? new_plane : nil
   end
   
-  
+  def operating_airports
+     Airport.operating_airline_is(self)
+  end
 end

@@ -13,6 +13,10 @@ class Airport < ActiveRecord::Base
   
   belongs_to :country, :foreign_key => "country_code"
   
+  has_many :terminals, 
+     :foreign_key => "airport_code", 
+     :primary_key => "code"
+  
   acts_as_mappable :default_units => :miles, 
                    :default_formula => :sphere, 
                    :distance_field_name => :distance,
@@ -23,6 +27,12 @@ class Airport < ActiveRecord::Base
   named_scope :country_is, lambda { |country_code|
     {:conditions => { "country_code" => country_code}}}
   
+  named_scope :operating_airline_is, lambda{|airline| {
+    :select=>"`airports`.*",
+    :joins=>"INNER JOIN `terminals` on `airports`.code = `terminals`.airport_code",
+    :conditions=>["`terminals`.airline_id = ?", airline.id]
+  }}
+
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
@@ -49,5 +59,8 @@ class Airport < ActiveRecord::Base
     [self.lat,self.lng]
   end
   
-  
+  def operating_airlines
+     Airline.operating_airport_is(self)
+  end
+
 end
