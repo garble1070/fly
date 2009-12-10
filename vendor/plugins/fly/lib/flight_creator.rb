@@ -1,6 +1,6 @@
 # Used to create a flight using configuration objects
 class FlightCreator < Creator
-  
+    
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#  
@@ -35,24 +35,25 @@ class FlightCreator < Creator
   def calculate_inflight_duration
     dep_airport = param_by_classname("DepartureAirport")
     arr_airport = param_by_classname("ArrivalAirport")
-    distance_miles = dep_airport.distance_from(arr_airport).to_int
-    speed_mph = param_by_classname("Plane").avg_speed
-    distance_miles.quo(speed_mph) * 3600
+    flight_distance = DistanceInMiles.new(dep_airport.distance_from(arr_airport))
+    distance_nautical_miles = flight_distance.in_nautical_miles
+    speed_knots = param_by_classname("Plane").avg_speed_knots
+    return distance_nautical_miles.quo(speed_knots) * 3600
   end
 
   # Inserts optional params into new item object
   def insert_optional_params_into_new_item_object
     if param_classname_present?("BoardingDurationInSeconds")
-      @new_item.boarding_duration     = param_by_classname("BoardingDurationInSeconds").duration_in_seconds
+      @new_item.boarding_duration     = param_by_classname("BoardingDurationInSeconds").in_seconds
     end
     if param_classname_present?("TaxiDurationInSeconds")
-      @new_item.taxi_duration         = param_by_classname("TaxiDurationInSeconds").duration_in_seconds
+      @new_item.taxi_duration         = param_by_classname("TaxiDurationInSeconds").in_seconds
     end
     if param_classname_present?("InflightDurationInSeconds")
-      @new_item.inflight_duration     = param_by_classname("InflightDurationInSeconds").duration_in_seconds
+      @new_item.inflight_duration     = param_by_classname("InflightDurationInSeconds").in_seconds
     end
     if param_classname_present?("MaintenanceDurationInSeconds")
-      @new_item.maintenance_duration  = param_by_classname("MaintenanceDurationInSeconds").duration_in_seconds
+      @new_item.maintenance_duration  = param_by_classname("MaintenanceDurationInSeconds").in_seconds
     end    
   end
   

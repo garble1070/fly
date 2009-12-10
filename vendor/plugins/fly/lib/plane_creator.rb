@@ -24,8 +24,8 @@ class PlaneCreator < Creator
     @new_item.starting_airport_code  = param_by_classname("Airport").code
     @new_item.aircrafttype_id        = param_by_classname("Aircrafttype").id
     @new_item.avg_pax_load           = param_by_classname("Aircrafttype").avg_pax_load_default
-    @new_item.avg_speed              = param_by_classname("Aircrafttype").avg_speed_default
-    @new_item.range                  = param_by_classname("Aircrafttype").range_default 
+    @new_item.avg_speed_knots        = param_by_classname("Aircrafttype").avg_speed_knots_default
+    @new_item.range_miles            = param_by_classname("Aircrafttype").range_miles_default 
   end
   
   # Inserts optional params into new item object

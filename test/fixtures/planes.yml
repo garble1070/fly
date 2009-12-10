@@ -6,8 +6,8 @@ one:
   airline_id: 1
   aircrafttype_id: 1
   avg_pax_load: 240
-  avg_speed: 500
-  range: 8400
+  avg_speed_knots: 500
+  range_miles: 8400
   starting_airport_code: ZRH
   starting_pax_count: 0
   starting_miles_count: 0
@@ -18,8 +18,8 @@ two:
   airline_id: 3
   aircrafttype_id: 2
   avg_pax_load: 320
-  avg_speed: 500
-  range: 7500
+  avg_speed_knots: 500
+  range_miles: 7500
   starting_airport_code: IAD
   starting_pax_count: 0
   starting_miles_count: 0

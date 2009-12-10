@@ -6,10 +6,10 @@ one:
   name: Airbus A330-300
   avg_pax_load_default: 240
   avg_pax_load_max: 300
-  avg_speed_default: 500
-  avg_speed_max: 600
-  range_default: 8200
-  range_max: 8900
+  avg_speed_knots_default: 500
+  avg_speed_knots_max: 600
+  range_miles_default: 8200
+  range_miles_max: 8900
   boarding_duration_default: 60.0
   
 two:
@@ -18,8 +18,20 @@ two:
   name: Boeing 747-400ER
   avg_pax_load_default: 320
   avg_pax_load_max: 400
-  avg_speed_default: 500
-  avg_speed_max: 550
-  range_default: 7200
-  range_max: 7900
+  avg_speed_knots_default: 500
+  avg_speed_knots_max: 550
+  range_miles_default: 7200
+  range_miles_max: 7900
   boarding_duration_default: 60.0
+
+three:
+  id: 3
+  code: SR22
+  name: Cirrus SR22
+  avg_pax_load_default: 3
+  avg_pax_load_max: 4
+  avg_speed_knots_default: 140
+  avg_speed_knots_max: 160
+  range_miles_default: 850
+  range_miles_max: 1000
+  boarding_duration_default: 10.0

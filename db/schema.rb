@@ -24,11 +24,11 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.string   "name"
     t.integer  "avg_pax_load_default"
     t.integer  "avg_pax_load_max"
-    t.integer  "avg_speed_default"
-    t.integer  "avg_speed_max"
-    t.integer  "range_default"
-    t.integer  "range_max"
-    t.float  "boarding_duration_default", :default => 0, :null => false
+    t.integer  "avg_speed_knots_default"
+    t.integer  "avg_speed_knots_max"
+    t.integer  "range_miles_default"
+    t.integer  "range_miles_max"
+    t.float    "boarding_duration_default", :default => 0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.integer  "airline_id"
     t.integer  "aircrafttype_id"
     t.integer  "avg_pax_load"
-    t.integer  "avg_speed"
-    t.integer  "range"
+    t.integer  "avg_speed_knots"
+    t.integer  "range_miles"
     t.string   "starting_airport_code", :limit => 3
     t.integer  "starting_pax_count",                 :default => 0, :null => false
     t.integer  "starting_miles_count",               :default => 0, :null => false

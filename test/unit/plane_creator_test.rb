@@ -76,8 +76,8 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     assert @finished_plane.starting_miles_count == 100000
     assert @finished_plane.name == "City of Winterthur"
     assert @finished_plane.avg_pax_load == @a330.avg_pax_load_default
-    assert @finished_plane.avg_speed == @a330.avg_speed_default
-    assert @finished_plane.range == @a330.range_default
+    assert @finished_plane.avg_speed_knots == @a330.avg_speed_knots_default
+    assert @finished_plane.range_miles == @a330.range_miles_default
     
     @plane_creator.delete_by_classname("StartingPaxCount")
     @plane_creator.delete_by_classname("StartingMilesCount")

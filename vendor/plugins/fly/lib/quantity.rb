@@ -58,14 +58,25 @@ class DistanceInMiles < Quantity
   #               INSTANCE METHODS               #
   #**********************************************#  
   
+
   # Returns the value from '@quantity'
-  def distance_in_miles
+  def in_miles
     @quantity
   end
   
   # Sets the value for '@quantity'
-  def distance_in_miles=(input)
+  def in_miles=(input)
     @quantity=input
+  end
+
+  # Returns the value from '@quantity'
+  def in_nautical_miles
+    @quantity * MILE_IN_NAUTICAL_MILES
+  end
+  
+  # Sets the value for '@quantity'
+  def in_nautical_miles=(input)
+    @quantity = input * NAUTICAL_MILE_IN_MILES
   end
 end
 
@@ -109,22 +120,22 @@ end
   #**********************************************#  
   
   # Returns the value from '@quantity'
-  def duration_in_seconds
+  def in_seconds
     @quantity
   end
   
   # Sets the value for '@quantity'
-  def duration_in_seconds=(input)
+  def in_seconds=(input)
     @quantity=input
   end
     
   # Outputs the stored duration in minutes
-  def duration_in_minutes
+  def in_minutes
     @quantity.quo(60)
   end
     
   # Outputs the stored duration in hours
-  def duration_in_hours
+  def in_hours
     @quantity.quo(3600)
   end
 
