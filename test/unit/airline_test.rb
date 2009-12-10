@@ -5,14 +5,14 @@ class AirlineTest < ActiveSupport::TestCase
   def test_associations_with_plane_class
     @airline = Airline.find(3)
     assert_not_nil(@airline)
-
+    
     @plane = Plane.find(2)
     assert_not_nil(@plane)
-
+    
     my_airlines_planes = @airline.planes
     assert_kind_of(Array,my_airlines_planes) 
     assert my_airlines_planes.include?(@plane)
-
+    
     assert @plane.airline == @airline
   end
   
@@ -28,7 +28,7 @@ class AirlineTest < ActiveSupport::TestCase
     
     @dfw = Airport.find("dfw")
     assert_not_nil(@dfw)
-
+    
     my_airports = Airport.operating_airline_is(@airline)
     assert_kind_of(Array,my_airports) 
     assert my_airports.include?(@lax)
@@ -36,7 +36,7 @@ class AirlineTest < ActiveSupport::TestCase
     assert my_airports.include?(@dfw)
     
     assert my_airports == @airline.operating_airports
-  
+    
   end
   
   def test_acquire_new_plane
@@ -56,7 +56,22 @@ class AirlineTest < ActiveSupport::TestCase
     
     assert_kind_of(Fixnum,@finished_plane.id)
     assert @finished_plane.id > 0
-
+    
+  end
+  
+  def test_associations_with_flights
+    @oak_to_mia = Flight.find(221)
+    assert_not_nil(@oak_to_mia)
+    
+    @mia_to_zrh = Flight.find(222)
+    assert_not_nil(@mia_to_zrh)
+    
+    @airline = Airline.find(3)
+    assert_not_nil(@airline)
+    
+    my_flights = @airline.flights
+    assert my_flights.include?(@oak_to_mia)
+    assert my_flights.include?(@mia_to_zrh)
   end
   
 end

@@ -4,10 +4,11 @@ class User < ActiveRecord::Base
   has_many :airlines
   has_many :terminals,
      :through => :airlines
+     
   has_many :planes ,
            :through => :airlines
+           
   has_one :home_airport_real, 
-  
       :class_name => "Airport",
       :foreign_key => "code",
       :primary_key => "home_airport_code_real"

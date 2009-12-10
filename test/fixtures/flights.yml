@@ -30,3 +30,17 @@ two:
   inflight_duration: 170
   maintenance_started: 2009-12-03 01:55:04
   maintenance_duration: 60
+
+three:
+  id: 222
+  plane_id: 2
+  dep_airport_code: mia
+  arr_airport_code: zrh
+  boarding_started: 2009-12-03 05:00:00
+  boarding_duration: 60
+  taxi_started: 2009-12-03 05:30:00
+  taxi_duration: 65
+  inflight_started: 2009-12-03 06:00:00
+  inflight_duration: 170
+  maintenance_started: 2009-12-03 15:00:00
+  maintenance_duration: 60

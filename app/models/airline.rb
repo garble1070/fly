@@ -4,6 +4,7 @@ class Airline < ActiveRecord::Base
   belongs_to :country, :foreign_key => "country_code"
   has_many :planes
   has_many :terminals
+  has_many :flights, :through => :planes
 
   named_scope :country_is, lambda { |country_code|
     {:conditions => { "country_code" => country_code}}}
