@@ -27,11 +27,19 @@ class Airport < ActiveRecord::Base
   named_scope :country_is, lambda { |country_code|
     {:conditions => { "country_code" => country_code}}}
   
-  named_scope :operating_airline_is, lambda{|airline| {
+  named_scope :ops_airline_is, lambda{|airline| {
     :select=>"`airports`.*",
     :joins=>"INNER JOIN `terminals` on `airports`.code = `terminals`.airport_code",
     :conditions=>["`terminals`.airline_id = ?", airline.id]
   }}
+  
+  named_scope :ops_user_is, lambda{|user| {
+    :select=>"`airports`.*",
+    :joins=>"INNER JOIN `terminals` on `airports`.code = `terminals`.airport_code 
+             INNER JOIN `airlines` ON `terminals`.airline_id = `airlines`.id",
+    :conditions=>["`airlines`.user_id = ?", user.id]
+   }}
+
 
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
@@ -59,8 +67,8 @@ class Airport < ActiveRecord::Base
     [self.lat,self.lng]
   end
   
-  def operating_airlines
-     Airline.operating_airport_is(self)
+  def ops_airlines
+     Airline.ops_airport_is(self)
   end
 
 end

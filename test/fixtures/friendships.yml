@@ -15,14 +15,28 @@ two:
 three:
   id: 3
   user_id: 15
-  friend_id: 16
+  friend_id: 18
   status: pending
   created_at: 2007-08-22 23:34:00
   accepted_at: 2007-08-22 23:34:00
 four:
   id: 4
-  user_id: 16
+  user_id: 18
   friend_id: 15
   status: requested
+  created_at: 2007-08-22 23:34:00
+  accepted_at: 2007-08-22 23:34:00
+five:
+  id: 5
+  user_id: 15
+  friend_id: 16
+  status: accepted
+  created_at: 2007-08-22 23:34:00
+  accepted_at: 2007-08-22 23:34:00
+six:
+  id: 6
+  user_id: 16
+  friend_id: 15
+  status: accepted
   created_at: 2007-08-22 23:34:00
   accepted_at: 2007-08-22 23:34:00

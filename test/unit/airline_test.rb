@@ -29,13 +29,13 @@ class AirlineTest < ActiveSupport::TestCase
     @dfw = Airport.find("dfw")
     assert_not_nil(@dfw)
     
-    my_airports = Airport.operating_airline_is(@airline)
+    my_airports = Airport.ops_airline_is(@airline)
     assert_kind_of(Array,my_airports) 
     assert my_airports.include?(@lax)
     assert my_airports.include?(@iad)
     assert my_airports.include?(@dfw)
     
-    assert my_airports == @airline.operating_airports
+    assert my_airports == @airline.ops_airports
     
   end
   

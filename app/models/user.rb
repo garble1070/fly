@@ -4,38 +4,38 @@ class User < ActiveRecord::Base
   has_many :airlines
   has_many :terminals,
      :through => :airlines
-     
+  
   has_many :planes ,
            :through => :airlines
-           
+  
   has_one :home_airport_real, 
       :class_name => "Airport",
       :foreign_key => "code",
       :primary_key => "home_airport_code_real"
-      
+  
   has_one :home_airport_game, 
       :class_name => "Airport",
       :foreign_key => "code",
       :primary_key => "home_airport_code_game"
-            
+  
   has_many :friendships
   has_many :friends, 
            :through => :friendships,
            :conditions => "status = 'accepted'", 
            :order => :first_name
-
+  
   has_many :requested_friends, 
            :through => :friendships, 
            :source => :friend,
            :conditions => "status = 'requested'", 
            :order => :created_at
-
+  
   has_many :pending_friends, 
            :through => :friendships, 
            :source => :friend,
            :conditions => "status = 'pending'", 
            :order => :created_at
-
+  
   named_scope :home_airport_code_in_real_life_is, lambda { |airport_code|
     {:conditions => { "home_airport_code_real" => airport_code}}}
   
@@ -56,9 +56,28 @@ class User < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
-  # returns an array of all flights associated with this user
+  # Returns an array of all flights associated with this user
   def flights
     Flight.user_is(self)
   end
-    
+  
+  # Returns an array of all operational airports associated with this user
+  def ops_airports
+    Airport.ops_user_is(self)
+  end
+  
+  # Returns an array of all operational airports associated with the *friends* of this user
+  def friends_ops_airports
+    airports = self.friends.collect do |friend|
+      friend.ops_airports
+    end
+    return airports.flatten.uniq
+  end
+
+  # Returns an array of all operational airports that are associated with this user's friends but
+  # not with the user
+  def ops_airports_exclusive_to_friends
+    friends_ops_airports - self.ops_airports
+  end
+  
 end

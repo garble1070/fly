@@ -19,7 +19,7 @@ class Flight < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
    }}
    
-     named_scope :operating_airport_is, lambda{|airport| {
+     named_scope :ops_airport_is, lambda{|airport| {
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
     :conditions=>["`terminals`.airport_code = ?", airport.code]
