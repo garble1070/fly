@@ -13,8 +13,18 @@ class Views::Users::ShowViewGen < Erector::Widget
   def content
     set_parameters
     p_blankline_hr
+#    rawtext @helper_template.javascript_tag("alert(window.location.host)")
+    emit_flight_urls
     emit_field_data
     3.times do p_blankline end
+  end
+  
+  def emit_flight_urls
+    dep_airport = Airport.find(@helper_template.params[:from])
+    arr_airport = Airport.find(@helper_template.params[:to])
+    map = FlightMap.new(FlightRouting.new(dep_airport,arr_airport).generate_complex_route)
+    href = "http://maps.google.com/maps/api/staticmap" + map.generate_url
+    img :src => href, :width => "450", :height => "300"
   end
   
   def list
@@ -30,17 +40,7 @@ class Views::Users::ShowViewGen < Erector::Widget
        :text => @my_airline.country.display_name},
       {:label => "Your airline's satisfaction rating", 
        :text => @my_airline.satisfaction_rating},
-      {:label => "My fleet", :text => fleet_display},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
-      {:label => "", :text => ""},
+      {:label => "My fleet", :text => fleet_display}
      ]  
   end
   
