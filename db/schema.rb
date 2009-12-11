@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.integer  "plane_id"
     t.string   "dep_airport_code"
     t.string   "arr_airport_code"
+    t.text     "routing"
     t.datetime "boarding_started"
     t.float  "boarding_duration"
     t.boolean  "taxi_auto_start_flag",        :default => true

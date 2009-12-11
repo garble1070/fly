@@ -1,5 +1,7 @@
 # A particular plane flying a particular route at a particular time
 class Flight < ActiveRecord::Base
+  serialize :routing 
+  
   belongs_to :plane
   
   belongs_to :dep_airport, 
