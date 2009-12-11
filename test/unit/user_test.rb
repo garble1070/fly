@@ -44,7 +44,6 @@ class UserTest < ActiveSupport::TestCase
     assert_not_nil(@dfw)
     
     assert @user.home_airport_real == @lax
-    assert @user.home_airport_game == @dfw
     
     f_ops_airports = @user.friends_ops_airports
     assert_not_nil(f_ops_airports)
@@ -84,7 +83,7 @@ class UserTest < ActiveSupport::TestCase
   end
   
   def test_associations_with_flight_class
-    @user = User.find(16)
+    @user = User.find(17)
     assert_not_nil(@user)
 
     my_flights = @user.flights

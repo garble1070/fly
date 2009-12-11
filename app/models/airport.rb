@@ -6,8 +6,8 @@ class Airport < ActiveRecord::Base
       :foreign_key => "home_airport_code_real",
       :primary_key => "code"
   
-  has_many :users_based_here_in_game, 
-      :class_name => "User", 
+  has_many :airlines_based_here_in_game, 
+      :class_name => "Airline", 
       :foreign_key => "home_airport_code_game",
       :primary_key => "code"
   

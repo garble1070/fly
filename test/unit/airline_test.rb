@@ -36,7 +36,12 @@ class AirlineTest < ActiveSupport::TestCase
     assert my_airports.include?(@dfw)
     
     assert my_airports == @airline.ops_airports
+
+    @airline2 = Airline.find(3)
+    assert_not_nil(@airline2)
     
+    assert @airline2.home_airport_game == @iad
+
   end
   
   def test_acquire_new_plane

@@ -13,11 +13,6 @@ class User < ActiveRecord::Base
       :foreign_key => "code",
       :primary_key => "home_airport_code_real"
   
-  has_one :home_airport_game, 
-      :class_name => "Airport",
-      :foreign_key => "code",
-      :primary_key => "home_airport_code_game"
-  
   has_many :friendships
   has_many :friends, 
            :through => :friendships,
@@ -38,9 +33,6 @@ class User < ActiveRecord::Base
   
   named_scope :home_airport_code_in_real_life_is, lambda { |airport_code|
     {:conditions => { "home_airport_code_real" => airport_code}}}
-  
-  named_scope :home_airport_code_in_game_is, lambda { |airport_code|
-    {:conditions => { "home_airport_code_game" => airport_code}}}
   
   validates_presence_of     :email
   validates_presence_of     :password,                   :if => :password_required?
@@ -80,4 +72,9 @@ class User < ActiveRecord::Base
     friends_ops_airports - self.ops_airports
   end
   
+  # Gets the airilne instance associated with this user (there is only one for now but the
+  # data model allows more
+  def my_airline
+    airlines[0]
+  end
 end

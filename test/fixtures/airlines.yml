@@ -7,6 +7,7 @@ one:
   user_id: 15
   satisfaction_rating: 9.0
   maintenance_duration_default: 80.0
+  home_airport_code_game: ZRH
 
 two:
   id: 2
@@ -15,13 +16,15 @@ two:
   user_id: 16
   satisfaction_rating: 3.5
   maintenance_duration_default: 80.0
+  home_airport_code_game: MUC
 
 three:
   id: 3
   name: United Airlines
   country_code: US
-  user_id: 16
+  user_id: 17
   satisfaction_rating: 3.5
   maintenance_duration_default: 80.0
+  home_airport_code_game: IAD
 
   

@@ -34,12 +34,10 @@ class AirportTest < ActiveSupport::TestCase
 
     @lax = Airport.find("LAX")
     assert_not_nil(@lax)
-
     assert @lax.users_based_here_in_real_life == [User.find(15)]
-    assert @lax.users_based_here_in_game == [User.find(16)]
   end
   
-    def test_associations_with_airline_class
+  def test_associations_with_airline_class
     @swissair = Airline.find(1)
     assert_not_nil(@swissair)
     
@@ -48,6 +46,11 @@ class AirportTest < ActiveSupport::TestCase
 
     @lax = Airport.find("LAX")
     assert_not_nil(@lax)
+
+    @zrh = Airport.find("ZRH")
+    assert_not_nil(@zrh)
+
+    assert @zrh.airlines_based_here_in_game.include?(@swissair)
 
     my_airlines = Airline.ops_airport_is(@lax)
     assert_kind_of(Array,my_airlines) 

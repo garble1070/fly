@@ -9,5 +9,8 @@ class ApplicationController < ActionController::Base
   
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
-  
+
+  require "erector"
+  require "erector_widget_extensions"
+
 end

@@ -5,7 +5,13 @@ class Airline < ActiveRecord::Base
   has_many :planes
   has_many :terminals
   has_many :flights, :through => :planes
+  has_many :aircrafttypes, :through => :planes
 
+  has_one :home_airport_game, 
+      :class_name => "Airport",
+      :foreign_key => "code",
+      :primary_key => "home_airport_code_game"
+  
   named_scope :country_is, lambda { |country_code|
     {:conditions => { "country_code" => country_code}}}
   
@@ -15,7 +21,10 @@ class Airline < ActiveRecord::Base
     :conditions=>["`terminals`.airport_code = ?", airport.code]
   }}
 
+  named_scope :home_airport_code_in_game_is, lambda { |airport_code|
+    {:conditions => { "home_airport_code_game" => airport_code}}}
   
+
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
