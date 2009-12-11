@@ -60,8 +60,6 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.float    "taxi_duration_default",     :default => 0, :null => false
     t.integer  "terminal_cost_new",       :default => 0, :null => false
     t.integer  "boarding_gate_cost_new_default",              :default => 0, :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "countries", :force => true do |t|
