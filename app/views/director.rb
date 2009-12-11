@@ -11,7 +11,7 @@ class Views::Director
     
   # Instantiates the appropriate 'wrapper' widget (html, pdf, or js)
   def get_started
-    html = MainHtmlWrapper.new(:helper_template => @helper_template).to_pretty
+    html = Views::MainHtmlWrapper.new(:helper_template => @helper_template).to_pretty
   end
   
 end

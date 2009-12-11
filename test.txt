@@ -1,0 +1,153 @@
+==> production.log <==
+    app/views/users/show_view_gen.rb:25:in `emit_flight_urls'
+    app/views/users/show_view_gen.rb:17:in `content'
+    erector (0.7.1) lib/erector/widget.rb:306:in `write_via'
+    erector (0.7.1) lib/erector/widget.rb:193:in `context'
+    erector (0.7.1) lib/erector/widget.rb:305:in `write_via'
+    erector (0.7.1) lib/erector/widget.rb:327:in `widget'
+    app/views/main_html_wrapper.rb:52:in `main_container_contents'
+    app/views/main_html_wrapper.rb:44:in `body_content'
+    erector (0.7.1) lib/erector/widget.rb:617:in `instance_eval'
+    erector (0.7.1) lib/erector/widget.rb:617:in `__element__'
+    erector (0.7.1) lib/erector/widget.rb:497:in `div'
+    app/views/main_html_wrapper.rb:43:in `body_content'
+    erector (0.7.1) lib/erector/widgets/page.rb:74:in `content'
+    erector (0.7.1) lib/erector/widget.rb:617:in `instance_eval'
+    erector (0.7.1) lib/erector/widget.rb:617:in `__element__'
+    erector (0.7.1) lib/erector/widget.rb:497:in `body'
+    erector (0.7.1) lib/erector/widgets/page.rb:73:in `content'
+    erector (0.7.1) lib/erector/widget.rb:617:in `instance_eval'
+    erector (0.7.1) lib/erector/widget.rb:617:in `__element__'
+    erector (0.7.1) lib/erector/widget.rb:497:in `html'
+    erector (0.7.1) lib/erector/widgets/page.rb:69:in `content'
+    erector (0.7.1) lib/erector/widget.rb:281:in `send'
+    erector (0.7.1) lib/erector/widget.rb:281:in `_render'
+    erector (0.7.1) lib/erector/widget.rb:193:in `context'
+    erector (0.7.1) lib/erector/widget.rb:280:in `_render'
+    erector (0.7.1) lib/erector/widget.rb:260:in `to_s'
+    erector (0.7.1) lib/erector/widget.rb:240:in `to_pretty'
+    app/views/director.rb:14:in `get_started'
+    app/views/users/show.html.erb:1
+    erector (0.7.1) lib/erector/rails/extensions/action_controller.rb:22:in `render'
+    /home/heroku_rack/lib/static_assets.rb:9:in `call'
+    /home/heroku_rack/lib/last_access.rb:25:in `call'
+    /home/heroku_rack/lib/date_header.rb:14:in `call'
+    thin (1.0.1) lib/thin/connection.rb:80:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:78:in `catch'
+    thin (1.0.1) lib/thin/connection.rb:78:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:57:in `process'
+    thin (1.0.1) lib/thin/connection.rb:42:in `receive_data'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run_machine'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run'
+    thin (1.0.1) lib/thin/backends/base.rb:57:in `start'
+    thin (1.0.1) lib/thin/server.rb:150:in `start'
+    thin (1.0.1) lib/thin/controllers/controller.rb:80:in `start'
+    thin (1.0.1) lib/thin/runner.rb:173:in `send'
+    thin (1.0.1) lib/thin/runner.rb:173:in `run_command'
+    thin (1.0.1) lib/thin/runner.rb:139:in `run!'
+    thin (1.0.1) bin/thin:6
+    /usr/local/bin/thin:20:in `load'
+    /usr/local/bin/thin:20
+
+Rendering /disk1/home/slugs/98435_56d9a6a_8189/mnt/public/500.html (500 Internal Server Error)
+
+
+Processing UsersController#show (for 76.94.154.243 at 2009-12-11 15:17:57) [GET]
+  Parameters: {"id"=>"15"}
+Rendering users/show
+
+ActionView::TemplateError (Views is not missing constant MainHtmlWrapper!) on line #1 of app/views/users/show.html.erb:
+1: <%= Views::Director.new(self).get_started %>
+
+    app/views/director.rb:14:in `get_started'
+    app/views/users/show.html.erb:1
+    erector (0.7.1) lib/erector/rails/extensions/action_controller.rb:22:in `render'
+    /home/heroku_rack/lib/static_assets.rb:9:in `call'
+    /home/heroku_rack/lib/last_access.rb:25:in `call'
+    /home/heroku_rack/lib/date_header.rb:14:in `call'
+    thin (1.0.1) lib/thin/connection.rb:80:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:78:in `catch'
+    thin (1.0.1) lib/thin/connection.rb:78:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:57:in `process'
+    thin (1.0.1) lib/thin/connection.rb:42:in `receive_data'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run_machine'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run'
+    thin (1.0.1) lib/thin/backends/base.rb:57:in `start'
+    thin (1.0.1) lib/thin/server.rb:150:in `start'
+    thin (1.0.1) lib/thin/controllers/controller.rb:80:in `start'
+    thin (1.0.1) lib/thin/runner.rb:173:in `send'
+    thin (1.0.1) lib/thin/runner.rb:173:in `run_command'
+    thin (1.0.1) lib/thin/runner.rb:139:in `run!'
+    thin (1.0.1) bin/thin:6
+    /usr/local/bin/thin:20:in `load'
+    /usr/local/bin/thin:20
+
+Rendering /disk1/home/slugs/98435_56d9a6a_8189/mnt/public/500.html (500 Internal Server Error)
+
+
+Processing UsersController#show (for 76.94.154.243 at 2009-12-11 15:18:01) [GET]
+  Parameters: {"id"=>"16"}
+Rendering users/show
+
+ActionView::TemplateError (Views is not missing constant MainHtmlWrapper!) on line #1 of app/views/users/show.html.erb:
+1: <%= Views::Director.new(self).get_started %>
+
+    app/views/director.rb:14:in `get_started'
+    app/views/users/show.html.erb:1
+    erector (0.7.1) lib/erector/rails/extensions/action_controller.rb:22:in `render'
+    /home/heroku_rack/lib/static_assets.rb:9:in `call'
+    /home/heroku_rack/lib/last_access.rb:25:in `call'
+    /home/heroku_rack/lib/date_header.rb:14:in `call'
+    thin (1.0.1) lib/thin/connection.rb:80:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:78:in `catch'
+    thin (1.0.1) lib/thin/connection.rb:78:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:57:in `process'
+    thin (1.0.1) lib/thin/connection.rb:42:in `receive_data'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run_machine'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run'
+    thin (1.0.1) lib/thin/backends/base.rb:57:in `start'
+    thin (1.0.1) lib/thin/server.rb:150:in `start'
+    thin (1.0.1) lib/thin/controllers/controller.rb:80:in `start'
+    thin (1.0.1) lib/thin/runner.rb:173:in `send'
+    thin (1.0.1) lib/thin/runner.rb:173:in `run_command'
+    thin (1.0.1) lib/thin/runner.rb:139:in `run!'
+    thin (1.0.1) bin/thin:6
+    /usr/local/bin/thin:20:in `load'
+    /usr/local/bin/thin:20
+
+Rendering /disk1/home/slugs/98435_56d9a6a_8189/mnt/public/500.html (500 Internal Server Error)
+
+
+Processing UsersController#show (for 76.94.154.243 at 2009-12-11 15:18:32) [GET]
+  Parameters: {"from"=>"lgb", "id"=>"15", "to"=>"jfk"}
+Rendering users/show
+
+ActionView::TemplateError (Views is not missing constant MainHtmlWrapper!) on line #1 of app/views/users/show.html.erb:
+1: <%= Views::Director.new(self).get_started %>
+
+    app/views/director.rb:14:in `get_started'
+    app/views/users/show.html.erb:1
+    erector (0.7.1) lib/erector/rails/extensions/action_controller.rb:22:in `render'
+    /home/heroku_rack/lib/static_assets.rb:9:in `call'
+    /home/heroku_rack/lib/last_access.rb:25:in `call'
+    /home/heroku_rack/lib/date_header.rb:14:in `call'
+    thin (1.0.1) lib/thin/connection.rb:80:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:78:in `catch'
+    thin (1.0.1) lib/thin/connection.rb:78:in `pre_process'
+    thin (1.0.1) lib/thin/connection.rb:57:in `process'
+    thin (1.0.1) lib/thin/connection.rb:42:in `receive_data'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run_machine'
+    eventmachine (0.12.6) lib/eventmachine.rb:240:in `run'
+    thin (1.0.1) lib/thin/backends/base.rb:57:in `start'
+    thin (1.0.1) lib/thin/server.rb:150:in `start'
+    thin (1.0.1) lib/thin/controllers/controller.rb:80:in `start'
+    thin (1.0.1) lib/thin/runner.rb:173:in `send'
+    thin (1.0.1) lib/thin/runner.rb:173:in `run_command'
+    thin (1.0.1) lib/thin/runner.rb:139:in `run!'
+    thin (1.0.1) bin/thin:6
+    /usr/local/bin/thin:20:in `load'
+    /usr/local/bin/thin:20
+
+Rendering /disk1/home/slugs/98435_56d9a6a_8189/mnt/public/500.html (500 Internal Server Error)
+
+==> dyno-671327.log <==
