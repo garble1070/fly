@@ -3,24 +3,27 @@ class StaticMap
 end
 
 class FlightMap < StaticMap
-  def initialize(route)
-    @route = route
+  
+  # Constructor.  Sets default width and height for the static image.
+  def initialize(flight_routing_obj)
+    @route = flight_routing_obj.generate_complex_route
+    @heading = flight_routing_obj.heading
+    @dep_airport = flight_routing_obj.dep_airport
     @query = QueryCollection.new
     @width = 450
     @height = 300
   end
   
-  def add_route(route)
-    @route = route
-  end
-  
+  # Assigns arguments for width and height to the appropriate instance variables
   def set_size(width,height)
     @width = width
     @height = height
   end
   
-  def generate_url(distance=0)
-    calculate_start_data
+  # Returns the complete query string for the Google Maps static API
+  def generate_url(distance_so_far=0)
+    @distance_so_far = distance_so_far
+    @start_pair = create_pair_string(@route[0],:start)
     @query.add_param("maptype","terrain")
     @query.add_param("format","jpg")
     @query.add_param("sensor","false")
@@ -28,83 +31,80 @@ class FlightMap < StaticMap
     @query.add_param("key","ABQIAAAAHjDfn4JyllVUPtyJ31qLhhSjmO-kHhwqX2l12pfya7ICKXzFqhRq3QRp0Ql03P59GaKmwMasDuskrA")
     @query.add_param("markers",start_marker_string)
     @query.add_param("markers",end_marker_string)
-    @query.add_param("path",path_string)
-    if distance > 0
-      calculate_inflight_data
-      @query.add_param("markers",inflight_marker_string)
-      @query.add_param("path",inflight_path_string)
+    @query.add_param("path",scheduled_path_string)
+    if @distance_so_far > 0
+      insert_inflight_params
     end
     @query.output
   end
   
-  def calculate_start_data
-    start_lat = @route[0][:start_lat].for_output
-    start_lng = @route[0][:start_lng].for_output
-    @start_pair = start_lat + "," + start_lng
+  # Inserts marker and path query param data for the inflight route
+  def insert_inflight_params
+    calculate_inflight_data
+    @query.add_param("markers",inflight_marker_string)
+    @query.add_param("path",inflight_path_string)
   end
   
+  # Returns a string formatted as "<lat>,<lng>"
+  def create_pair_string(segment,position=:end)
+    point_lat = segment["#{position}_lat".to_sym].for_output
+    point_lng = segment["#{position}_lng".to_sym].for_output
+    return point_lat + "," + point_lng
+  end
+  
+  # Returns a string that may be used to set the marker representing the start of the scheduled
+  # route
   def start_marker_string
-    output = "color:red|label:D|"
-    output << @start_pair
-    return output
+    "color:red|label:D|" + @start_pair
   end
   
+  # Returns a string that may be used to set the marker representing the aircraft's inflight position
+  def inflight_marker_string
+    "color:yellow|" + @inflight_pair
+  end
+  
+  # Returns a string that may be used to set the marker representing the end of the scheduled
+  # route
   def end_marker_string
     count = @route.length - 1
-    output = "color:green|label:A|"
-    end_lat = @route[count][:end_lat].for_output
-    end_lng = @route[count][:end_lng].for_output
-    output << (end_lat + "," + end_lng)
-    return output
+    "color:green|label:A|" + create_pair_string(@route[count],:end)
   end
   
-  
-  def inflight_marker_string
-    count = @route.length - 1
-    output = "color:yellow|"
-    output << (@inflight_pair + "|")
-    return output
-  end
-
-  def path_string
-    output = "color:0x555555AA|weight:5|"
-    output << (@start_pair + "|")
-    @route.each do |segment|
-      point_lat = segment[:end_lat].for_output
-      point_lng = segment[:end_lng].for_output
-      output << (point_lat + "," + point_lng + "|")
-    end
-    return output.chop
+  # ..
+  def scheduled_path_string
+    "color:0x555555AA|weight:5|" + path_string(@route)
   end
   
+  # Returns a string that may be used to create a path representing the aircraft's trajectory up
+  # to it's current position as specified in the method call to 'generate_url'
   def inflight_path_string
-    output = "color:0xFFFF00FF|weight:5|"
-    output << (@start_pair + "|")
-    @route.each do |segment|
-      point_lat = segment[:end_lat].for_output
-      point_lng = segment[:end_lng].for_output
-      output << (point_lat + "," + point_lng + "|")
+    "color:0xFFFF00FF|weight:5|" + path_string(@inflight_route)
+  end
+  
+  # Returns a string that may be used to create a path representing the aircraft's scheduled 
+  # trajectory
+  def path_string(route)
+    output = (@start_pair + "|")
+    route.each do |segment|
+      output << (create_pair_string(segment,:end) + "|")
     end
     return output.chop
   end
-
-   def calculate_inflight_data
-     
-   end
+  
+  # Returns a string representing the flight's current position (as lat/lng point) 
+  def calculate_inflight_data
+    @inflight_route = []
+    waypoint = @dep_airport.endpoint(@heading,@distance_so_far)
+    @inflight_pair = waypoint.lat.for_output + "," + waypoint.lng.for_output
+  end
   
 end
 
+# Extends class to include the 'for_output' method
 class Float
-    def for_output
-      self.round(3).to_s
+  
+  # Rounds a floating point number to 3 digits and returns it as a string
+  def for_output
+    self.round(3).to_s
   end
 end
-=begin
-&markers=color:red|label:D|33.9425,-118.408
-&markers=color:yellow|62.085,-66.4798
-&markers=color:green|label:A|47.4647,8.549
-
-&path=color:0xFFFF00FF|weight:5|33.9425,-118.40|50.767,-100.16|62.085,-66.479
-&path=color:white|weight:5|33.9425,-118.40|50.767,-100.16|62.085,-66.479|60.51,-21.02|47.4647,8.549
-=end
-

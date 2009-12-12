@@ -22,8 +22,9 @@ class Views::Users::ShowViewGen < Erector::Widget
   def emit_flight_urls
     dep_airport = Airport.find(@helper_template.params[:from])
     arr_airport = Airport.find(@helper_template.params[:to])
-    map = FlightMap.new(FlightRouting.new(dep_airport,arr_airport).generate_complex_route)
-    href = "http://maps.google.com/maps/api/staticmap" + map.generate_url
+    route = FlightRouting.new(dep_airport,arr_airport)
+    map = FlightMap.new(route)
+    href = "http://maps.google.com/maps/api/staticmap" + map.generate_url(@helper_template.params[:dist].to_i)
     img :src => href, :width => "450", :height => "300"
   end
   

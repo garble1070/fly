@@ -1,18 +1,19 @@
 class FlightRouting
   
   attr_accessor :routing
+  attr_reader :distance, :heading, :dep_airport
   
   # Constructor.  Takes any two objects that have @lat and @lng instance variables as arguments.
   def initialize(dep_airport=nil, arr_airport=nil)
     @dep_airport = dep_airport
     @arr_airport = arr_airport
     @segment_count = 0
-    if @dep_airport && @arr_airport
-      @start_latlng = Geokit::LatLng.new(dep_airport.lat, dep_airport.lng)
-      @end_latlng = Geokit::LatLng.new(arr_airport.lat, arr_airport.lng)
-      @original_pair = [@start_latlng,@end_latlng]
+    if dep_airport && arr_airport
+      @original_pair = [dep_airport,arr_airport]
       @routing = [@original_pair]
-      @segment_count += 1
+      @distance = dep_airport.distance_from(arr_airport)
+      @heading = dep_airport.heading_to(arr_airport)
+      @segment_count = 1
     end
   end
   
