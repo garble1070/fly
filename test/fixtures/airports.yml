@@ -2,7 +2,6 @@ airports_049:
   country_code: US
   city: New York
   name: John F Kennedy Intl
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 13
@@ -16,13 +15,11 @@ airports_049:
   display_name: New York - John F Kennedy Intl Airport
   icao: KJFK
   lat: 40.6398
-  created_at: 0000-00-00 00:00:00
 
 airports_053: 
   country_code: US
   city: Los Angeles
   name: Los Angeles Intl
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 126
@@ -36,13 +33,11 @@ airports_053:
   display_name: Los Angeles Intl Airport
   icao: KLAX
   lat: 33.9425
-  created_at: 0000-00-00 00:00:00
 
 airports_056: 
   country_code: US
   city: Long Beach
   name: Long Beach
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 60
@@ -57,13 +52,11 @@ airports_056:
   display_name: Long Beach Airport
   icao: KLGB
   lat: 33.8177
-  created_at: 0000-00-00 00:00:00
 
 airports_029: 
   country_code: US
   city: Dallas-Fort Worth
   name: Dallas-Fort Worth Intl
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 607
@@ -77,13 +70,11 @@ airports_029:
   display_name: Dallas-Fort Worth Intl Airport
   icao: KDFW
   lat: 32.8968
-  created_at: 0000-00-00 00:00:00
 
 airports_119: 
   country_code: CH
   city: Zurich
   name: Zurich
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 1416
@@ -97,13 +88,12 @@ airports_119:
   display_name: Zurich Airport
   icao: LSZH
   lat: 47.4647
-  created_at: 0000-00-00 00:00:00
+  
 
 airports_120: 
   country_code: DE
   city: Munich
   name: Munchen
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 1487
@@ -117,13 +107,12 @@ airports_120:
   display_name: Munich - Munchen Airport
   icao: EDDM
   lat: 48.3538
-  created_at: 0000-00-00 00:00:00
+  
 
 airports_094: 
   country_code: US
   city: San Francisco
   name: San Francisco Intl
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 13
@@ -137,13 +126,12 @@ airports_094:
   display_name: San Francisco Intl Airport
   icao: KSFO
   lat: 37.619
-  created_at: 0000-00-00 00:00:00
+  
 
 airports_122: 
   country_code: FR
   city: Paris
   name: Charles De Gaulle
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 392
@@ -157,13 +145,11 @@ airports_122:
   display_name: Paris - Charles De Gaulle Airport
   icao: LFPG
   lat: 49.0128
-  created_at: 0000-00-00 00:00:00
   
 airports_039: 
   country_code: US
   city: Washington
   name: Washington Dulles Intl
-  updated_at: 0000-00-00 00:00:00
   boarding_gate_cost_new_default: 0
   taxi_duration_default: 70
   altitude: 313
@@ -177,5 +163,4 @@ airports_039:
   display_name: Washington Dulles Intl Airport
   icao: KIAD
   lat: 38.9445
-  created_at: 0000-00-00 00:00:00
 
