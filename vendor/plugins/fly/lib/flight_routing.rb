@@ -17,15 +17,28 @@ class FlightRouting
     end
   end
   
-  # Divides the original routing up into 16 equally-sized chunks
+  # Divides the original routing up into an appropriate number of equally-sized chunks, and returns
+  # an array of segments
   def generate_complex_route
-    @routing = split_main_array(@routing)
-    @routing = split_main_array(@routing)
-    @routing = split_main_array(@routing)
-    @routing = split_main_array(@routing)
+    iterator_count.times do
+      @routing = split_main_array(@routing)
+    end
     output = create_output_array
     @routing = [@original_pair]
     return output
+  end
+  
+  # Returns a Fixnum representing the number of segments that are needed to produce a route path
+  # with an adequate level of granularity (important for curved flight routes)
+  def iterator_count
+    number = case 
+      when @distance >= 4800 then 5
+      when @distance >= 2400 then 4
+      when @distance >= 1200 then 3
+      when @distance >= 600 then 2
+      else 1
+    end   
+    return number
   end
   
   # Formats the route into an array of hashes, each one representing a route segment.

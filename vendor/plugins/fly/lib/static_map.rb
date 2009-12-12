@@ -8,6 +8,7 @@ class FlightMap < StaticMap
   def initialize(flight_routing_obj)
     @route = flight_routing_obj.generate_complex_route
     @heading = flight_routing_obj.heading
+    @total_distance = flight_routing_obj.distance
     @dep_airport = flight_routing_obj.dep_airport
     @query = QueryCollection.new
     @width = 450
@@ -22,7 +23,7 @@ class FlightMap < StaticMap
   
   # Returns the complete query string for the Google Maps static API
   def generate_url(distance_so_far=0)
-    @distance_so_far = distance_so_far
+    @distance_so_far = distance_so_far > @total_distance ? @total_distance : distance_so_far
     @start_pair = create_pair_string(@route[0],:start)
     @query.add_param("maptype","terrain")
     @query.add_param("format","jpg")
@@ -60,7 +61,8 @@ class FlightMap < StaticMap
   
   # Returns a string that may be used to set the marker representing the aircraft's inflight position
   def inflight_marker_string
-    "color:yellow|" + @inflight_pair
+    inflight_pair = @current_position.lat.for_output + "," + @current_position.lng.for_output
+    "color:yellow|" + inflight_pair
   end
   
   # Returns a string that may be used to set the marker representing the end of the scheduled
@@ -70,7 +72,8 @@ class FlightMap < StaticMap
     "color:green|label:A|" + create_pair_string(@route[count],:end)
   end
   
-  # ..
+  # Returns a string that may be used to create a path representing the aircraft's scheduled 
+  # trajectory
   def scheduled_path_string
     "color:0x555555AA|weight:5|" + path_string(@route)
   end
@@ -78,11 +81,11 @@ class FlightMap < StaticMap
   # Returns a string that may be used to create a path representing the aircraft's trajectory up
   # to it's current position as specified in the method call to 'generate_url'
   def inflight_path_string
-    "color:0xFFFF00FF|weight:5|" + path_string(@inflight_route)
+    "color:0xFFFF00FF|weight:6|" + path_string(@inflight_route)
   end
   
-  # Returns a string that may be used to create a path representing the aircraft's scheduled 
-  # trajectory
+  # Helper method that takes an array of segments an returns a string of waypoint pairs separated
+  # by the pipe character (i.e. '|') 
   def path_string(route)
     output = (@start_pair + "|")
     route.each do |segment|
@@ -91,11 +94,11 @@ class FlightMap < StaticMap
     return output.chop
   end
   
-  # Returns a string representing the flight's current position (as lat/lng point) 
+  # Calculates the '@current_position' (Geokit Latlng object) and '@inflight_route' instance
+  # variables
   def calculate_inflight_data
-    @inflight_route = []
-    waypoint = @dep_airport.endpoint(@heading,@distance_so_far)
-    @inflight_pair = waypoint.lat.for_output + "," + waypoint.lng.for_output
+    @current_position = @dep_airport.endpoint(@heading,@distance_so_far)
+    @inflight_route = FlightRouting.new(@dep_airport,@current_position).generate_complex_route
   end
   
 end
