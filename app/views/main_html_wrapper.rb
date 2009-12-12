@@ -15,7 +15,6 @@ class Views::MainHtmlWrapper < Erector::Widgets::Page
     page_title
     include_blueprint
     included_stylesheets
-    included_scripts
   end  
   
   # Emits the page title 
