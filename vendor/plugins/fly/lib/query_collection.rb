@@ -29,39 +29,40 @@ class QueryCollection
     return new
   end
   
+  # Deletes all objects in the '@collection' and sets the @count to zero.
   def delete_all
     @count = 0
     @collection = []
   end
   
+  # Returns a query URL string
   def output
-    prep_output_hash
-    @output_hash.each do |key,value|
+    output_str = "?"
+    @collection.each do |obj|
+      if obj.value && obj.value.is_a?(Hash)
+        key = "#{obj.key}[#{obj.value.to_a[0][0]}]" 
+        value = "#{obj.value.to_a[0][1]}"
+      elsif obj.value
+        key = obj.key
+        value = obj.value
+      end
       output_str << "#{key}=#{value}&"    
     end
     return output_str.chop
   end
   
-  def prep_output_hash
-    output_str = "?"
-    @output_hash = {}
-    @collection.each do |obj|
-      if obj.value && obj.value.is_a?(Hash)
-        @output_hash["#{obj.key}[#{obj.value.to_a[0][0]}]"] = "#{obj.value.to_a[0][1]}"
-      elsif obj.value
-        @output_hash["#{obj.key}"] = "#{obj.value}"
-      end
-    end
-  end
-
+  # Complains if the user calls the 'add_param' method from a instance of this abstract class.
     def add_param
     raise_error_user_must_call_from_subclass
   end
   
+  # Complains if the user calls the 'find' method from a instance of this abstract class.
   def find
     raise_error_user_must_call_from_subclass
   end
   
+  # Raises an error informing the user that they should not be calling a method from an instance
+  # of this abstract class.
   def raise_error_user_must_call_from_subclass
     raise "This method should be called from either a 'QueryCollectionNonExclusiveKey' instance
        or a 'QueryCollectionExclusiveKey' instance"    
@@ -73,7 +74,7 @@ end
 # same keyname
 class QueryCollectionExclusiveKey < QueryCollection
   
-  # Adds a parameter to the collection. If a QueryParam already exists with the same key,
+  # Adds a parameter to the @collection. If a QueryParam already exists with the same key,
   # overwrites its value and type.  Returns the (new) QueryParam object.
   def add_param(key,value=nil,type=nil)
     obj = find(key)
@@ -91,6 +92,7 @@ class QueryCollectionExclusiveKey < QueryCollection
     return obj
   end
   
+  # Walks the @collection and returns the object that matches the key provided
   def find(key)
     @collection.each do |obj|
       if obj.key == key
@@ -100,6 +102,7 @@ class QueryCollectionExclusiveKey < QueryCollection
     return nil
   end
   
+  # If an object exists in the @collection that matches the key provided, deletes it.
   def delete_param(key)
     obj = find(key)
     if obj
@@ -108,13 +111,14 @@ class QueryCollectionExclusiveKey < QueryCollection
     end
   end
   
-  # Copies the QueryCollection, then adds a new parameter to the new instance.
+  # Copies the QueryCollection, then deletes a parameter from the new instance.
   def copy_and_delete_param(key)
     new = self.copy
     new.delete_param(key)
     return new
   end
   
+  # Toggles the value of "zero" or "binary" type params
   def toggle_param(key)
     obj = find(key)
     if obj && obj.type && obj.type == :zero
@@ -126,6 +130,7 @@ class QueryCollectionExclusiveKey < QueryCollection
     end
   end
   
+  # Toggles the value of a "zero" type param
   def toggle_param_zero(obj)
     if obj.value.to_s == "0"
       obj.value = nil
@@ -135,6 +140,7 @@ class QueryCollectionExclusiveKey < QueryCollection
     return obj
   end
   
+  # Toggles the value of a "binary" type param
   def toggle_param_binary(obj)
     if obj.value.to_s == "1"
       obj.value = nil
@@ -144,6 +150,8 @@ class QueryCollectionExclusiveKey < QueryCollection
     return obj
   end
   
+  # Returns a value based on the missing method as keyname, or nil if no relevant object
+  # can be found.
   def method_missing(name, *args)
     obj = find(name.to_s)
     if obj
@@ -159,7 +167,7 @@ end
 # same keyname
 class QueryCollectionNonExclusiveKey < QueryCollection
   
-  # Overrides the parent method to allow for multiple query parameters with the same keyname
+  # Adds a new QueryParam object to the '@collection' array
   def add_param(key,value=nil,type=nil)
     obj = QueryParam.new(key,value,type)
     @collection << obj
