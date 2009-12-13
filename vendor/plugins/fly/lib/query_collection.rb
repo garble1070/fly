@@ -4,12 +4,15 @@ class QueryCollection
   attr_reader :collection
   attr_reader :count
   
-  # Constructor. 
+  # Constructor. Defines null values for the '@collection' and '@count' instance variables.
   def initialize()
     @collection = []
     @count = 0
   end
   
+  # Returns a new QueryCollection instance, made up of identical key/value pairings but using
+  # different QueryParam objects.  This is important so that changes to the new QueryCollection
+  # are not mirrored in the old instance.
   def copy
     copy = self.clone
     copy.delete_all
@@ -19,32 +22,73 @@ class QueryCollection
     return copy
   end
   
-  def add_param(key,value=nil,type=nil)
-    obj = find(key)
-    if obj
-      obj.value = value
-      if type
-        obj.type = type
-      end
-      return obj
-    else
-      obj = Views::KM::QueryParam.new(key,value,type)
-      @collection << obj
-      @count +=1
-      return obj
-    end
-  end
-  
+  # Copies the QueryCollection, then adds a new parameter to the new instance.
   def copy_and_add_param(key,value=nil,type=nil)
     new = self.copy
     new.add_param(key,value,type)
     return new
   end
   
-  def copy_and_delete_param(key)
-    new = self.copy
-    new.delete_param(key)
-    return new
+  def delete_all
+    @count = 0
+    @collection = []
+  end
+  
+  def output
+    prep_output_hash
+    @output_hash.each do |key,value|
+      output_str << "#{key}=#{value}&"    
+    end
+    return output_str.chop
+  end
+  
+  def prep_output_hash
+    output_str = "?"
+    @output_hash = {}
+    @collection.each do |obj|
+      if obj.value && obj.value.is_a?(Hash)
+        @output_hash["#{obj.key}[#{obj.value.to_a[0][0]}]"] = "#{obj.value.to_a[0][1]}"
+      elsif obj.value
+        @output_hash["#{obj.key}"] = "#{obj.value}"
+      end
+    end
+  end
+
+    def add_param
+    raise_error_user_must_call_from_subclass
+  end
+  
+  def find
+    raise_error_user_must_call_from_subclass
+  end
+  
+  def raise_error_user_must_call_from_subclass
+    raise "This method should be called from either a 'QueryCollectionNonExclusiveKey' instance
+       or a 'QueryCollectionExclusiveKey' instance"    
+  end
+
+end
+
+# A version of the QueryCollection class that does not allow for multiple query parameters with the
+# same keyname
+class QueryCollectionExclusiveKey < QueryCollection
+  
+  # Adds a parameter to the collection. If a QueryParam already exists with the same key,
+  # overwrites its value and type.  Returns the (new) QueryParam object.
+  def add_param(key,value=nil,type=nil)
+    obj = find(key)
+    if obj
+      obj.value = value
+    end
+    if obj && type
+      obj.type = type
+    end
+    unless obj
+      obj = QueryParam.new(key,value,type)
+      @collection << obj
+      @count +=1
+    end
+    return obj
   end
   
   def find(key)
@@ -64,9 +108,11 @@ class QueryCollection
     end
   end
   
-  def delete_all
-    @count = 0
-    @collection = []
+  # Copies the QueryCollection, then adds a new parameter to the new instance.
+  def copy_and_delete_param(key)
+    new = self.copy
+    new.delete_param(key)
+    return new
   end
   
   def toggle_param(key)
@@ -107,26 +153,6 @@ class QueryCollection
     end
   end
   
-  def output
-    prep_output_hash
-    @output_hash.each do |key,value|
-      output_str << "#{key}=#{value}&"    
-    end
-    return output_str.chop
-  end
-  
-  def prep_output_hash
-    output_str = "?"
-    @output_hash = {}
-    @collection.each do |obj|
-      if obj.value && obj.value.is_a?(Hash)
-        @output_hash["#{obj.key}[#{obj.value.to_a[0][0]}]"] = "#{obj.value.to_a[0][1]}"
-      elsif obj.value
-        @output_hash["#{obj.key}"] = "#{obj.value}"
-      end
-    end
-  end
-  
 end
 
 # A version of the QueryCollection class that allows for multiple query parameters with the
@@ -162,28 +188,7 @@ class QueryCollectionNonExclusiveKey < QueryCollection
       response << obj.value
     end
     return response
-  end
-  
-  # Overrides the parent method, because it is not meaningful in the context of non-
-  # exclusive keynames.
-  def delete_param(key)
-  end
-  
-  # Overrides the parent method, because it is not meaningful in the context of non-
-  # exclusive keynames.
-  def toggle_param(key)
-  end
-  
-  # Overrides the parent method, because it is not meaningful in the context of non-
-  # exclusive keynames.
-  def toggle_param_zero(obj)
-  end
-  
-  # Overrides the parent method, because it is not meaningful in the context of non-
-  # exclusive keynames.
-  def toggle_param_binary(obj)
-  end
-  
+  end  
   
 end
 
