@@ -10,7 +10,7 @@ class FlightMap < StaticMap
     @heading = flight_routing_obj.heading
     @total_distance = flight_routing_obj.distance
     @dep_airport = flight_routing_obj.dep_airport
-    @query = QueryCollection.new
+    @query = QueryCollectionNonExclusiveKey.new
     @width = 450
     @height = 300
   end
