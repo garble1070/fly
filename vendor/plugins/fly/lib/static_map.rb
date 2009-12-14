@@ -98,7 +98,7 @@ class FlightMap < StaticMap
   # variables
   def calculate_inflight_data
     @current_position = @dep_airport.endpoint(@heading,@distance_so_far)
-    @inflight_route = FlightRouting.new(@dep_airport,@current_position).generate_complex_route
+    @inflight_route = FlightPlan.new(@dep_airport,@current_position).generate_complex_route
   end
   
 end

@@ -1,6 +1,6 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
-class FlightRoutingTest < ActiveSupport::TestCase
+class FlightPlanTest < ActiveSupport::TestCase
   
   def test_all
     @lax = Airport.find("lax")
@@ -9,7 +9,7 @@ class FlightRoutingTest < ActiveSupport::TestCase
     @zrh = Airport.find("zrh")
     assert_not_nil(@zrh)
     
-    @route = FlightRouting.new(@lax,@zrh)
+    @route = FlightPlan.new(@lax,@zrh)
     assert_not_nil(@route)
     
     assert_equal(@route.distance.round(3),5930.850)
