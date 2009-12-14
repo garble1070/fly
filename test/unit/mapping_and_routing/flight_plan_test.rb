@@ -33,7 +33,7 @@ class FlightPlanTest < ActiveSupport::TestCase
     instance_vars_to_check = ["@start_obj","@end_obj","@odometer"]
     instance_vars_to_check.each do |varname|
       assert_equal(@flight_plan.segment_series[0].instance_variable_get(varname),
-                my_series[0].instance_variable_get(varname))
+      my_series[0].instance_variable_get(varname))
     end
   end
   
@@ -77,9 +77,29 @@ class FlightPlanTest < ActiveSupport::TestCase
     
     @flight_plan = FlightPlan.new(@lax,@sfo)    
     assert_equal(@flight_plan.iterator_count,1)
-
+    
     @flight_plan = FlightPlan.new(@lax,@iad)    
     assert_equal(@flight_plan.iterator_count,3)
-end
+  end
+  
+  def test_new_with_all_data
+    @lax = Airport.find("lax")
+    @zrh = Airport.find("zrh")
+    @flight_plan = FlightPlan.new_with_all_data(@lax,@zrh)
+    seg_series = @flight_plan.segment_series
+    assert_not_nil(seg_series)
+    
+    assert_equal(seg_series.length,32)
+    assert_equal(seg_series[0].odometer.round(3),185.339)
+    assert_equal(seg_series[0].end_obj.lat.round(3),36.182)
+    assert_equal(seg_series[0].end_obj.lng.round(3),-116.61)
+    assert_equal(seg_series[7].odometer.round(3),1482.713)
+    assert_equal(seg_series[7].start_obj.lat.round(3),48.845)
+    assert_equal(seg_series[7].start_obj.lng.round(3),-103.06)
+    assert_equal(seg_series[30].odometer.round(3),5745.511)
+    assert_equal(seg_series[30].start_obj.lat.round(3),51.335)
+    assert_equal(seg_series[30].start_obj.lng.round(3),2.846)
+    
+  end
   
 end

@@ -6,7 +6,7 @@ class FlightPlan
   class << self
     # Allows the user to instantiate a new FlightPlan object and trigger the immediate
     # generation of the segment_series
-    def new_with_segment_series(dep_airport,arr_airport)
+    def new_with_all_data(dep_airport,arr_airport)
       new_obj = self.new(dep_airport,arr_airport)
       new_obj.generate_granular_segment_series
       return new_obj
