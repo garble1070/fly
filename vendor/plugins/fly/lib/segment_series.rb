@@ -1,0 +1,3 @@
+class SegmentSeries < Array
+  
+end
