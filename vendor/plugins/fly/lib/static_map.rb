@@ -1,113 +1,101 @@
 class StaticMap
   
+  attr_reader :map_width, :map_height
 end
 
 class FlightMap < StaticMap
   
   # Constructor.  Sets default width and height for the static image.
-  def initialize(flight_routing_obj)
-    @route = flight_routing_obj.generate_complex_route
-    @heading = flight_routing_obj.heading
-    @total_distance = flight_routing_obj.distance
-    @dep_airport = flight_routing_obj.dep_airport
+  def initialize(dep_airport, arr_airport)
+    @dep_airport = dep_airport
+    @arr_airport = arr_airport
+    @flight_plan = FlightPlan.new_with_all_data(dep_airport, arr_airport)
     @query = QueryCollectionNonExclusiveKey.new
-    @width = 450
-    @height = 300
+    @map_width = 450
+    @map_height = 300
   end
   
   # Assigns arguments for width and height to the appropriate instance variables
   def set_size(width,height)
-    @width = width
-    @height = height
+    @map_width = width
+    @map_height = height
   end
   
   # Returns the complete query string for the Google Maps static API
-  def generate_url(distance_so_far=0)
-    @distance_so_far = distance_so_far > @total_distance ? @total_distance : distance_so_far
-    @start_pair = create_pair_string(@route[0],:start)
-    @query.add_param("maptype","terrain")
-    @query.add_param("format","jpg")
-    @query.add_param("sensor","false")
-    @query.add_param("size","#{@width}x#{@height}")
-    @query.add_param("key","ABQIAAAAHjDfn4JyllVUPtyJ31qLhhSjmO-kHhwqX2l12pfya7ICKXzFqhRq3QRp0Ql03P59GaKmwMasDuskrA")
-    @query.add_param("markers",start_marker_string)
-    @query.add_param("markers",end_marker_string)
-    @query.add_param("path",scheduled_path_string)
-    if @distance_so_far > 0
+  def complete_url(distance_so_far=0)
+    insert_basic_params
+    @distance_so_far = cap_max_distance(distance_so_far)
+    if @distance_so_far
       insert_inflight_params
     end
     @query.output
   end
   
   # Inserts marker and path query param data for the inflight route
+  def insert_basic_params
+    @query.add_param("maptype","terrain")
+    @query.add_param("format","jpg")
+    @query.add_param("sensor","false")
+    @query.add_param("size","#{@map_width}x#{@map_height}")
+    @query.add_param("key","ABQIAAAAHjDfn4JyllVUPtyJ31qLhhSjmO-kHhwqX2l12pfya7ICKXzFqhRq3QRp0Ql03P59GaKmwMasDuskrA")
+    @query.add_param("markers",start_marker.to_s_rnd)
+    @query.add_param("markers",end_marker.to_s_rnd)
+    @query.add_param("path",scheduled_path.to_s_rnd)
+  end
+  
+  # Returns the distance traveled up to the present, capped at the total route length
+  def cap_max_distance(distance_so_far)
+    if distance_so_far > @flight_plan.distance 
+      @flight_plan.distance 
+    else 
+      distance_so_far
+    end
+  end
+  
+  # Inserts marker and path query param data for the inflight route
   def insert_inflight_params
     calculate_inflight_data
-    @query.add_param("markers",inflight_marker_string)
-    @query.add_param("path",inflight_path_string)
+    @query.add_param("markers",inflight_marker.to_s_rnd)
+    @query.add_param("path",inflight_path.to_s_rnd)
   end
   
-  # Returns a string formatted as "<lat>,<lng>"
-  def create_pair_string(segment,position=:end)
-    point_lat = segment["#{position}_lat".to_sym].for_output
-    point_lng = segment["#{position}_lng".to_sym].for_output
-    return point_lat + "," + point_lng
+  # Calculates the '@current_position' (Geokit Latlng object) and '@flight_plan_to_current_position' instance
+  # variables
+  def calculate_inflight_data
+    @current_position = @dep_airport.endpoint(@heading,@distance_so_far)
+    @flight_plan_to_current_position = FlightPlan.new_with_all_data(@dep_airport,@current_position)
   end
   
-  # Returns a string that may be used to set the marker representing the start of the scheduled
+  # Returns an object that may be used to set the marker representing the start of the scheduled
   # route
-  def start_marker_string
-    "color:red|label:D|" + @start_pair
+  def start_marker
+    MapMarker.new(@dep_airport,"D").color = "red"
   end
   
-  # Returns a string that may be used to set the marker representing the aircraft's inflight position
-  def inflight_marker_string
-    inflight_pair = @current_position.lat.for_output + "," + @current_position.lng.for_output
-    "color:yellow|" + inflight_pair
+  # Returns an object that may be used to set the marker representing the aircraft's inflight position
+  def inflight_marker
+    MapMarker.new(@current_position).color = "yellow"
   end
   
-  # Returns a string that may be used to set the marker representing the end of the scheduled
+  # Returns an object that may be used to set the marker representing the end of the scheduled
   # route
-  def end_marker_string
-    count = @route.length - 1
-    "color:green|label:A|" + create_pair_string(@route[count],:end)
+  def end_marker
+    MapMarker.new(@arr_airport,"A").color = "green"
   end
   
   # Returns a string that may be used to create a path representing the aircraft's scheduled 
   # trajectory
-  def scheduled_path_string
-    "color:0x555555AA|weight:5|" + path_string(@route)
+  def scheduled_path
+    MapPath.new(@flight_plan).color = "0x555555AA"
   end
   
   # Returns a string that may be used to create a path representing the aircraft's trajectory up
   # to it's current position as specified in the method call to 'generate_url'
-  def inflight_path_string
-    "color:0xFFFF00FF|weight:6|" + path_string(@inflight_route)
+  def inflight_path
+    path = MapPath.new(@flight_plan_to_current_position).color = "0xFFFF00FF"
+    path.weight = 6
+    return path
   end
   
-  # Helper method that takes an array of segments an returns a string of waypoint pairs separated
-  # by the pipe character (i.e. '|') 
-  def path_string(route)
-    output = (@start_pair + "|")
-    route.each do |segment|
-      output << (create_pair_string(segment,:end) + "|")
-    end
-    return output.chop
-  end
   
-  # Calculates the '@current_position' (Geokit Latlng object) and '@inflight_route' instance
-  # variables
-  def calculate_inflight_data
-    @current_position = @dep_airport.endpoint(@heading,@distance_so_far)
-    @inflight_route = FlightPlan.new(@dep_airport,@current_position).generate_complex_route
-  end
-  
-end
-
-# Extends class to include the 'for_output' method
-class Float
-  
-  # Rounds a floating point number to 3 digits and returns it as a string
-  def for_output
-    self.round(3).to_s
-  end
 end

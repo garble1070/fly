@@ -63,9 +63,10 @@ class Airport < ActiveRecord::Base
   #**********************************************#
   
   # Returns an array representing lat/lng coordinates
-  def geo_coords
-    [self.lat,self.lng]
+  def to_s_rnd
+    self.lat.to_s_rnd + "," + self.lng.to_s_rnd
   end
+
   
   def ops_airlines
      Airline.ops_airport_is(self)
