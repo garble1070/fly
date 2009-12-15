@@ -8,12 +8,12 @@ class AirportTest < ActiveSupport::TestCase
     
     @iad = Airport.find("IAD")
     assert_not_nil(@iad)
-    
-    distance_in_miles = @sfo.distance_from(@iad).to_int
-    assert distance_in_miles,2415
-    
+
     @lax = Airport.find("LAX")
     assert_not_nil(@lax)
+
+    distance_in_miles = @sfo.distance_from(@iad).to_int
+    assert distance_in_miles,2415
     assert_equal(@lax.to_s,"33.9425,-118.408")
     
   end
