@@ -30,10 +30,7 @@ class User < ActiveRecord::Base
            :source => :friend,
            :conditions => "status = 'pending'", 
            :order => :created_at
-  
-  named_scope :home_airport_code_in_real_life_is, lambda { |airport_code|
-    {:conditions => { "home_airport_code_real" => airport_code}}}
-  
+    
   validates_presence_of     :email
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?

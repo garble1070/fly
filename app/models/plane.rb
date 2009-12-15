@@ -18,7 +18,7 @@ class Plane < ActiveRecord::Base
   def trigger_new_flight(param_array)
     param_array << self
     new_flight = FlightCreator.new(param_array).manufacture
-    return new_flight.save ? new_plane : nil
+    return new_flight.save ? new_flight : nil
   end
   
 end

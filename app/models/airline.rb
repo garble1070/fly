@@ -12,17 +12,11 @@ class Airline < ActiveRecord::Base
       :foreign_key => "code",
       :primary_key => "home_airport_code_game"
   
-  named_scope :country_is, lambda { |country_code|
-    {:conditions => { "country_code" => country_code}}}
-  
   named_scope :ops_airport_is, lambda{|airport| {
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
     :conditions=>["`terminals`.airport_code = ?", airport.code]
   }}
-
-  named_scope :home_airport_code_in_game_is, lambda { |airport_code|
-    {:conditions => { "home_airport_code_game" => airport_code}}}
   
 
   #**********************************************#

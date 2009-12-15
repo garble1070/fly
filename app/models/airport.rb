@@ -22,11 +22,7 @@ class Airport < ActiveRecord::Base
                    :distance_field_name => :distance,
                    :lat_column_name => :lat,
                    :lng_column_name => :lng
-  
-  
-  named_scope :country_is, lambda { |country_code|
-    {:conditions => { "country_code" => country_code}}}
-  
+    
   named_scope :ops_airline_is, lambda{|airline| {
     :select=>"`airports`.*",
     :joins=>"INNER JOIN `terminals` on `airports`.code = `terminals`.airport_code",

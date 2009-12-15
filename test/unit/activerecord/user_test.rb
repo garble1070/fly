@@ -13,7 +13,7 @@ class UserTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_users_accounts) 
     assert my_users_accounts.include?(@account)
     
-    assert @account.user == @user
+    assert_equal(@account.user,@user)
   end
   
   def test_associations_with_airline_class
@@ -27,7 +27,8 @@ class UserTest < ActiveSupport::TestCase
     assert_kind_of(Array,my_users_airlines) 
     assert my_users_airlines.include?(@airline)
     
-    assert @airline.user == @user
+    assert_equal(@airline.user,@user)
+    assert_equal(@user.my_airline,@airline)
   end
   
   def test_associations_with_airport_class
@@ -43,21 +44,21 @@ class UserTest < ActiveSupport::TestCase
     @dfw = Airport.find("dfw")
     assert_not_nil(@dfw)
     
-    assert @user.home_airport_real == @lax
+    assert_equal(@user.home_airport_real,@lax)
     
     f_ops_airports = @user.friends_ops_airports
     assert_not_nil(f_ops_airports)
     assert_kind_of(Array, f_ops_airports)
     assert f_ops_airports.include?(@lax)
     assert f_ops_airports.include?(@jfk)
-    assert f_ops_airports.include?(@dfw) == false
+    assert_equal(f_ops_airports.include?(@dfw),false)
     
     excl_airports = @user.ops_airports_exclusive_to_friends
     assert_not_nil(excl_airports)
     assert_kind_of(Array, excl_airports)
-    assert excl_airports.include?(@lax) == false
+    assert_equal(excl_airports.include?(@lax),false)
     assert excl_airports.include?(@jfk)
-    assert f_ops_airports.include?(@dfw) == false
+    assert_equal(f_ops_airports.include?(@dfw),false)
 
   end
   
@@ -99,7 +100,7 @@ class UserTest < ActiveSupport::TestCase
 
     my_flights_sorted = my_flights.sort {|x,y| y.id <=> x.id }
     calculated_flights_sorted = calculated_flights.sort {|x,y| y.id <=> x.id }
-    assert calculated_flights_sorted == my_flights_sorted
+    assert_equal(calculated_flights_sorted,my_flights_sorted)
   end
   
 end
