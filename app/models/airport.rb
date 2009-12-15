@@ -62,9 +62,14 @@ class Airport < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
-  # Returns an array representing lat/lng coordinates
+  # Returns an array representing rounded lat/lng coordinates
   def to_s_rnd
     self.lat.to_s_rnd + "," + self.lng.to_s_rnd
+  end
+
+  # Returns an array representing lat/lng coordinates
+  def to_s
+    self.lat.to_s + "," + self.lng.to_s
   end
 
   

@@ -94,9 +94,9 @@ class FlightPlan
   # Helper method that takes an array of segments an returns a string of waypoint pairs separated
   # by the pipe character (i.e. '|') 
   def to_s
-    output = ""
+    output = @dep_airport.to_s + "|"
     @segment_series.each do |segment|
-      output << (segment.end_to_s + "|")
+      output << (segment.end_obj.to_s + "|")
     end
     return output.chop
   end
@@ -104,9 +104,9 @@ class FlightPlan
   # Helper method that takes a segment series object an returns a string of ROUNDED waypoint pairs 
   # separated by the pipe character (i.e. '|') 
   def to_s_rnd
-    output = ""
-    @egment_series.each do |segment|
-      output << (segment.end_to_s_rnd + "|")
+    output = @dep_airport.to_s_rnd + "|"
+    @segment_series.each do |segment|
+      output << (segment.end_obj.to_s_rnd + "|")
     end
     return output.chop
   end

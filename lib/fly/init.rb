@@ -1,0 +1,17 @@
+$:.unshift "#{File.dirname(__FILE__)}/lib/builders"
+  require "creator"
+  require "flight_creator"
+  require "plane_creator"
+  
+$:.unshift "#{File.dirname(__FILE__)}/lib/mapping_and_routing"
+  require "flight_plan"
+  require "flight_segment"
+  require "map_marker"
+  require "map_path"
+  require "segment_series"
+  require "static_map"
+  
+$:.unshift "#{File.dirname(__FILE__)}/lib/other"
+  require "quantity"
+  require "query_param"
+  require "query_collection"

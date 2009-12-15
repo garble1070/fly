@@ -14,7 +14,7 @@ class AirportTest < ActiveSupport::TestCase
     
     @lax = Airport.find("LAX")
     assert_not_nil(@lax)
-    assert @lax.geo_coords == [33.9425, -118.408]
+    assert @lax.to_s == "33.9425,-118.408"
     
   end
   
