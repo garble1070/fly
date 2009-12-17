@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="lib-fly-lib-builders-creator_rb.html">lib/fly/lib/builders/creator.rb</a></td>
-            <td class='right_align'><tt>112</tt></td>
-            <td class='right_align'><tt>70</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>91.07%</tt></div>
+            <td class='right_align'><tt>117</tt></td>
+            <td class='right_align'><tt>73</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:91px"></div>
-            <div class="uncovered" style="width:9px"></div>
+            <div class="covered" style="width:100px"></div>
+            <div class="uncovered" style="width:0px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>87.14%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:87px"></div>
-            <div class="uncovered" style="width:13px"></div>
+            <div class="covered" style="width:100px"></div>
+            <div class="uncovered" style="width:0px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -176,13 +176,13 @@
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line21">21</a>     @required_param_types = []</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line22">22</a>   end</pre></td>
           </tr>
         
@@ -638,13 +638,13 @@
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line98">98</a>     raise &quot;This method is meant to be called in the subclass.&quot;</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line98">98</a>     raise_superclass_error</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line99">99</a>   end</pre></td>
           </tr>
         
@@ -668,13 +668,13 @@
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line103">103</a>     raise &quot;This method is meant to be called in the subclass.&quot;</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line103">103</a>     raise_superclass_error</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line104">104</a>   end</pre></td>
           </tr>
         
@@ -698,38 +698,68 @@
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line108">108</a>     raise &quot;This method is meant to be called in the subclass.&quot;</pre></td>
+          <tr class="marked">
+            <td><pre><a name="line108">108</a>     raise_superclass_error</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
+          <tr class="marked">
             <td><pre><a name="line109">109</a>   end</pre></td>
           </tr>
         
           
           
-          <tr class="uncovered">
-            <td><pre><a name="line110">110</a>   </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line111">111</a> end</pre></td>
+          <tr class="inferred">
+            <td><pre><a name="line110">110</a> </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line112">112</a> </pre></td>
+            <td><pre><a name="line111">111</a>   #  Raise an error if this method is called.</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line112">112</a>   def raise_superclass_error</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line113">113</a>     raise RuntimeError.new(&quot;This method is meant to be called in the subclass.&quot;)</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="marked">
+            <td><pre><a name="line114">114</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line115">115</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line116">116</a> end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line117">117</a> </pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Tue Dec 15 02:56:19 -0800 2009 with <a href="http://github.com/relevance/rcov">rcov 0.9.6</a></p>
+    <p>Generated on Thu Dec 17 12:22:06 -0800 2009 with <a href="http://github.com/relevance/rcov">rcov 0.9.6</a></p>
 
   </body>
 </html>

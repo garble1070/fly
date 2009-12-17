@@ -49,9 +49,6 @@ class FlightCreator < Creator
     if param_classname_present?("TaxiDurationInSeconds")
       @new_item.taxi_duration         = param_by_classname("TaxiDurationInSeconds").in_seconds
     end
-    if param_classname_present?("InflightDurationInSeconds")
-      @new_item.inflight_duration     = param_by_classname("InflightDurationInSeconds").in_seconds
-    end
     if param_classname_present?("MaintenanceDurationInSeconds")
       @new_item.maintenance_duration  = param_by_classname("MaintenanceDurationInSeconds").in_seconds
     end    

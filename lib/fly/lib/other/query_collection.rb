@@ -52,22 +52,20 @@ class QueryCollection
   end
   
   # Complains if the user calls the 'add_param' method from a instance of this abstract class.
-    def add_param
-    raise_error_user_must_call_from_subclass
+  def add_param(key,value=nil,type=nil)
+    raise_superclass_error
   end
   
   # Complains if the user calls the 'find' method from a instance of this abstract class.
-  def find
-    raise_error_user_must_call_from_subclass
+  def find(key)
+    raise_superclass_error
   end
   
-  # Raises an error informing the user that they should not be calling a method from an instance
-  # of this abstract class.
-  def raise_error_user_must_call_from_subclass
-    raise "This method should be called from either a 'QueryCollectionNonExclusiveKey' instance
-       or a 'QueryCollectionExclusiveKey' instance"    
+  #  Raise an error if this method is called.
+  def raise_superclass_error
+    raise RuntimeError.new("This method is meant to be called in the subclass.")
   end
-
+  
 end
 
 # A version of the QueryCollection class that does not allow for multiple query parameters with the

@@ -28,17 +28,17 @@
         <tbody>
           <tr>
             <td class="left_align"><a href="lib-fly-lib-builders-flight_creator_rb.html">lib/fly/lib/builders/flight_creator.rb</a></td>
-            <td class='right_align'><tt>68</tt></td>
-            <td class='right_align'><tt>48</tt></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>97.06%</tt></div>
+            <td class='right_align'><tt>65</tt></td>
+            <td class='right_align'><tt>45</tt></td>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:97px"></div>
-            <div class="uncovered" style="width:3px"></div>
+            <div class="covered" style="width:100px"></div>
+            <div class="uncovered" style="width:0px"></div>
           </div></td>
-            <td class="left_align"><div class="percent_graph_legend"><tt class=''>95.83%</tt></div>
+            <td class="left_align"><div class="percent_graph_legend"><tt class=''>100.00%</tt></div>
           <div class="percent_graph">
-            <div class="covered" style="width:96px"></div>
-            <div class="uncovered" style="width:4px"></div>
+            <div class="covered" style="width:100px"></div>
+            <div class="uncovered" style="width:0px"></div>
           </div></td>
           </tr>
         </tbody>
@@ -363,109 +363,91 @@
           
           
           <tr class="marked">
-            <td><pre><a name="line52">52</a>     if param_classname_present?(&quot;InflightDurationInSeconds&quot;)</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line53">53</a>       @new_item.inflight_duration     = param_by_classname(&quot;InflightDurationInSeconds&quot;).in_seconds</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="uncovered">
-            <td><pre><a name="line54">54</a>     end</pre></td>
+            <td><pre><a name="line52">52</a>     if param_classname_present?(&quot;MaintenanceDurationInSeconds&quot;)</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line55">55</a>     if param_classname_present?(&quot;MaintenanceDurationInSeconds&quot;)</pre></td>
+            <td><pre><a name="line53">53</a>       @new_item.maintenance_duration  = param_by_classname(&quot;MaintenanceDurationInSeconds&quot;).in_seconds</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line54">54</a>     end    </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line55">55</a>   end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line56">56</a>   </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line57">57</a> end</pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line58">58</a> </pre></td>
+          </tr>
+        
+          
+          
+          <tr class="inferred">
+            <td><pre><a name="line59">59</a> # Subclasses 'Airport' to create a 'DepartureAirport' class</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line56">56</a>       @new_item.maintenance_duration  = param_by_classname(&quot;MaintenanceDurationInSeconds&quot;).in_seconds</pre></td>
+            <td><pre><a name="line60">60</a> class DepartureAirport &lt; Airport</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line57">57</a>     end    </pre></td>
+            <td><pre><a name="line61">61</a> end</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line58">58</a>   end</pre></td>
+            <td><pre><a name="line62">62</a>  </pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line59">59</a>   </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line60">60</a> end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line61">61</a> </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line62">62</a> # Subclasses 'Airport' to create a 'DepartureAirport' class</pre></td>
+            <td><pre><a name="line63">63</a> # Subclasses 'Airport' to create a 'ArrivalAirport' class</pre></td>
           </tr>
         
           
           
           <tr class="marked">
-            <td><pre><a name="line63">63</a> class DepartureAirport &lt; Airport</pre></td>
+            <td><pre><a name="line64">64</a> class ArrivalAirport &lt; Airport</pre></td>
           </tr>
         
           
           
           <tr class="inferred">
-            <td><pre><a name="line64">64</a> end</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line65">65</a>  </pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line66">66</a> # Subclasses 'Airport' to create a 'ArrivalAirport' class</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="marked">
-            <td><pre><a name="line67">67</a> class ArrivalAirport &lt; Airport</pre></td>
-          </tr>
-        
-          
-          
-          <tr class="inferred">
-            <td><pre><a name="line68">68</a> end</pre></td>
+            <td><pre><a name="line65">65</a> end</pre></td>
           </tr>
         
       </tbody>
     </table>
 
-    <p>Generated on Tue Dec 15 02:56:19 -0800 2009 with <a href="http://github.com/relevance/rcov">rcov 0.9.6</a></p>
+    <p>Generated on Thu Dec 17 12:22:06 -0800 2009 with <a href="http://github.com/relevance/rcov">rcov 0.9.6</a></p>
 
   </body>
 </html>

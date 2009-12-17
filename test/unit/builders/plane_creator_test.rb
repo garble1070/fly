@@ -89,6 +89,8 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     assert @finished_plane2.starting_pax_count == 0
     assert @finished_plane2.starting_miles_count == 0
 
+
+    
   end
   
   
