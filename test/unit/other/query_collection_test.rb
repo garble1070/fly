@@ -75,7 +75,7 @@ class QueryCollectionTest < ActiveSupport::TestCase
     @query.add_param("nextkey","nextvalue")
     assert_equal(@query.output,"?keyname=yetanothervalue&nextkey=nextvalue")
     @query.add_param("hashkey",{:keyone => "valone"})
-    assert_equal(@query.output,"?keyname=yetanothervalue&nextkey=nextvalue")
+    assert_equal(@query.output,"?keyname=yetanothervalue&nextkey=nextvalue&hashkey[keyone]=valone")
     
   end
   
