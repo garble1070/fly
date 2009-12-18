@@ -10,7 +10,6 @@ class FlightMap < StaticMap
     @dep_airport = dep_airport
     @arr_airport = arr_airport
     @flight_plan = FlightPlan.new_with_all_data(dep_airport, arr_airport)
-    @query = QueryCollectionNonExclusiveKey.new
     @map_width = 450
     @map_height = 300
   end
@@ -23,9 +22,10 @@ class FlightMap < StaticMap
   
   # Returns the complete query string for the Google Maps static API
   def complete_url(distance_so_far=0)
+    @query = QueryCollectionNonExclusiveKey.new
     insert_basic_params
     @distance_so_far = cap_max_distance(distance_so_far)
-    if @distance_so_far
+    if @distance_so_far > 0
       insert_inflight_params
     end
     @query.output
@@ -62,37 +62,46 @@ class FlightMap < StaticMap
   # Calculates the '@current_position' (Geokit Latlng object) and '@flight_plan_to_current_position' instance
   # variables
   def calculate_inflight_data
-    @current_position = @dep_airport.endpoint(@heading,@distance_so_far)
+    @current_position = @dep_airport.endpoint(@flight_plan.heading,@distance_so_far)
     @flight_plan_to_current_position = FlightPlan.new_with_all_data(@dep_airport,@current_position)
   end
   
   # Returns an object that may be used to set the marker representing the start of the scheduled
   # route
   def start_marker
-    MapMarker.new(@dep_airport,"D").color = "red"
+    marker = MapMarker.new(@dep_airport,"D")
+    marker.color = "red"
+    return marker
   end
   
   # Returns an object that may be used to set the marker representing the aircraft's inflight position
   def inflight_marker
-    MapMarker.new(@current_position).color = "yellow"
+    marker = MapMarker.new(@current_position)
+    marker.color = "yellow"
+    return marker
   end
   
   # Returns an object that may be used to set the marker representing the end of the scheduled
   # route
   def end_marker
-    MapMarker.new(@arr_airport,"A").color = "green"
+    marker = MapMarker.new(@arr_airport,"A")
+    marker.color = "green"
+    return marker
   end
   
   # Returns a string that may be used to create a path representing the aircraft's scheduled 
   # trajectory
   def scheduled_path
-    MapPath.new(@flight_plan).color = "0x555555AA"
+    path = MapPath.new(@flight_plan)
+    path.color = "0x555555AA"
+    return path
   end
   
   # Returns a string that may be used to create a path representing the aircraft's trajectory up
   # to it's current position as specified in the method call to 'generate_url'
   def inflight_path
-    path = MapPath.new(@flight_plan_to_current_position).color = "0xFFFF00FF"
+    path = MapPath.new(@flight_plan_to_current_position)
+    path.color = "0xFFFF00FF"
     path.weight = 6
     return path
   end
