@@ -15,6 +15,5 @@ class StaticMapTest < ActiveSupport::TestCase
    assert_equal(@flight_map.map_width,480)
    assert_equal(@flight_map.map_height,240)
    
-   
  end
 end
