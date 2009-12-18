@@ -10,6 +10,8 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/mapping_and_routing"
   require "map_path"
   require "segment_series"
   require "static_map"
+  require "flight_map"
+  require "airport_map"
   
 $:.unshift "#{File.dirname(__FILE__)}/lib/other"
   require "quantity"
