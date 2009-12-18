@@ -13,6 +13,5 @@ class ApplicationController < ActionController::Base
   require "erector"
   require "erector_widget_extensions"
   require "fly/init"
-  require "tind"
 
 end
