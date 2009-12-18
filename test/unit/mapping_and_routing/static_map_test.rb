@@ -17,6 +17,6 @@ class StaticMapTest < ActiveSupport::TestCase
  end
  
  def test_next
-   
+   akjdlfas
  end
 end
