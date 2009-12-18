@@ -37,7 +37,7 @@ class FlightMap < StaticMap
     @query.add_param("format","jpg")
     @query.add_param("sensor","false")
     @query.add_param("size","#{@map_width}x#{@map_height}")
-    @query.add_param("key","ABQIAAAAHjDfn4JyllVUPtyJ31qLhhSjmO-kHhwqX2l12pfya7ICKXzFqhRq3QRp0Ql03P59GaKmwMasDuskrA")
+    @query.add_param("key",GOOGLE_MAPS_STATIC_API_KEY)
     @query.add_param("markers",start_marker.to_s_rnd)
     @query.add_param("markers",end_marker.to_s_rnd)
     @query.add_param("path",scheduled_path.to_s_rnd)

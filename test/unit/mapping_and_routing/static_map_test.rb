@@ -21,11 +21,25 @@ class StaticMapTest < ActiveSupport::TestCase
     @sfo = Airport.find("sfo")   
     @flight_map = FlightMap.new(@lax,@sfo)
     
-    complete_url = @flight_map.complete_url
-    expected_url_preflight = "?maptype=terrain&format=jpg&sensor=false&size=450x300&key=ABQIAAAAHjDfn4JyllVUPtyJ31qLhhSjmO-kHhwqX2l12pfya7ICKXzFqhRq3QRp0Ql03P59GaKmwMasDuskrA&markers=color:red|label:D|33.943,-118.408&markers=color:green|label:A|37.619,-122.375&path=color:0x555555AA|weight:5|33.943,-118.408|35.797,-120.346|37.619,-122.375"
-    assert_equal(complete_url,expected_url_preflight)
+    generated_url_preflight = @flight_map.complete_url
+    part1 = "?maptype=terrain&format=jpg&sensor=false&size=450x300"
+    part2 = "&key=ABQIAAAAHjDfn4JyllVUPtyJ31qLhhSjmO-kHhwqX2l12pfya7ICKXzFqhRq3QRp0Ql03P59GaKmwMasDuskrA"
+    part3 = "&markers=color:red|label:D|33.943,-118.408&markers=color:green|label:A|37.619,-122.375"
+    part4 = "&path=color:0x555555AA|weight:5|33.943,-118.408|35.797,-120.346|37.619,-122.375"
+    expected_url_preflight = part1 + part2 + part3 + part4
+    assert_equal(generated_url_preflight,expected_url_preflight)
     
-    complete_url = @flight_map.complete_url(200)
-    assert_equal(complete_url,expected_url_preflight + "&markers=color:yellow|36.134,-120.711&path=color:0xFFFF00FF|weight:6|33.943,-118.408|35.044,-119.544|36.134,-120.711")
+    generated_url_inflight = @flight_map.complete_url(200)
+    part5 = "&markers=color:yellow|36.134,-120.711"
+    part6 = "&path=color:0xFFFF00FF|weight:6|33.943,-118.408|35.044,-119.544|36.134,-120.711"
+    expected_url_inflight = expected_url_preflight + part5 + part6  
+    assert_equal(generated_url_inflight, expected_url_inflight)
+    
+    generated_url_too_long = @flight_map.complete_url(1000)
+    part5 = "&markers=color:yellow|37.619,-122.375"
+    part6 = "&path=color:0xFFFF00FF|weight:6|33.943,-118.408|35.797,-120.346|37.619,-122.375"
+    expected_url_too_long = expected_url_preflight + part5 + part6  
+    assert_equal(generated_url_too_long, expected_url_too_long)
+
   end
 end
