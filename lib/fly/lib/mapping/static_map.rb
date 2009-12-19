@@ -23,12 +23,21 @@ class StaticMap
     insert_basic_params_common
     insert_basic_params_for_map_subclass
     block.call
-    @query.output
+    @query.output 
   end
   
     # Meant to be overridden
   def insert_basic_params_for_map_subclass
     FlyError::raise_superclass_error
   end
+  
+  # Returns an object that may be used to set a marker
+  def generic_marker(waypoint)
+    marker = MapMarker.new(waypoint)
+    marker.color = "white"
+    return marker
+  end
+  
+
   
 end

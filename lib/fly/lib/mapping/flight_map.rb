@@ -53,22 +53,24 @@ class FlightMap < StaticMap
   # Returns an object that may be used to set the marker representing the start of the scheduled
   # route
   def start_marker
-    marker = MapMarker.new(@dep_airport,"D")
+    marker = generic_marker(@dep_airport)
+    marker.label = "D"
     marker.color = "red"
     return marker
   end
   
   # Returns an object that may be used to set the marker representing the aircraft's inflight position
   def inflight_marker
-    marker = MapMarker.new(@current_position)
+    marker = generic_marker(@current_position)
     marker.color = "yellow"
     return marker
   end
-  
+
   # Returns an object that may be used to set the marker representing the end of the scheduled
   # route
   def end_marker
-    marker = MapMarker.new(@arr_airport,"A")
+    marker = generic_marker(@arr_airport)
+    marker.label = "A"
     marker.color = "green"
     return marker
   end

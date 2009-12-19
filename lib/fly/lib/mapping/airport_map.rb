@@ -9,18 +9,18 @@ class AirportMap < StaticMap
   end
   
   
-    # Returns the complete query string for the Google Maps static API
+  # Returns the complete query string for the Google Maps static API
   def complete_url
-    callback = lambda do 
-      
-    end
+    callback = lambda {nil}
     complete_url_generator(&callback)
   end
-    
+  
   # Inserts marker query param data for the airports map
   def insert_basic_params_for_map_subclass
-#    @query.add_param("markers",start_marker.to_s_rnd)
+    @ops_airports.each do |airport|
+      @query.add_param("markers",generic_marker(airport).to_s_rnd)
+    end
   end
-
+  
   
 end
