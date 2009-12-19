@@ -95,22 +95,17 @@ class Creator
   
   # Meant to be overridden
   def generate_new_item_object
-    raise_superclass_error
+    FlyError::raise_superclass_error
   end
   
   # Meant to be overridden
   def insert_required_params_into_new_item_object
-    raise_superclass_error
+    FlyError::raise_superclass_error
   end
   
   # Meant to be overridden
   def insert_optional_params_into_new_item_object
-    raise_superclass_error
-  end
-
-  #  Raise an error if this method is called.
-  def raise_superclass_error
-    raise RuntimeError.new("This method is meant to be called in the subclass.")
+    FlyError::raise_superclass_error
   end
   
 end

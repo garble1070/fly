@@ -9,30 +9,19 @@ class FlightMap < StaticMap
     @map_height = 300
   end
   
-  # Assigns arguments for width and height to the appropriate instance variables
-  def set_size(width,height)
-    @map_width = width
-    @map_height = height
-  end
-  
   # Returns the complete query string for the Google Maps static API
   def complete_url(distance_so_far=0)
-    @query = QueryCollectionNonExclusiveKey.new
-    insert_basic_params
-    @distance_so_far = cap_max_distance(distance_so_far)
-    if @distance_so_far > 0
-      insert_inflight_params
+    callback = lambda do 
+      @distance_so_far = cap_max_distance(distance_so_far)
+      if @distance_so_far > 0
+        insert_inflight_params
+      end
     end
-    @query.output
+    complete_url_generator(&callback)
   end
-  
+    
   # Inserts marker and path query param data for the inflight route
-  def insert_basic_params
-    @query.add_param("maptype","terrain")
-    @query.add_param("format","jpg")
-    @query.add_param("sensor","false")
-    @query.add_param("size","#{@map_width}x#{@map_height}")
-    @query.add_param("key",GOOGLE_MAPS_STATIC_API_KEY)
+  def insert_basic_params_for_map_subclass
     @query.add_param("markers",start_marker.to_s_rnd)
     @query.add_param("markers",end_marker.to_s_rnd)
     @query.add_param("path",scheduled_path.to_s_rnd)
