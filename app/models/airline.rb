@@ -23,18 +23,23 @@ class Airline < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
   
-  # Creats a new Plane object, saves it to the database. Returns the object if save is 
-  # successful.
-  def acquire_new_plane(param_array)
-    param_array << self
+  # Creats a new Plane object, using an aircrafttype object as an argument
+  def acquire_new_plane(aircrafttype)
+    home_airport = self.home_airport_game
+    param_array = [aircrafttype,self,home_airport]
     new_plane = PlaneCreator.new(param_array).manufacture
-    if new_plane.save 
-      new_plane.charge_cost_to_owners_account
+    finalize_acquisition_and_save(new_plane)
+  end
+  
+  # Finalizes the plane acquistion by charging the value of the plane to the user's account.
+  # If charge goes through, and if the new plane record saves into the database, returns the 
+  # updated plane object. Otherwise, returns nil.
+  def finalize_acquisition_and_save(new_plane)
+    if new_plane.charge_cost_to_owners_account && new_plane.save 
       return new_plane
     else
       return nil
     end
-    return new_plane.save ? new_plane : nil
   end
   
   # Lists all airports where the Airline has terminals

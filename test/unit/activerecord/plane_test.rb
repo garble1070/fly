@@ -38,6 +38,16 @@ class PlaneTest < ActiveSupport::TestCase
     assert_equal(@new_flight.plane_id, @new_flight3.plane_id)
     
   end
+  
+  def test_account
+    @plane = Plane.find(1)
+    assert_not_nil(@plane)
+
+    @account = Account.find(1)
+    assert_not_nil(@account)
+
+    assert_equal(@plane.owners_flc_account,@account)
+  end
 
 
 end

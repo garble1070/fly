@@ -51,16 +51,26 @@ class AirlineTest < ActiveSupport::TestCase
     @a330 = Aircrafttype.find(1)
     assert_not_nil(@a330)
     
-    @lax = Airport.find("LAX")
-    assert_not_nil(@lax)
-    
-    config_params = [@airline,@a330,@lax]
-    @finished_plane = @airline.acquire_new_plane(config_params)
+    @account = @airline.user.my_flc_account
+    assert_not_nil(@account)
+    assert_equal(@account.balance,300.50)
+
+    @finished_plane = @airline.acquire_new_plane(@a330)
     assert_not_nil(@finished_plane)
     assert_kind_of(Plane,@finished_plane)
     
     assert_kind_of(Fixnum,@finished_plane.id)
     assert @finished_plane.id > 0
+    
+    @account = @airline.user.my_flc_account
+    assert_equal(@account.balance,150.50)
+    @finished_plane2 = @airline.acquire_new_plane(@a330)
+    assert_kind_of(Plane,@finished_plane2)
+
+    @account = @airline.user.my_flc_account
+    assert_equal(@account.balance,0.50)
+    @attempted_plane = @airline.acquire_new_plane(@a330)
+    assert_equal(@attempted_plane,nil)
     
   end
   
