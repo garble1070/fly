@@ -62,7 +62,6 @@ class FlightMap < StaticMap
   # Returns an object that may be used to set the marker representing the aircraft's inflight position
   def inflight_marker
     marker = generic_marker(@current_position)
-    marker.color = "yellow"
     return marker
   end
 

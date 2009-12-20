@@ -34,7 +34,7 @@ class StaticMap
   # Returns an object that may be used to set a marker
   def generic_marker(waypoint)
     marker = MapMarker.new(waypoint)
-    marker.color = "white"
+    marker.color = "yellow"
     return marker
   end
   

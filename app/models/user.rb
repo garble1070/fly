@@ -69,9 +69,14 @@ class User < ActiveRecord::Base
     friends_ops_airports - self.ops_airports
   end
   
-  # Gets the airilne instance associated with this user (there is only one for now but the
-  # data model allows more
+  # Retrieves the airline object associated with this user (there is only one for now but the
+  # data model allows more)
   def my_airline
     airlines[0]
+  end
+  
+  # Retrieves the account object associated with this user that is denominated in FLC
+  def my_flc_account
+    accounts.currency_is("flc")[0]
   end
 end

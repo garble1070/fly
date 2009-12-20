@@ -11,8 +11,8 @@ class Plane < ActiveRecord::Base
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
-
-    
+  
+  
   # Creats a new Flight object, saves it to the database. Returns the object if save is 
   # successful.
   def trigger_new_flight(param_array)
@@ -21,5 +21,14 @@ class Plane < ActiveRecord::Base
     return new_flight.save ? new_flight : nil
   end
   
-end
+  # Returns the account that is ultimately responsible for this plane.
+  def owners_flc_account
+    self.airline.user.my_flc_account
+  end
+  
+    #Charges the cost of this aircrafttype to the plane's (new) owner.
+  def charge_cost_to_owners_account
+      self.owners_flc_account.debit(self.aircrafttype.cost)
+  end
 
+end

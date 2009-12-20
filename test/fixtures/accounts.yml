@@ -4,16 +4,16 @@ one:
   id: 1
   user_id: 15
   currency_code: FLC
-  balance: 1.5
+  balance: 300.50
 
 two:
   id: 2
   user_id: 17
   currency_code: FLC
-  balance: 200.50
+  balance: 250.50
 
 three:
   id: 3
   user_id: 17
   currency_code: USD
-  balance: 2000.50
+  balance: 20.50

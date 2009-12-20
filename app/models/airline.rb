@@ -6,7 +6,7 @@ class Airline < ActiveRecord::Base
   has_many :terminals
   has_many :flights, :through => :planes
   has_many :aircrafttypes, :through => :planes
-
+  
   has_one :home_airport_game, 
       :class_name => "Airport",
       :foreign_key => "code",
@@ -16,9 +16,9 @@ class Airline < ActiveRecord::Base
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
     :conditions=>["`terminals`.airport_code = ?", airport.code]
-  }}
+    }}
   
-
+  
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
@@ -28,10 +28,20 @@ class Airline < ActiveRecord::Base
   def acquire_new_plane(param_array)
     param_array << self
     new_plane = PlaneCreator.new(param_array).manufacture
+    if new_plane.save 
+      new_plane.charge_cost_to_owners_account
+      return new_plane
+    else
+      return nil
+    end
     return new_plane.save ? new_plane : nil
   end
   
+  # Lists all airports where the Airline has terminals
   def ops_airports
-     Airport.ops_airline_is(self)
+    Airport.ops_airline_is(self)
   end
+  
+  
+  
 end
