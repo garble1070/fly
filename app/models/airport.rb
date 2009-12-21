@@ -56,6 +56,8 @@ class Airport < ActiveRecord::Base
     def method_missing(name, *args)
       if (name.is_a?(Symbol)) && (name.to_s.length == 3)
         Airport.find(name.to_s)
+      else
+        super(name, *args)
       end
     end
     

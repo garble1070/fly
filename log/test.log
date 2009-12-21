@@ -36303,3 +36303,46 @@ C:/webdev/ruby/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
   [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'lax') LIMIT 1[0m
   [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'lax') LIMIT 1[0m
   [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlane Load (0.0ms)[0m   [0mSELECT * FROM `planes` WHERE (`planes`.`id` = 1) [0m
+  [4;36;1mDepartureAirport Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mDepartureAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mArrivalAirport Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mArrivalAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;36;1mArrivalAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'IAD') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'IAD') LIMIT 1[0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirline Load (16.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mFlight Create (0.0ms)[0m   [0mINSERT INTO `flights` (`plane_id`, `inflight_duration`, `updated_at`, `maintenance_auto_start_flag`, `taxi_started`, `maintenance_duration`, `boarding_duration`, `inflight_started`, `dep_airport_code`, `routing`, `taxi_auto_start_flag`, `boarding_started`, `inflight_auto_start_flag`, `arr_airport_code`, `taxi_duration`, `maintenance_started`, `created_at`) VALUES(1, 37100.0193320913, '2009-12-21 01:36:10', 1, NULL, 80.0, 60.0, NULL, 'LAX', NULL, 1, NULL, 1, 'ZRH', 70.0, NULL, '2009-12-21 01:36:10')[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (62.0ms)[0m   [0mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mPlane Load (0.0ms)[0m   [0mSELECT * FROM `planes` WHERE (`planes`.`id` = 1) [0m
+  [4;36;1mDepartureAirport Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mDepartureAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mArrivalAirport Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mArrivalAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;36;1mArrivalAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'IAD') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'LAX') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'ZRH') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'IAD') LIMIT 1[0m
+  [4;36;1mAircrafttype Load (0.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 1) [0m
+  [4;35;1mAirline Load (0.0ms)[0m   [0mSELECT * FROM `airlines` WHERE (`airlines`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mFlight Create (0.0ms)[0m   [0mINSERT INTO `flights` (`plane_id`, `inflight_duration`, `updated_at`, `maintenance_auto_start_flag`, `taxi_started`, `maintenance_duration`, `boarding_duration`, `inflight_started`, `dep_airport_code`, `routing`, `taxi_auto_start_flag`, `boarding_started`, `inflight_auto_start_flag`, `arr_airport_code`, `taxi_duration`, `maintenance_started`, `created_at`) VALUES(1, 37100.0193320913, '2009-12-21 01:39:13', 1, NULL, 80.0, 60.0, NULL, 'LAX', NULL, 1, NULL, 1, 'ZRH', 70.0, NULL, '2009-12-21 01:39:13')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'LAX') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`code` = 'ZRH') LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mFlight Create (0.0ms)[0m   [0;1mINSERT INTO `flights` (`plane_id`, `inflight_duration`, `updated_at`, `maintenance_auto_start_flag`, `taxi_started`, `maintenance_duration`, `boarding_duration`, `inflight_started`, `dep_airport_code`, `routing`, `taxi_auto_start_flag`, `boarding_started`, `inflight_auto_start_flag`, `arr_airport_code`, `taxi_duration`, `maintenance_started`, `created_at`) VALUES(1, 14296.7474195591, '2009-12-21 01:39:13', 1, NULL, 120.0, 15.0, NULL, 'LAX', NULL, 1, NULL, 1, 'IAD', 45.0, NULL, '2009-12-21 01:39:13')[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mRELEASE SAVEPOINT active_record_1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`code` = 'LAX') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'IAD') LIMIT 1[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mROLLBACK[0m
