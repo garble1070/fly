@@ -6,6 +6,8 @@ class Account < ActiveRecord::Base
   named_scope :currency_is , lambda{|currency_code| { :conditions => {:currency_code => currency_code}
     }}
   
+   validates_presence_of     :currency_code
+
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#

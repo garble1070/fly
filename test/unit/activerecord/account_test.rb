@@ -17,7 +17,8 @@ class AccountTest < ActiveSupport::TestCase
    assert_equal(true,@account.credit(100))
    assert_equal(300.50,@account.balance)
    
-   
+   @new_account = Account.new
+   assert_equal(false,@new_account.record_transaction)
  end
 
 end

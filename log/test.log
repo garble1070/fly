@@ -36346,3 +36346,39 @@ C:/webdev/ruby/lib/ruby/gems/1.8/gems/rake-0.8.7/lib/rake/rake_test_loader.rb:5
   [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (`airports`.`code` = 'LAX') LIMIT 1[0m
   [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'IAD') LIMIT 1[0m
   [4;36;1mSQL (16.0ms)[0m   [0;1mROLLBACK[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAirport Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAirport Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mAirport Create (0.0ms)[0m   [0;1mINSERT INTO `airports` (`name`, `city`, `country_code`, `taxi_duration_default`, `boarding_gate_cost_new_default`, `code`, `altitude`, `iata`, `lng`, `timezone_id`, `id`, `terminal_cost_new`, `dst_code`, `icao`, `display_name`, `lat`) VALUES(NULL, NULL, NULL, 0.0, 0, NULL, NULL, NULL, 0.0, NULL, -1, 0, NULL, NULL, NULL, 0.0)[0m
+  [4;35;1mSQL (46.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAirport Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mAirport Create (0.0ms)[0m   [0;1mINSERT INTO `airports` (`name`, `city`, `country_code`, `taxi_duration_default`, `boarding_gate_cost_new_default`, `code`, `altitude`, `iata`, `lng`, `timezone_id`, `terminal_cost_new`, `dst_code`, `icao`, `display_name`, `lat`) VALUES(NULL, NULL, NULL, 0.0, 0, 'hi', NULL, NULL, 0.0, NULL, 0, NULL, NULL, NULL, 0.0)[0m
+  [4;35;1mSQL (62.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mAccount Update (0.0ms)[0m   [0mUPDATE `accounts` SET `balance` = 200.5, `updated_at` = '2009-12-21 02:00:30' WHERE `id` = 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSAVEPOINT active_record_1[0m
+  [4;35;1mAccount Update (0.0ms)[0m   [0mUPDATE `accounts` SET `balance` = 300.5, `updated_at` = '2009-12-21 02:00:30' WHERE `id` = 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mRELEASE SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSAVEPOINT active_record_1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mROLLBACK TO SAVEPOINT active_record_1[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mROLLBACK[0m

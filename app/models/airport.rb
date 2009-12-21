@@ -36,7 +36,8 @@ class Airport < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
     }}
   
-  
+    validates_presence_of     :code
+
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
