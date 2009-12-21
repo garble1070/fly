@@ -19041,3 +19041,17 @@ Completed in 125ms (View: 95, DB: 15) | 200 OK [http://flynextgennow.com/users/1
   [4;35;1mSQL (31.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091203231857')[0m
   [4;36;1mSQL (94.0ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20091203232504')[0m
   [4;35;1mSQL (78.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091204035504')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccount Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccount Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mAccount Update (0.0ms)[0m   [0;1mUPDATE `accounts` SET `balance` = 200.5, `updated_at` = '2009-12-21 01:18:33' WHERE `id` = 1[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCOMMIT[0m
