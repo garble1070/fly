@@ -124,7 +124,8 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.integer  "range_miles"
     t.string   "starting_airport_code", :limit => 3
     t.integer  "starting_pax_count",                 :default => 0, :null => false
-    t.integer  "starting_miles_count",               :default => 0, :null => false
+    t.float    "starting_miles_count",               :default => 0.0, :null => false
+    t.float    "acquisition_cost",                 :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -11,7 +11,7 @@ one:
   range_miles_default: 8200
   range_miles_max: 8900
   boarding_duration_default: 60.0
-  cost: 150
+  cost: 150.0
   
 two:
   id: 2
@@ -24,7 +24,7 @@ two:
   range_miles_default: 7200
   range_miles_max: 7900
   boarding_duration_default: 60.0
-  cost: 180
+  cost: 180.0
 
 three:
   id: 3
@@ -37,4 +37,4 @@ three:
   range_miles_default: 850
   range_miles_max: 1000
   boarding_duration_default: 10.0
-  cost: 20
+  cost: 20.0
