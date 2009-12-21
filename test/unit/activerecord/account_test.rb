@@ -7,6 +7,8 @@ class AccountTest < ActiveSupport::TestCase
    assert_equal(300.50,@account.balance)
    
    assert_equal(true,@account.debit(100))
+
+   @account = Account.find(1)
    assert_equal(200.50,@account.balance)
    
    assert_equal(false,@account.debit(400))
@@ -15,10 +17,7 @@ class AccountTest < ActiveSupport::TestCase
    assert_equal(true,@account.credit(100))
    assert_equal(300.50,@account.balance)
    
+   
  end
- 
- 
-# balance_adequate_for_transaction?(amount)
-# record_transaction
 
 end

@@ -64,7 +64,11 @@ class AirportTest < ActiveSupport::TestCase
     @jfk = Airport.find("jfk")
     assert_equal(@jfk.to_s,"40.6398,-73.7789")
     assert_equal(@jfk.to_s_rnd,"40.64,-73.779")
-    
+  end
+  
+  def test_method_missing_class_method
+    @lax = Airport.lax
+    assert_equal(@lax,Airport.find("lax"))
   end
   
 end

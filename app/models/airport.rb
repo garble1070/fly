@@ -22,21 +22,21 @@ class Airport < ActiveRecord::Base
                    :distance_field_name => :distance,
                    :lat_column_name => :lat,
                    :lng_column_name => :lng
-    
+  
   named_scope :ops_airline_is, lambda{|airline| {
     :select=>"`airports`.*",
     :joins=>"INNER JOIN `terminals` on `airports`.code = `terminals`.airport_code",
     :conditions=>["`terminals`.airline_id = ?", airline.id]
-  }}
+    }}
   
   named_scope :ops_user_is, lambda{|user| {
     :select=>"`airports`.*",
     :joins=>"INNER JOIN `terminals` on `airports`.code = `terminals`.airport_code 
              INNER JOIN `airlines` ON `terminals`.airline_id = `airlines`.id",
     :conditions=>["`airlines`.user_id = ?", user.id]
-   }}
-
-
+    }}
+  
+  
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
@@ -51,6 +51,14 @@ class Airport < ActiveRecord::Base
         super(*args)
       end
     end
+    
+    # Executes a find if the method name is three letters long
+    def method_missing(name, *args)
+      if (name.is_a?(Symbol)) && (name.to_s.length == 3)
+        Airport.find(name.to_s)
+      end
+    end
+    
   end
   
   
@@ -62,15 +70,16 @@ class Airport < ActiveRecord::Base
   def to_s_rnd
     self.lat.to_s_rnd + "," + self.lng.to_s_rnd
   end
-
+  
   # Returns an array representing lat/lng coordinates
   def to_s
     self.lat.to_s + "," + self.lng.to_s
   end
-
   
+  # Returns an array representing airlines that have terminals at the current airport
   def ops_airlines
-     Airline.ops_airport_is(self)
+    Airline.ops_airport_is(self)
   end
-
+  
+  
 end
