@@ -10,7 +10,7 @@ airports_049:
   lng: -73.7789
   iata: JFK
   id: 49
-  terminal_cost_new: 0
+  terminal_cost_new: 120
   dst_code: A
   display_name: New York - John F Kennedy Intl Airport
   icao: KJFK
@@ -28,7 +28,7 @@ airports_053:
   lng: -118.408
   iata: LAX
   id: 53
-  terminal_cost_new: 0
+  terminal_cost_new: 100
   dst_code: A
   display_name: Los Angeles Intl Airport
   icao: KLAX
@@ -47,7 +47,7 @@ airports_056:
   lng: -118.152
   iata: LGB
   id: 56
-  terminal_cost_new: 0
+  terminal_cost_new: 70
   dst_code: A
   display_name: Long Beach Airport
   icao: KLGB
@@ -65,7 +65,7 @@ airports_029:
   lng: -97.038
   iata: DFW
   id: 29
-  terminal_cost_new: 0
+  terminal_cost_new: 90
   dst_code: A
   display_name: Dallas-Fort Worth Intl Airport
   icao: KDFW
@@ -83,7 +83,7 @@ airports_119:
   lng: 8.54917
   iata: ZRH
   id: 119
-  terminal_cost_new: 0
+  terminal_cost_new: 100
   dst_code: E
   display_name: Zurich Airport
   icao: LSZH
@@ -102,7 +102,7 @@ airports_120:
   lng: 11.7861
   iata: MUC
   id: 120
-  terminal_cost_new: 0
+  terminal_cost_new: 120
   dst_code: E
   display_name: Munich - Munchen Airport
   icao: EDDM
@@ -121,7 +121,7 @@ airports_094:
   lng: -122.375
   iata: SFO
   id: 94
-  terminal_cost_new: 0
+  terminal_cost_new: 100
   dst_code: A
   display_name: San Francisco Intl Airport
   icao: KSFO
@@ -140,7 +140,7 @@ airports_122:
   lng: 2.55
   iata: CDG
   id: 122
-  terminal_cost_new: 0
+  terminal_cost_new: 120
   dst_code: E
   display_name: Paris - Charles De Gaulle Airport
   icao: LFPG
@@ -158,7 +158,7 @@ airports_039:
   lng: -77.4558
   iata: IAD
   id: 39
-  terminal_cost_new: 0
+  terminal_cost_new: 100
   dst_code: A
   display_name: Washington Dulles Intl Airport
   icao: KIAD

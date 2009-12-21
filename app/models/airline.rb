@@ -31,12 +31,12 @@ class Airline < ActiveRecord::Base
     finalize_acquisition_and_save(new_plane)
   end
   
-  # Finalizes the plane acquistion by charging the value of the plane to the user's account.
-  # If charge goes through, and if the new plane record saves into the database, returns the 
-  # updated plane object. Otherwise, returns nil.
-  def finalize_acquisition_and_save(new_plane)
-    if new_plane.charge_cost_to_owners_account && new_plane.save 
-      return new_plane
+  # Finalizes the acquistion (plane or terminal) by charging the value of the item to the user's 
+  # account. If charge goes through, and if the new plane record saves into the database, returns 
+  # the updated item object. Otherwise, returns nil.
+  def finalize_acquisition_and_save(item)
+    if item.charge_cost_to_owners_account && item.save 
+      return item
     else
       return nil
     end
@@ -47,6 +47,11 @@ class Airline < ActiveRecord::Base
     Airport.ops_airline_is(self)
   end
   
+  # 
+  def acquire_new_terminal(airport)
+    terminal = Terminal.new(:airport_code => airport.code, :airline_id => self.id)
+    finalize_acquisition_and_save(terminal)
+  end
   
   
 end
