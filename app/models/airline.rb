@@ -49,8 +49,12 @@ class Airline < ActiveRecord::Base
   
   # 
   def acquire_new_terminal(airport)
-    terminal = Terminal.new(:airport_code => airport.code, :airline_id => self.id)
-    finalize_acquisition_and_save(terminal)
+    unless self.ops_airports.include?(airport)
+      terminal = Terminal.new(:airport_code => airport.code, :airline_id => self.id)
+      terminal.boarding_gate_cost_new = airport.boarding_gate_cost_new_default
+      terminal.boarding_gate_count = 1
+      finalize_acquisition_and_save(terminal)
+    end
   end
   
   
