@@ -11,6 +11,7 @@ class FriendshipTest < ActiveSupport::TestCase
   
   def test_request_accept_breakup
     load_instance_vars
+    
     assert_equal(Friendship.request(@user_15,@user_15),nil)
     assert_equal(Friendship.request(@user_15,@user_16),nil)
 
