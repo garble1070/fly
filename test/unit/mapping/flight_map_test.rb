@@ -3,9 +3,8 @@ require File.dirname(__FILE__) + '/../../test_helper'
 class FlightMapTest < ActiveSupport::TestCase
   
   def test_basic
-    @lax = Airport.find("lax")
-    @zrh = Airport.find("zrh")
-    
+    load_instance_vars    
+        
     @flight_map = FlightMap.new(@lax,@zrh)
     assert_not_nil(@flight_map)
     
@@ -17,8 +16,8 @@ class FlightMapTest < ActiveSupport::TestCase
   end
   
   def test_next
-    @lax = Airport.find("lax")
-    @sfo = Airport.find("sfo")   
+    load_instance_vars    
+        
     @flight_map = FlightMap.new(@lax,@sfo)
     
     generated_url_preflight = @flight_map.complete_url

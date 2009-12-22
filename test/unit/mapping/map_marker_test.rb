@@ -2,7 +2,8 @@ require File.dirname(__FILE__) + '/../../test_helper'
 
 class MapMarkerTest < ActiveSupport::TestCase
    def test_basic
-     @jfk = Airport.find("jfk")
+     load_instance_vars    
+        
      @marker = MapMarker.new(@jfk)
      assert_not_nil(@marker)
      

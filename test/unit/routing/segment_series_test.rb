@@ -3,23 +3,13 @@ require File.dirname(__FILE__) + '/../../test_helper'
 class SegmentSeriesTest < ActiveSupport::TestCase
   
   def test_basic
-    @lax = Airport.find("lax")
-    @iad = Airport.find("iad")
-    @jfk = Airport.find("jfk")
-    @cdg = Airport.find("cdg")
-    @zrh = Airport.find("zrh")
+    load_instance_vars
     
     @segment0 = FlightSegment.new(@lax,@iad)
     assert_not_nil(@segment0)
-    
     @segment1 = FlightSegment.new(@iad,@jfk)
-    assert_not_nil(@segment1)
-
     @segment2 = FlightSegment.new(@jfk,@cdg)
-    assert_not_nil(@segment2)
-
     @segment3 = FlightSegment.new(@cdg,@zrh)
-    assert_not_nil(@segment3)
 
     @series1 = SegmentSeries.new
     assert_not_nil(@series1)

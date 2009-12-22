@@ -3,8 +3,7 @@ require File.dirname(__FILE__) + '/../../test_helper'
 class FlightSegmentTest < ActiveSupport::TestCase
   
   def test_basic
-    @lax = Airport.find("lax")
-    @zrh = Airport.find("zrh")
+    load_instance_vars
 
     @segment = FlightSegment.new(@lax,@zrh)
     assert_not_nil(@segment)
@@ -18,8 +17,7 @@ class FlightSegmentTest < ActiveSupport::TestCase
   end
   
   def test_string_output
-    @iad = Airport.find("iad")
-    @jfk = Airport.find("jfk")
+    load_instance_vars
 
     @segment = FlightSegment.new(@iad,@jfk)
     assert_not_nil(@segment)

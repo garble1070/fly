@@ -3,17 +3,7 @@ require File.dirname(__FILE__) + '/../../test_helper'
 class PlaneCreatorTest < ActiveSupport::TestCase
   
   def test_basics
-    @airline = Airline.find(1)
-    assert_not_nil(@airline)
-    
-    @a330 = Aircrafttype.find(1)
-    assert_not_nil(@a330)
-    
-    @b747 = Aircrafttype.find(2)
-    assert_not_nil(@b747)
-
-    @lax = Airport.find("LAX")
-    assert_not_nil(@lax)
+    load_instance_vars    
         
     @pc = PlaneCreator.new
     @pc.add_param(@a330)
@@ -34,7 +24,7 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     @pc.delete_by_classname("Airport")
     assert_equal(@pc.param_classname_present?("Airport"),false)
     
-    @pc << @airline << @lax
+    @pc << @airline_1 << @lax
     assert_equal(@pc.required_param_types_present?,false)
     assert_raise(RuntimeError) {@pc.manufacture}
     @pc << @b747
@@ -43,25 +33,9 @@ class PlaneCreatorTest < ActiveSupport::TestCase
   end
   
   def test_create_new_plane    
-    @airline = Airline.find(1)
-    assert_not_nil(@airline)
+    load_instance_vars
     
-    @a330 = Aircrafttype.find(1)
-    assert_not_nil(@a330)
-    
-    @b747 = Aircrafttype.find(2)
-    assert_not_nil(@b747)
-
-    @lax = Airport.find("LAX")
-    assert_not_nil(@lax)
-    
-    @sixty_thousand_pax = StartingPaxCount.new(60000)
-    assert_not_nil(@sixty_thousand_pax)
-    
-    @one_hundred_k_miles = StartingMilesCount.new(100000)
-    assert_not_nil(@one_hundred_k_miles)
-            
-    config_params = [@airline,@a330,@lax, @sixty_thousand_pax, 
+    config_params = [@airline_1,@a330,@lax, @sixty_thousand_pax, 
                           @one_hundred_k_miles, "City of Winterthur"]
     @plane_creator = PlaneCreator.new(config_params)
     assert_not_nil(@plane_creator)
@@ -71,7 +45,7 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     assert_not_nil(@finished_plane)
     @finished_plane.save
 
-    assert_equal(@finished_plane.airline,@airline)
+    assert_equal(@finished_plane.airline,@airline_1)
     assert_equal(@finished_plane.starting_airport,@lax)
     assert_equal(@finished_plane.aircrafttype,@a330)
     assert_equal(@finished_plane.starting_pax_count,60000)

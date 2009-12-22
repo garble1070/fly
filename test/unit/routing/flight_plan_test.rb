@@ -3,11 +3,7 @@ require File.dirname(__FILE__) + '/../../test_helper'
 class FlightPlanTest < ActiveSupport::TestCase
   
   def test_basic_instance_vars
-    @lax = Airport.find("lax")
-    assert_not_nil(@lax)
-    
-    @zrh = Airport.find("zrh")
-    assert_not_nil(@zrh)
+    load_instance_vars
     
     @flight_plan = FlightPlan.new(@lax,@zrh)
     assert_not_nil(@flight_plan)
@@ -19,8 +15,7 @@ class FlightPlanTest < ActiveSupport::TestCase
   end
   
   def test_reset_routing
-    @lax = Airport.find("lax")    
-    @zrh = Airport.find("zrh")
+    load_instance_vars
     
     @flight_plan = FlightPlan.new(@lax,@zrh)
     assert_not_nil(@flight_plan)
@@ -38,8 +33,8 @@ class FlightPlanTest < ActiveSupport::TestCase
   end
   
   def test_split_segment_and_series
-    @lax = Airport.find("lax")    
-    @zrh = Airport.find("zrh")
+    load_instance_vars
+
     @flight_plan = FlightPlan.new(@lax,@zrh)    
     @my_segment = FlightSegment.new(@lax,@zrh)
     @more_granular_series = @flight_plan.split_segment(@my_segment)
@@ -67,10 +62,7 @@ class FlightPlanTest < ActiveSupport::TestCase
   end
   
   def test_iterator_count
-    @lax = Airport.find("lax")
-    @sfo = Airport.find("sfo")
-    @iad = Airport.find("iad")
-    @zrh = Airport.find("zrh")
+    load_instance_vars
     
     @flight_plan = FlightPlan.new(@lax,@zrh)    
     assert_equal(@flight_plan.iterator_count,5)
@@ -83,8 +75,8 @@ class FlightPlanTest < ActiveSupport::TestCase
   end
   
   def test_new_with_all_data
-    @lax = Airport.find("lax")
-    @zrh = Airport.find("zrh")
+    load_instance_vars
+
     @flight_plan = FlightPlan.new_with_all_data(@lax,@zrh)
     seg_series = @flight_plan.segment_series
     assert_not_nil(seg_series)

@@ -2,8 +2,8 @@ require File.dirname(__FILE__) + '/../../test_helper'
 
 class MapPathTest < ActiveSupport::TestCase
   def test_basic
-    @jfk = Airport.find("jfk")
-    @cdg = Airport.find("cdg")
+    load_instance_vars    
+        
     @flight_plan = FlightPlan.new_with_all_data(@jfk,@cdg)
     
     @path = MapPath.new(@flight_plan)
