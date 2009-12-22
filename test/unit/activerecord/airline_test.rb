@@ -52,4 +52,16 @@ class AirlineTest < ActiveSupport::TestCase
     assert my_flights.include?(@flight_222)
   end
   
+  def test_acquire_new_terminal
+    load_instance_vars
+    
+    assert_equal(300.50,@account_1.balance) 
+    assert_equal(false,@airline_1.ops_airports.include?(@cdg))
+    @airline_1.acquire_new_terminal(@cdg)
+
+    load_instance_vars
+    assert_equal(180.50,@account_1.balance) 
+    assert_equal(true,@airline_1.ops_airports.include?(@cdg))
+  end
+  
 end
