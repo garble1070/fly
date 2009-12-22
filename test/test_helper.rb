@@ -47,92 +47,81 @@ class ActiveSupport::TestCase
     load_flight_vars
     load_account_vars
     load_plane_vars
-    execute_loading
+    assign_vars
+    check_vars
+  end
+  
+  def assign_vars
+    @to_load.each do |hash|
+      instance_variable_set(hash[:name],hash[:obj])
+    end
+  end
+  
+  def check_vars
+    @to_load.each do |hash|
+      assert_not_nil(instance_variable_get(hash[:name]))
+    end
+  end
+  
+  def vars_add(name,obj)
+    @to_load << {:name => name, :obj => obj}  
   end
   
   def load_country_vars
-    @us = Country.find("US")
-    assert_not_nil(@us)
-    @ch = Country.find("CH")    
-    assert_not_nil(@ch)
+    vars_add("@us",Country.find("US"))
+    vars_add("@ch",Country.find("CH"))    
   end
   
   def load_aircrafttype_vars
-    @a330 = Aircrafttype.find(1)
-    assert_not_nil(@a330)
+    vars_add("@a330",Aircrafttype.find(1))
   end
   
   def load_terminal_vars
-    @terminal_1 = Terminal.find(1)
-    assert_not_nil(@terminal_1)
-    @terminal_2 = Terminal.find(2)
-    assert_not_nil(@terminal_2)
-    @terminal_3 = Terminal.find(3)
-    assert_not_nil(@terminal_3)
-    @terminal_6 = Terminal.find(6)
-    assert_not_nil(@terminal_6)
+    vars_add("@terminal_1",Terminal.find(1))
+    vars_add("@terminal_2",Terminal.find(2))
+    vars_add("@terminal_3",Terminal.find(3))
+    vars_add("@terminal_6",Terminal.find(6))
   end
   
   def load_user_vars
-    @user_15 = User.find(15)
-    assert_not_nil(@user_15)
-    @user_16 = User.find(16)
-    assert_not_nil(@user_16)
-    @user_17 = User.find(17)        
-    assert_not_nil(@user_17)
+    vars_add("@user_15",User.find(15))
+    vars_add("@user_16",User.find(16))
+    vars_add("@user_17",User.find(17))
   end
   
   def load_currency_vars
-    @flc = Currency.find("FLC")
-    assert_not_nil(@flc)
+    vars_add("@flc",Currency.find("FLC"))
   end
   
   def load_airport_vars
-    @lax = Airport.find("LAX")
-    assert_not_nil(@lax)
-    @zrh = Airport.find("ZRH")
-    assert_not_nil(@zrh)
-    @sfo = Airport.find("SFO")
-    assert_not_nil(@sfo)
-    @iad = Airport.find("IAD")
-    assert_not_nil(@iad)
-    @dfw = Airport.find("DFW")
-    assert_not_nil(@dfw)
-    @jfk = Airport.find("JFK")
-    assert_not_nil(@jfk)
-    @dep_airport_lax = DepartureAirport.find("LAX")
-    assert_not_nil(@dep_airport_lax)
-    @arr_airport_zrh = ArrivalAirport.find("ZRH")
-    assert_not_nil(@arr_airport_zrh)
+    vars_add("@lax",Airport.find("LAX"))
+    vars_add("@zrh",Airport.find("ZRH"))
+    vars_add("@sfo",Airport.find("SFO"))
+    vars_add("@iad",Airport.find("IAD"))
+    vars_add("@dfw",Airport.find("DFW"))
+    vars_add("@jfk",Airport.find("JFK"))
+    vars_add("@dep_airport_lax",DepartureAirport.find("LAX"))
+    vars_add("@arr_airport_zrh",ArrivalAirport.find("ZRH"))
   end
   
   def load_airline_vars
-    @airline_1 = Airline.find(1)
-    assert_not_nil(@airline_1)
-    @airline_2 = Airline.find(2)
-    assert_not_nil(@airline_2)
-    @airline_3 = Airline.find(3)
-    assert_not_nil(@airline_3)
+    vars_add("@airline_1",Airline.find(1))
+    vars_add("@airline_2",Airline.find(2))
+    vars_add("@airline_3",Airline.find(3))
   end
   
   def load_flight_vars
-    @flight_220 = Flight.find(220)
-    assert_not_nil(@flight_220)
-    @flight_221 = Flight.find(221)
-    assert_not_nil(@flight_221)
-    @flight_222 = Flight.find(222)
-    assert_not_nil(@flight_222)
+    vars_add("@flight_220",Flight.find(220))
+    vars_add("@flight_221",Flight.find(221))
+    vars_add("@flight_222",Flight.find(222))
   end
   
   def load_account_vars
-    @account_1 = Account.find(1)
-    assert_not_nil(@account_1)
+    vars_add("@account_1",Account.find(1))
   end
   
   def load_plane_vars
-    @plane_1 = Plane.find(1)
-    assert_not_nil(@plane_1)
-    @plane_2 = Plane.find(2)
-    assert_not_nil(@plane_2)
+    vars_add("@plane_1",Plane.find(1))
+    vars_add("@plane_2",Plane.find(2))
   end
 end
