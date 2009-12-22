@@ -1,11 +1,7 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
 class AccountTest < ActiveSupport::TestCase
-  
-  def load_instance_vars
-    @account_1 = Account.find(1)
-  end
-  
+    
   def test_transaction_stuff
     load_instance_vars
     assert_equal(300.50,@account_1.balance)
