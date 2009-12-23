@@ -37,7 +37,8 @@ class FlightCreator < Creator
     flight_distance = DistanceInMiles.new(dep_airport.distance_from(arr_airport))
     distance_nautical_miles = flight_distance.in_nautical_miles
     speed_knots = param_by_classname("Plane").avg_speed_knots
-    return distance_nautical_miles.quo(speed_knots) * 3600
+    output = distance_nautical_miles.quo(speed_knots) * 3600
+    return output.to_int
   end
 
   # Inserts optional params into new item object

@@ -13,31 +13,48 @@ class Flight < ActiveRecord::Base
       :class_name => "Airport", 
       :primary_key => "code",
       :foreign_key => "arr_airport_code"
-      
-   named_scope :user_is, lambda{|user| {
+  
+  named_scope :user_is, lambda{|user| {
     :select=>"`flights`.*",
     :joins=>"INNER JOIN `planes` on `planes`.id = `flights`.plane_id 
              INNER JOIN `airlines` ON `planes`.airline_id = `airlines`.id",
     :conditions=>["`airlines`.user_id = ?", user.id]
-   }}
-   
-     named_scope :ops_airport_is, lambda{|airport| {
+    }}
+  
+  named_scope :ops_airport_is, lambda{|airport| {
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
     :conditions=>["`terminals`.airport_code = ?", airport.code]
-  }}
-
-
+    }}
+  
+  
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
- 
- def time_since_boarding_start
-   (Time.new - boarding_started).to_int
- end
-
- def time_since_taxi_start
-   (Time.new - taxi_started).to_int
- end
+  
+  def status
+    case
+      when flight_completed_time then :completed
+      when !boarding_start_time then :not_yet_scheduled
+      when time_since_takeoff >= inflight_duration then :arrived
+      when time_since_taxi_start >= taxi_duration then :in_flight
+      when time_since_boarding_start >= boarding_duration then :departed_gate
+      when Time.new >= boarding_start_time then :boarding
+    else
+    :scheduled
+    end
+  end
+  
+  def time_since_boarding_start
+   (Time.new - boarding_start_time).to_int
+  end
+  
+  def time_since_taxi_start
+    (Time.new - boarding_start_time - boarding_duration).to_int
+  end
+  
+  def time_since_takeoff
+    (Time.new - boarding_start_time - boarding_duration - taxi_duration).to_int
+  end
   
 end
