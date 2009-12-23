@@ -64,4 +64,24 @@ class AirlineTest < ActiveSupport::TestCase
     assert_equal(true,@airline_1.ops_airports.include?(@cdg))
   end
   
+  def test_satisfaction_rating_increase
+    load_instance_vars
+    assert_equal(9,@airline_1.satisfaction_rating)
+    result = @airline_1.satisfaction_rating_increase(0.5)    
+    assert_equal(true,result)
+    assert_equal(9.5,@airline_1.satisfaction_rating)
+  end
+  
+  def test_satisfaction_rating_decrease
+    load_instance_vars
+    assert_equal(9,@airline_1.satisfaction_rating)
+    result = @airline_1.satisfaction_rating_decrease(2.25)    
+    assert_equal(true,result)
+    assert_equal(6.75,@airline_1.satisfaction_rating)
+    result = @airline_1.satisfaction_rating_decrease(7)    
+    assert_equal(false,result)
+    assert_equal(6.75,@airline_1.satisfaction_rating)
+    
+  end
+  
 end

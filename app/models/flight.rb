@@ -1,6 +1,5 @@
 # A particular plane flying a particular route at a particular time
 class Flight < ActiveRecord::Base
-  serialize :routing 
   
   belongs_to :plane
   
@@ -27,11 +26,17 @@ class Flight < ActiveRecord::Base
     :conditions=>["`terminals`.airport_code = ?", airport.code]
     }}
   
+  named_scope :completed, :conditions=>["flight_completed_time IS NOT NULL"]
+  named_scope :active, :conditions=>["flight_completed_time IS NULL"]
+  named_scope :in_order_of_creation, :order=>"created_at ASC"
+    
+    
   
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
   
+  # Returns a symbol representing the flight's current status
   def status
     case
       when flight_completed_time then :completed
@@ -45,14 +50,17 @@ class Flight < ActiveRecord::Base
     end
   end
   
+  # Returns an integer representing the duration since the flight began boarding
   def time_since_boarding_start
    (Time.new - boarding_start_time).to_int
   end
   
+  # Returns an integer representing the duration since the flight began taxiing
   def time_since_taxi_start
     (Time.new - boarding_start_time - boarding_duration).to_int
   end
   
+  # Returns an integer representing the duration since the flight took off
   def time_since_takeoff
     (Time.new - boarding_start_time - boarding_duration - taxi_duration).to_int
   end
