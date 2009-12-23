@@ -28,7 +28,6 @@ class FlightCreator < Creator
     @new_item.boarding_duration     = param_by_classname("Plane").aircrafttype.boarding_duration_default
     @new_item.taxi_duration         = dep_airport.taxi_duration_default
     @new_item.inflight_duration     = calculate_inflight_duration
-    @new_item.maintenance_duration  = param_by_classname("Plane").airline.maintenance_duration_default
   end  
   
   # Use plane info and route info to caluclate duration of flight
@@ -49,9 +48,6 @@ class FlightCreator < Creator
     if param_classname_present?("TaxiDurationInSeconds")
       @new_item.taxi_duration         = param_by_classname("TaxiDurationInSeconds").in_seconds
     end
-    if param_classname_present?("MaintenanceDurationInSeconds")
-      @new_item.maintenance_duration  = param_by_classname("MaintenanceDurationInSeconds").in_seconds
-    end    
   end
   
 end

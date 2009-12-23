@@ -32,6 +32,12 @@ class Flight < ActiveRecord::Base
   #               INSTANCE METHODS               #
   #**********************************************#
  
+ def time_since_boarding_start
+   (Time.new - boarding_started).to_int
+ end
 
+ def time_since_taxi_start
+   (Time.new - taxi_started).to_int
+ end
   
 end

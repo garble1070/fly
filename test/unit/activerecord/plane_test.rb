@@ -27,7 +27,6 @@ class PlaneTest < ActiveSupport::TestCase
   
   def test_account
     load_instance_vars
-    
     assert_equal(@plane_1.owners_flc_account,@account_1)
   end
   

@@ -40,7 +40,6 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.string   "country_code",                 :limit => 2
     t.float    "satisfaction_rating",                       :default => 0.0, :null => false
     t.string   "home_airport_code_game"
-    t.float  "maintenance_duration_default",              :default => 0.0,   :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -93,15 +92,9 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.text     "routing"
     t.datetime "boarding_started"
     t.float  "boarding_duration"
-    t.boolean  "taxi_auto_start_flag",        :default => true
-    t.datetime "taxi_started"
     t.float  "taxi_duration"
-    t.boolean  "inflight_auto_start_flag",    :default => true
-    t.datetime "inflight_started"
     t.float  "inflight_duration"
-    t.boolean  "maintenance_auto_start_flag", :default => true
-    t.datetime "maintenance_started"
-    t.float  "maintenance_duration"
+    t.datetime "flight_completed_time"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
