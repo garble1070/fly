@@ -25,7 +25,7 @@ class AirlineTest < ActiveSupport::TestCase
   
   def test_acquire_new_plane
     load_instance_vars
-
+    
     assert_equal(@account_1.balance,300.50)
     @finished_plane = @airline_1.acquire_new_plane(@a330)
     assert_not_nil(@finished_plane)
@@ -58,7 +58,7 @@ class AirlineTest < ActiveSupport::TestCase
     assert_equal(300.50,@account_1.balance) 
     assert_equal(false,@airline_1.ops_airports.include?(@cdg))
     @airline_1.acquire_new_terminal(@cdg)
-
+    
     load_instance_vars
     assert_equal(180.50,@account_1.balance) 
     assert_equal(true,@airline_1.ops_airports.include?(@cdg))
@@ -81,7 +81,11 @@ class AirlineTest < ActiveSupport::TestCase
     result = @airline_1.satisfaction_rating_decrease(7)    
     assert_equal(false,result)
     assert_equal(6.75,@airline_1.satisfaction_rating)
-    
+  end
+  
+  def test_record_transaction
+    @new_airline = Airline.new
+    assert_equal(false,@new_airline.record_transaction)
   end
   
 end

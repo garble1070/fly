@@ -18,6 +18,7 @@ class Airline < ActiveRecord::Base
     :conditions=>["`terminals`.airport_code = ?", airport.code]
     }}
   
+  validates_presence_of     :user_id
   
   #**********************************************#
   #               INSTANCE METHODS               #
@@ -82,7 +83,7 @@ class Airline < ActiveRecord::Base
       return false
     end
   end
-   
+  
   def satisfaction_rating_increase(amount)
     self.satisfaction_rating = satisfaction_rating + amount
     record_transaction
