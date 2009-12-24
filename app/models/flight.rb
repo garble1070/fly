@@ -20,6 +20,10 @@ class Flight < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
     }}
   
+  named_scope :plane_is, lambda{|plane| {
+    :conditions=>["plane_id = ?", plane.id]
+    }}
+
   named_scope :ops_airport_is, lambda{|airport| {
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
@@ -42,7 +46,7 @@ class Flight < ActiveRecord::Base
   def update_status
     @status_snapshot = current_status
     @status_snapshot_time = Time.now
-    return @status_snapshot
+    return self
   end
   
   # Returns a symbol representing the flight's current status

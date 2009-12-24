@@ -20186,3 +20186,51 @@ Completed in 125ms (View: 95, DB: 15) | 200 OK [http://flynextgennow.com/users/1
   [4;35;1mSQL (31.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091203231857')[0m
   [4;36;1mSQL (31.0ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20091203232504')[0m
   [4;35;1mSQL (47.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091204035504')[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (63.0ms)[0m   [0mSELECT version FROM schema_migrations[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (782.0ms)[0m   [0;1mDROP DATABASE IF EXISTS `fly_test`[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mCREATE DATABASE `fly_test` DEFAULT CHARACTER SET `utf8`[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (93.0ms)[0m   [0mCREATE TABLE `accounts` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `currency_code` varchar(3), `balance` float DEFAULT 0.0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (126.0ms)[0m   [0mCREATE TABLE `aircrafttypes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(255), `name` varchar(255), `avg_pax_load_default` int(11), `avg_pax_load_max` int(11), `avg_speed_knots_default` int(11), `avg_speed_knots_max` int(11), `range_miles_default` int(11), `range_miles_max` int(11), `boarding_duration_default` float DEFAULT 0 NOT NULL, `cost` float DEFAULT 0.0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (156.0ms)[0m   [0mCREATE TABLE `airlines` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `user_id` int(11), `country_code` varchar(2), `satisfaction_rating` float DEFAULT 0.0 NOT NULL, `home_airport_code_game` varchar(255), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (187.0ms)[0m   [0mCREATE TABLE `airports` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(4), `iata` varchar(255), `icao` varchar(255), `name` varchar(255), `display_name` varchar(255), `city` varchar(255), `country_code` varchar(2), `lng` float DEFAULT 0.0 NOT NULL, `lat` float DEFAULT 0.0 NOT NULL, `timezone_id` int(11), `dst_code` varchar(255), `altitude` int(11), `taxi_duration_default` float DEFAULT 0 NOT NULL, `terminal_cost_new` int(11) DEFAULT 0 NOT NULL, `boarding_gate_cost_new_default` int(11) DEFAULT 0 NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCREATE TABLE `countries` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(2), `name` varchar(255), `display_name` varchar(255), `iso3` varchar(3)) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCREATE TABLE `currencies` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `code` varchar(3), `name` varchar(255), `ratio_to_flc` float, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCREATE TABLE `friendships` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `user_id` int(11), `friend_id` int(11), `status` varchar(255), `created_at` datetime, `accepted_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (15.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCREATE TABLE `flights` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `plane_id` int(11), `dep_airport_code` varchar(255), `arr_airport_code` varchar(255), `boarding_start_time` datetime, `boarding_duration` float, `taxi_duration` float, `inflight_duration` float, `flight_completed_time` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (78.0ms)[0m   [0mCREATE TABLE `terminals` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `airport_code` varchar(255), `airline_id` int(11), `boarding_gate_count` int(11), `boarding_gate_cost_new` int(11), `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (16.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (78.0ms)[0m   [0mCREATE TABLE `planes` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `name` varchar(255), `airline_id` int(11), `aircrafttype_id` int(11), `avg_pax_load` int(11), `avg_speed_knots` int(11), `range_miles` int(11), `starting_airport_code` varchar(3), `starting_pax_count` int(11) DEFAULT 0 NOT NULL, `starting_miles_count` float DEFAULT 0.0 NOT NULL, `acquisition_cost` float DEFAULT 0.0 NOT NULL, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (94.0ms)[0m   [0mCREATE TABLE `users` (`id` int(11) DEFAULT NULL auto_increment PRIMARY KEY, `email` varchar(255), `first_name` varchar(255), `last_name` varchar(255), `crypted_password` varchar(255), `home_airport_code_real` varchar(255), `admin` tinyint(1), `remember_token` varchar(255), `remember_token_expires_at` datetime, `created_at` datetime, `updated_at` datetime) ENGINE=InnoDB[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSHOW TABLES[0m
+  [4;35;1mSQL (172.0ms)[0m   [0mCREATE TABLE `schema_migrations` (`version` varchar(255) NOT NULL) ENGINE=InnoDB[0m
+  [4;36;1mSQL (265.0ms)[0m   [0;1mCREATE UNIQUE INDEX `unique_schema_migrations` ON `schema_migrations` (`version`)[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSELECT version FROM `schema_migrations`[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091209053835')[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20091203192737')[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091203193345')[0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20091203193516')[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091203193734')[0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20091203194732')[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091203214829')[0m
+  [4;36;1mSQL (32.0ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20091203225438')[0m
+  [4;35;1mSQL (31.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091203231857')[0m
+  [4;36;1mSQL (31.0ms)[0m   [0;1mINSERT INTO `schema_migrations` (version) VALUES ('20091203232504')[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mINSERT INTO `schema_migrations` (version) VALUES ('20091204035504')[0m
