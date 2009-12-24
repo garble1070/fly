@@ -83,8 +83,19 @@ class Plane < ActiveRecord::Base
     return all_flights.last
   end
   
+  # Returns an object that includes "@lat" and "@lng" variables
   def current_location
-    
+    my_flight = most_recent_flight
+    case
+      when my_flight.flight_completed_time then my_flight.arr_airport
+      when !my_flight.boarding_start_time then :assigned_to_route
+      when my_flight.time_since_takeoff >= inflight_duration then :arrived
+      when my_flight.time_since_taxi_start >= taxi_duration then :in_flight
+      when my_flight.time_since_boarding_start >= boarding_duration then :departed_gate
+      when Time.new >= my_flight.boarding_start_time then :boarding
+    else
+    :flight_scheduled
+    end
   end
   
 end

@@ -1,6 +1,12 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
 class FlightTest < ActiveSupport::TestCase
+  def test_links_to_airport_class
+    load_instance_vars
+    assert_equal(@sfo,@flight_220.dep_airport)
+    assert_equal(@jfk,@flight_220.arr_airport)
+  end
+  
   def test_status
     load_instance_vars
     @flight_221.boarding_start_time = nil

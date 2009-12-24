@@ -20,8 +20,8 @@ class Flight < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
     }}
   
-  named_scope :plane_is, lambda{|plane| {
-    :conditions=>["plane_id = ?", plane.id]
+  named_scope :plane_is, lambda{|plane_id| {
+    :conditions=>["plane_id = ?", plane_id]
     }}
 
   named_scope :ops_airport_is, lambda{|airport| {
