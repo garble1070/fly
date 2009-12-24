@@ -9,7 +9,7 @@ class FlightTest < ActiveSupport::TestCase
     @flight_221.inflight_duration = 7200
     @flight_221.flight_completed_time = nil
     
-    assert_equal(:not_yet_scheduled,@flight_221.status)
+    assert_equal(:not_yet_scheduled,@flight_221.update_status)
     
     @ten_mins_from_now = Time.at(Time.now.to_i + 600)
     @flight_221.boarding_start_time = @ten_mins_from_now
