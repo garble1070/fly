@@ -18,7 +18,7 @@ class Airline < ActiveRecord::Base
     :conditions=>["`terminals`.airport_code = ?", airport.code]
     }}
   
-  validates_presence_of     :user_id
+  validates_presence_of  :user_id
   
   #**********************************************#
   #               INSTANCE METHODS               #
@@ -74,7 +74,7 @@ class Airline < ActiveRecord::Base
     self.flights.in_order_of_creation 
   end
   
-  
+  #
   def satisfaction_rating_decrease(amount)
     if balance_adequate_for_transaction?(amount)
       self.satisfaction_rating = satisfaction_rating - amount
@@ -84,11 +84,13 @@ class Airline < ActiveRecord::Base
     end
   end
   
+  #
   def satisfaction_rating_increase(amount)
     self.satisfaction_rating = satisfaction_rating + amount
     record_transaction
   end
   
+  #
   def balance_adequate_for_transaction?(amount)
     if self.satisfaction_rating > amount
       return true
@@ -97,12 +99,22 @@ class Airline < ActiveRecord::Base
     end
   end
   
+  #
   def record_transaction
     if self.save
       return true
     else
       return false
     end   
+  end
+  
+  #
+  def active_flights_with_updated_status
+    output = active_flights
+    output.each do |flight_obj|
+      flight_obj.update_status
+    end
+    return output
   end
   
 end
