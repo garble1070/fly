@@ -8,8 +8,8 @@ class Plane < ActiveRecord::Base
       :foreign_key => "code",
       :primary_key => "starting_airport_code"
   
-  attr_reader :status_snapshot
-  attr_reader :status_snapshot_time
+  attr_reader :status_snapshot, :status_snapshot_time
+  attr_reader :location_snapshot, :location_snapshot_time
   
   #**********************************************#
   #               INSTANCE METHODS               #
@@ -49,20 +49,42 @@ class Plane < ActiveRecord::Base
     @status_snapshot_time = Time.now
     return self
   end
+
+  # 
+  def update_location
+    @location_snapshot = current_location
+    @location_snapshot_time = Time.now
+    return self
+  end
+  
+  # 
+  def update_status_and_location
+    update_status.update_location
+  end
   
   # Returns a symbol representing the plane's current status
   def current_status
-    all_flights = Flight.plane_id(self.id).in_order_of_creation
-    most_recent_flight = all_flights.last
+    my_flight = most_recent_flight
     case
-      when most_recent_flight.flight_completed_time then :available
-      when !most_recent_flight.boarding_start_time then :assigned_to_route
-      when most_recent_flight.time_since_takeoff >= inflight_duration then :arrived
-      when most_recent_flight.time_since_taxi_start >= taxi_duration then :in_flight
-      when most_recent_flight.time_since_boarding_start >= boarding_duration then :departed_gate
-      when Time.new >= most_recent_flight.boarding_start_time then :boarding
+      when my_flight.flight_completed_time then :available
+      when !my_flight.boarding_start_time then :assigned_to_route
+      when my_flight.time_since_takeoff >= inflight_duration then :arrived
+      when my_flight.time_since_taxi_start >= taxi_duration then :in_flight
+      when my_flight.time_since_boarding_start >= boarding_duration then :departed_gate
+      when Time.new >= my_flight.boarding_start_time then :boarding
     else
     :flight_scheduled
     end
   end
+  
+  #
+  def most_recent_flight
+    all_flights = Flight.plane_is(self.id).in_order_of_creation
+    return all_flights.last
+  end
+  
+  def current_location
+    
+  end
+  
 end
