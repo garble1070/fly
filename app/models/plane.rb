@@ -49,7 +49,7 @@ class Plane < ActiveRecord::Base
     @status_snapshot_time = Time.now
     return self
   end
-
+  
   # 
   def update_location
     @location_snapshot = current_location
@@ -66,35 +66,36 @@ class Plane < ActiveRecord::Base
   def current_status
     my_flight = most_recent_flight
     case
-      when my_flight.flight_completed_time then :available
-      when !my_flight.boarding_start_time then :assigned_to_route
-      when my_flight.time_since_takeoff >= inflight_duration then :arrived
-      when my_flight.time_since_taxi_start >= taxi_duration then :in_flight
-      when my_flight.time_since_boarding_start >= boarding_duration then :departed_gate
-      when Time.new >= my_flight.boarding_start_time then :boarding
+      when !my_flight then :available                                        # scenario: no flights exist
+      when my_flight.flight_completed_time then :available                   # scenario: last flight completed, none scheduled
+      when !my_flight.boarding_start_time then :assigned_to_route            # scenario: flight has been created, but no boarding time scheduled
+      when my_flight.time_since_takeoff >= inflight_duration then :arrived   # scenario: inflight portion is over but flight is not completed 
+      when my_flight.time_since_taxi_start >= taxi_duration then :in_flight  # scenario: flight has taken off and is inflight
+      when my_flight.time_since_boarding_start >= 
+                         boarding_duration then :departed_gate               # scenario: flight is on the ground and has not yet taken off
+      when Time.new >= my_flight.boarding_start_time then :boarding          # scenario: flight is in the boarding process
     else
-    :flight_scheduled
+      :flight_scheduled                                                      # scenario: flight has been assigned a boarding time but that time has not yet arrived
     end
   end
   
   #
   def most_recent_flight
     all_flights = Flight.plane_is(self.id).in_order_of_creation
-    return all_flights.last
+    if all_flights
+      return all_flights.last
+    else
+      return nil
+    end
   end
   
   # Returns an object that includes "@lat" and "@lng" variables
   def current_location
     my_flight = most_recent_flight
-    case
-      when my_flight.flight_completed_time then my_flight.arr_airport
-      when !my_flight.boarding_start_time then :assigned_to_route
-      when my_flight.time_since_takeoff >= inflight_duration then :arrived
-      when my_flight.time_since_taxi_start >= taxi_duration then :in_flight
-      when my_flight.time_since_boarding_start >= boarding_duration then :departed_gate
-      when Time.new >= my_flight.boarding_start_time then :boarding
+    if my_flight
+      my_flight_location = my_flight.location
     else
-    :flight_scheduled
+      self.airline.home_airport_code_game
     end
   end
   

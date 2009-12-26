@@ -23,7 +23,7 @@ class Flight < ActiveRecord::Base
   named_scope :plane_is, lambda{|plane_id| {
     :conditions=>["plane_id = ?", plane_id]
     }}
-
+  
   named_scope :ops_airport_is, lambda{|airport| {
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
@@ -77,5 +77,55 @@ class Flight < ActiveRecord::Base
   def time_since_takeoff
    (Time.new - boarding_start_time - boarding_duration - taxi_duration).to_int
   end
+  
+  # Updates the current status and stores it in the "@status_snapshot" instance
+  # variable, as well as the current time in the "@status_snapshot"time" variable
+  def update_location
+    @location_snapshot = current_location
+    @location_snapshot_time = Time.now
+    return self
+  end
+  
+  # 
+  def update_status_and_location
+    update_status.update_location
+  end
+  
+  # Returns an object that includes "@lat" and "@lng" variables
+  def current_location
+    case
+      when flight_completed_time then arr_airport
+      when !boarding_start_time then dep_airport
+      when time_since_takeoff >= inflight_duration then arr_airport
+      when time_since_taxi_start >= taxi_duration then inflight_position
+      when time_since_boarding_start >= boarding_duration then latlng_from_airport(dep_airport)
+      when Time.new >= boarding_start_time then dep_airport
+    else
+      dep_airport
+    end
+  end
+  
+  # 
+  def latlng_from_airport(airport)
+    Geokit::LatLng.new(airport.lat,airport.lng)
+  end
+  
+  # 
+  def inflight_position
+    flight_distance = DistanceInMiles.new
+    flight_distance.in_nautical_miles = time_since_takeoff.quo(3600) * plane.avg_speed_knots
+    flight_distance = distance_capped_at_route_length(flight_distance)
+    heading = dep_airport.heading_to(arr_airport)
+    return dep_airport.endpoint(heading,flight_distance.in_miles)
+  end
+  
+  # 
+  def distance_capped_at_route_length(flight_distance)
+    if flight_distance.in_miles > dep_airport.distance_from(arr_airport)
+      flight_distance.in_miles = dep_airport.distance_from(arr_airport)
+    end
+    return flight_distance
+  end
+  
   
 end
