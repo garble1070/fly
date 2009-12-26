@@ -36,8 +36,8 @@ class Airport < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
     }}
   
-    validates_presence_of     :code
-
+  validates_presence_of     :code
+  
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
@@ -83,6 +83,12 @@ class Airport < ActiveRecord::Base
   def ops_airlines
     Airline.ops_airport_is(self)
   end
+  
+  # Return a Geokit::LatLng object representing the location of this airport
+  def latlng_object
+    Geokit::LatLng.new(self.lat,self.lng)
+  end
+  
   
   
 end

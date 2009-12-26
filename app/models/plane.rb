@@ -93,7 +93,7 @@ class Plane < ActiveRecord::Base
   def current_location
     my_flight = most_recent_flight
     if my_flight
-      my_flight_location = my_flight.location
+      my_flight.location
     else
       self.airline.home_airport_code_game
     end

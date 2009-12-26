@@ -1,7 +1,7 @@
 require File.dirname(__FILE__) + '/../../test_helper'
 
 class AirportTest < ActiveSupport::TestCase  
-    
+  
   def test_geokit_basics
     load_instance_vars
     
@@ -20,7 +20,7 @@ class AirportTest < ActiveSupport::TestCase
   
   def test_link_to_user_class
     load_instance_vars  
-
+    
     assert_equal(true,@lax.users_based_here_in_real_life.include?(@user_15))
   end
   
@@ -39,15 +39,20 @@ class AirportTest < ActiveSupport::TestCase
   
   def test_geocodes
     load_instance_vars
-    
     assert_equal(@jfk.to_s,"40.6398,-73.7789")
     assert_equal(@jfk.to_s_rnd,"40.64,-73.779")
   end
   
   def test_method_missing_class_method
     load_instance_vars
-    
     assert_equal(@lax,Airport.lax)
+  end
+  
+  def test_latlng_object
+    load_instance_vars
+    @latlng = @lax.latlng_object
+    assert_equal(@lax.lat,@latlng.lat)
+    assert_equal(@lax.lng,@latlng.lng)
   end
   
 end

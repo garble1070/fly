@@ -98,18 +98,13 @@ class Flight < ActiveRecord::Base
       when !boarding_start_time then dep_airport
       when time_since_takeoff >= inflight_duration then arr_airport
       when time_since_taxi_start >= taxi_duration then inflight_position
-      when time_since_boarding_start >= boarding_duration then latlng_from_airport(dep_airport)
+      when time_since_boarding_start >= boarding_duration then dep_airport.latlng_object
       when Time.new >= boarding_start_time then dep_airport
     else
       dep_airport
     end
   end
-  
-  # 
-  def latlng_from_airport(airport)
-    Geokit::LatLng.new(airport.lat,airport.lng)
-  end
-  
+    
   # 
   def inflight_position
     flight_distance = DistanceInMiles.new

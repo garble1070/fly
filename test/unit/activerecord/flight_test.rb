@@ -64,4 +64,5 @@ class FlightTest < ActiveSupport::TestCase
     assert all_flights[0].created_at < all_flights[1].created_at
     assert all_flights[1].created_at < all_flights[2].created_at
   end
+  
 end
