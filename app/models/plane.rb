@@ -88,7 +88,7 @@ class Plane < ActiveRecord::Base
     if my_flight
       my_flight.current_location
     else
-      self.airline.home_airport_code_game
+      self.airline.home_airport_game
     end
   end
   

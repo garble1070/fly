@@ -41,4 +41,13 @@ class PlaneTest < ActiveSupport::TestCase
     assert_equal(@dfw,updated_plane.location_snapshot)
   end
   
+  def test_plane_with_no_flights
+    load_instance_vars
+    @new_plane = @airline_3.acquire_new_plane(@b747)
+    updated_plane = @new_plane.update_status_and_location
+    assert_equal(:available,updated_plane.status_snapshot)
+    assert_equal(@iad,updated_plane.location_snapshot)
+    
+  end
+  
 end
