@@ -75,7 +75,7 @@ class Plane < ActiveRecord::Base
   #
   def most_recent_flight
     all_flights = Flight.plane_is(self.id).in_order_of_creation
-    if all_flights
+    if all_flights.length > 0
       return all_flights.last
     else
       return nil
