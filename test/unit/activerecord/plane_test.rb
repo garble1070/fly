@@ -30,5 +30,15 @@ class PlaneTest < ActiveSupport::TestCase
     assert_equal(@plane_1.owners_flc_account,@account_1)
   end
   
+  def test_update_status_and_location
+    load_instance_vars
+    updated_plane = @plane_1.update_status_and_location
+    assert_equal(:available,updated_flight.status_snapshot)
+    assert_equal(@jfk,updated_flight.location_snapshot)
+    
+    updated_plane = @plane_2.update_status_and_location
+    assert_equal(:arrived,updated_flight.status_snapshot)
+    assert_equal(@dfw,updated_flight.location_snapshot)
+  end
   
 end

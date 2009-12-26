@@ -109,10 +109,10 @@ class Airline < ActiveRecord::Base
   end
   
   #
-  def active_flights_with_updated_status
+  def active_flights_with_updated_status_and_location
     output = active_flights
     output.each do |flight_obj|
-      flight_obj.update_status
+      flight_obj.update_status_and_location
     end
     return output
   end
