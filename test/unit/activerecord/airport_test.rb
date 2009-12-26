@@ -48,9 +48,9 @@ class AirportTest < ActiveSupport::TestCase
     assert_equal(@lax,Airport.lax)
   end
   
-  def test_latlng_object
+  def test_latlng
     load_instance_vars
-    @latlng = @lax.latlng_object
+    @latlng = @lax.latlng
     assert_equal(@lax.lat,@latlng.lat)
     assert_equal(@lax.lng,@latlng.lng)
   end

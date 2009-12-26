@@ -63,6 +63,7 @@ class ActiveSupport::TestCase
   end
   
   def load_airport_vars
+    vars_add("@lgb",Airport.find("LGB"))
     vars_add("@lax",Airport.find("LAX"))
     vars_add("@zrh",Airport.find("ZRH"))
     vars_add("@sfo",Airport.find("SFO"))

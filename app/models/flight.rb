@@ -34,8 +34,8 @@ class Flight < ActiveRecord::Base
   named_scope :active, :conditions=>["flight_completed_time IS NULL"]
   named_scope :in_order_of_creation, :order=>"created_at ASC"
   
-  attr_reader :status_snapshot
-  attr_reader :status_snapshot_time
+  attr_reader :status_snapshot, :status_snapshot_time
+  attr_reader :location_snapshot, :location_snapshot_time
   
   #**********************************************#
   #               INSTANCE METHODS               #
@@ -98,7 +98,7 @@ class Flight < ActiveRecord::Base
       when !boarding_start_time then dep_airport
       when time_since_takeoff >= inflight_duration then arr_airport
       when time_since_taxi_start >= taxi_duration then inflight_position
-      when time_since_boarding_start >= boarding_duration then dep_airport.latlng_object
+      when time_since_boarding_start >= boarding_duration then dep_airport.latlng
       when Time.new >= boarding_start_time then dep_airport
     else
       dep_airport

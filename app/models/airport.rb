@@ -85,7 +85,7 @@ class Airport < ActiveRecord::Base
   end
   
   # Return a Geokit::LatLng object representing the location of this airport
-  def latlng_object
+  def latlng
     Geokit::LatLng.new(self.lat,self.lng)
   end
   

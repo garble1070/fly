@@ -86,4 +86,37 @@ class FlightTest < ActiveSupport::TestCase
     assert_equal(approx_lat,@flight_221.inflight_position.lat.round(1))
     assert_equal(approx_lng,@flight_221.inflight_position.lng.round(1))
   end
+
+  def test_location
+    flight_timing_test_basics
+    assert_equal(@lgb,@flight_221.update_location.location_snapshot)
+    
+    @ten_mins_from_now = Time.at(Time.now.to_i + 600)
+    @flight_221.boarding_start_time = @ten_mins_from_now
+    assert_equal(@lgb,@flight_221.update_location.location_snapshot)
+    
+    @ten_mins_ago = Time.at(Time.now.to_i - 600)
+    @flight_221.boarding_start_time = @ten_mins_ago
+    assert_equal(@lgb,@flight_221.update_location.location_snapshot)
+    
+    @thirty_mins_ago = Time.at(Time.now.to_i - 1800)
+    @flight_221.boarding_start_time = @thirty_mins_ago
+    assert_equal(@lgb.latlng,@flight_221.update_location.location_snapshot)
+    
+    @one_hour_ago = Time.at(Time.now.to_i - 3600)
+    @flight_221.boarding_start_time = @one_hour_ago
+    approx_lat = 33.9
+    approx_lng = -114.8
+    assert_equal(approx_lat,@flight_221.inflight_position.lat.round(1))
+    assert_equal(approx_lng,@flight_221.inflight_position.lng.round(1))
+    
+    @three_hours_ago = Time.at(Time.now.to_i - 10800)
+    @flight_221.boarding_start_time = @three_hours_ago
+    assert_equal(@dfw,@flight_221.update_location.location_snapshot)
+    
+    @flight_221.flight_completed_time = @ten_mins_ago
+    assert_equal(@dfw,@flight_221.update_location.location_snapshot)
+    
+  end
+
 end
