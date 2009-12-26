@@ -65,10 +65,10 @@ class Plane < ActiveRecord::Base
   # Returns a symbol representing the plane's current status
   def current_status
     my_flight = most_recent_flight
-    if !my_flight || (my_flight.update_status.status_snapshot == :completed)
+    if !my_flight || (my_flight.status_snapshot == :completed)
       :available                   
     else
-      my_flight.update_status.status_snapshot                                                     
+      my_flight.status_snapshot                                                     
     end
   end
   
@@ -76,7 +76,7 @@ class Plane < ActiveRecord::Base
   def most_recent_flight
     all_flights = Flight.plane_is(self.id).in_order_of_creation
     if all_flights.length > 0
-      return all_flights.last
+      return all_flights.last.update_status_and_location
     else
       return nil
     end
