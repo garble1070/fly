@@ -33,12 +33,12 @@ class PlaneTest < ActiveSupport::TestCase
   def test_update_status_and_location
     load_instance_vars
     updated_plane = @plane_1.update_status_and_location
-    assert_equal(:available,updated_flight.status_snapshot)
-    assert_equal(@jfk,updated_flight.location_snapshot)
+    assert_equal(:available,updated_plane.status_snapshot)
+    assert_equal(@jfk,updated_plane.location_snapshot)
     
     updated_plane = @plane_2.update_status_and_location
-    assert_equal(:arrived,updated_flight.status_snapshot)
-    assert_equal(@dfw,updated_flight.location_snapshot)
+    assert_equal(:arrived,updated_plane.status_snapshot)
+    assert_equal(@dfw,updated_plane.location_snapshot)
   end
   
 end

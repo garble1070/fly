@@ -88,11 +88,13 @@ class AirlineTest < ActiveSupport::TestCase
     assert_equal(false,@new_airline.record_transaction)
   end
   
+=begin
   def test_flights_with_status
     load_instance_vars
     flights = @airline_3.active_flights_with_updated_status
     assert_equal(:arrived,flights[0].status_snapshot)
     assert_not_nil(flights[0].status_snapshot_time)
   end
+=end
   
 end
