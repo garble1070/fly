@@ -20344,3 +20344,27 @@ Completed in 125ms (View: 95, DB: 15) | 200 OK [http://flynextgennow.com/users/1
   [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
   [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
   [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'dfw') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFlight Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `flights`[0m
+  [4;35;1mFlight Load (0.0ms)[0m   [0mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFlight Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `flights`[0m
+  [4;35;1mFlight Load (0.0ms)[0m   [0mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;36;1mFlight Load (0.0ms)[0m   [0;1mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;35;1mFlight Load (16.0ms)[0m   [0mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;36;1mFlight Load (0.0ms)[0m   [0;1mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;35;1mFlight Load (0.0ms)[0m   [0mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;36;1mFlight Load (0.0ms)[0m   [0;1mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;35;1mFlight Load (0.0ms)[0m   [0mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;36;1mAirport Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'dfw') LIMIT 1[0m
+  [4;36;1mFlight Load (0.0ms)[0m   [0;1mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'dfw') LIMIT 1[0m
+  [4;36;1mFlight Load (0.0ms)[0m   [0;1mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'dfw') LIMIT 1[0m
+  [4;36;1mFlight Load (0.0ms)[0m   [0;1mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'dfw') LIMIT 1[0m

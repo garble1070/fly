@@ -15,7 +15,7 @@ class FlightTest < ActiveSupport::TestCase
     @flight_221.inflight_duration = 7627
     @flight_221.flight_completed_time = nil
   end
-
+  
   def test_status
     flight_timing_test_basics
     assert_equal(:not_yet_scheduled,@flight_221.update_status.status_snapshot)
@@ -77,16 +77,18 @@ class FlightTest < ActiveSupport::TestCase
   
   def test_inflight_position
     flight_timing_test_basics
-        
+    setup_one_hour_ago_params
+    assert_equal(@approx_lat,@flight_221.inflight_position.lat.round(1))
+    assert_equal(@approx_lng,@flight_221.inflight_position.lng.round(1))
+  end
+  
+  def setup_one_hour_ago_params
     @one_hour_ago = Time.at(Time.now.to_i - 3600)
     @flight_221.boarding_start_time = @one_hour_ago
-
-    approx_lat = 33.9
-    approx_lng = -114.8
-    assert_equal(approx_lat,@flight_221.inflight_position.lat.round(1))
-    assert_equal(approx_lng,@flight_221.inflight_position.lng.round(1))
+    @approx_lat = 33.9
+    @approx_lng = -114.8
   end
-
+  
   def test_location
     flight_timing_test_basics
     assert_equal(@lgb,@flight_221.update_location.location_snapshot)
@@ -103,12 +105,9 @@ class FlightTest < ActiveSupport::TestCase
     @flight_221.boarding_start_time = @thirty_mins_ago
     assert_equal(@lgb.latlng,@flight_221.update_location.location_snapshot)
     
-    @one_hour_ago = Time.at(Time.now.to_i - 3600)
-    @flight_221.boarding_start_time = @one_hour_ago
-    approx_lat = 33.9
-    approx_lng = -114.8
-    assert_equal(approx_lat,@flight_221.inflight_position.lat.round(1))
-    assert_equal(approx_lng,@flight_221.inflight_position.lng.round(1))
+    setup_one_hour_ago_params
+    assert_equal(@approx_lat,@flight_221.update_location.location_snapshot.lat.round(1))
+    assert_equal(@approx_lng,@flight_221.update_location.location_snapshot.lng.round(1))
     
     @three_hours_ago = Time.at(Time.now.to_i - 10800)
     @flight_221.boarding_start_time = @three_hours_ago
@@ -118,5 +117,11 @@ class FlightTest < ActiveSupport::TestCase
     assert_equal(@dfw,@flight_221.update_location.location_snapshot)
     
   end
-
+  
+  def test_update_status_and_location
+    load_instance_vars
+    updated_flight = @flight_221.update_status_and_location
+    assert_equal(:arrived,updated_flight.status_snapshot)
+    assert_equal(@dfw,updated_flight.location_snapshot)
+  end
 end
