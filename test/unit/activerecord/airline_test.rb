@@ -88,13 +88,32 @@ class AirlineTest < ActiveSupport::TestCase
     assert_equal(false,@new_airline.record_transaction)
   end
   
-=begin
-  def test_flights_with_status
+  
+  def test_active_flights
     load_instance_vars
-    flights = @airline_3.active_flights_with_updated_status
-    assert_equal(:arrived,flights[0].status_snapshot)
-    assert_not_nil(flights[0].status_snapshot_time)
+    active_flights = @airline_3.active_flights
+    assert_equal(true,active_flights.include?(@flight_221))
+    assert_equal(false,active_flights.include?(@flight_222))
+    assert_equal(:arrived,active_flights[0].status_snapshot)
+    assert_not_nil(active_flights[0].status_snapshot_time)
+    assert_equal(@dfw,active_flights[0].location_snapshot)
+    assert_not_nil(active_flights[0].location_snapshot_time)
   end
-=end
+    
+  def test_completed_flights
+    load_instance_vars
+    completed_flights = @airline_3.completed_flights
+    assert_equal(false,completed_flights.include?(@flight_221))
+    assert_equal(true,completed_flights.include?(@flight_222))
+  end
+  
+  def test_all_flights
+    load_instance_vars
+    all_flights = @airline_3.all_flights
+    assert_equal(true,all_flights.include?(@flight_221))
+    assert_equal(true,all_flights.include?(@flight_222))
+    assert all_flights[0].created_at < all_flights[1].created_at
+    assert all_flights[1].created_at < all_flights[2].created_at
+  end
   
 end

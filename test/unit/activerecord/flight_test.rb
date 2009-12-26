@@ -45,29 +45,6 @@ class FlightTest < ActiveSupport::TestCase
     
   end
   
-  def test_active_flights
-    load_instance_vars
-    active_flights = @airline_3.active_flights
-    assert_equal(true,active_flights.include?(@flight_221))
-    assert_equal(false,active_flights.include?(@flight_222))
-  end
-  
-  def test_completed_flights
-    load_instance_vars
-    completed_flights = @airline_3.completed_flights
-    assert_equal(false,completed_flights.include?(@flight_221))
-    assert_equal(true,completed_flights.include?(@flight_222))
-  end
-  
-  def test_all_flights
-    load_instance_vars
-    all_flights = @airline_3.all_flights
-    assert_equal(true,all_flights.include?(@flight_221))
-    assert_equal(true,all_flights.include?(@flight_222))
-    assert all_flights[0].created_at < all_flights[1].created_at
-    assert all_flights[1].created_at < all_flights[2].created_at
-  end
-  
   def test_distance_capped_at_route_length
     load_instance_vars
     flight_distance = DistanceInMiles.new(5000)

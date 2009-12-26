@@ -61,7 +61,10 @@ class Airline < ActiveRecord::Base
   # Returns an array of this airline's flight objects that are active, i.e. 
   # do not have the status "completed"
   def active_flights
-    self.flights.active.in_order_of_creation
+    flights = self.flights.active.in_order_of_creation
+    flights.collect do |flight_obj|
+      flight_obj.update_status_and_location
+    end
   end
   
   # Returns an array of this airline's flight objects that are completed
@@ -108,14 +111,8 @@ class Airline < ActiveRecord::Base
     end   
   end
   
-=begin
-  def active_flights_with_updated_status_and_location
-    output = active_flights
-    output.each do |flight_obj|
-      flight_obj.update_status_and_location
-    end
-    return output
-  end
-=end
+
+
+
   
 end
