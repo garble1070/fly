@@ -20308,3 +20308,12 @@ Completed in 125ms (View: 95, DB: 15) | 200 OK [http://flynextgennow.com/users/1
   [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
   [4;36;1mPlane Create (0.0ms)[0m   [0;1mINSERT INTO `planes` (`name`, `starting_airport_code`, `updated_at`, `starting_pax_count`, `avg_pax_load`, `avg_speed_knots`, `range_miles`, `starting_miles_count`, `acquisition_cost`, `airline_id`, `aircrafttype_id`, `created_at`) VALUES(NULL, 'ZRH', '2009-12-26 04:18:17', 0, 240, 500, 8200, 0.0, 150.0, 1, 1, '2009-12-26 04:18:17')[0m
   [4;35;1mSQL (31.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFlight Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `flights`[0m
+  [4;35;1mFlight Load (0.0ms)[0m   [0mSELECT * FROM `flights` WHERE (`flights`.`id` = 220) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'sfo') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'jfk') LIMIT 1[0m
+  [4;36;1mAirport Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'sfo') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'jfk') LIMIT 1[0m

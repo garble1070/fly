@@ -65,4 +65,10 @@ class FlightTest < ActiveSupport::TestCase
     assert all_flights[1].created_at < all_flights[2].created_at
   end
   
+  def test_distance_capped_at_route_length
+    load_instance_vars
+    flight_distance = DistanceInMiles.new(5000)
+    result_obj = @flight_220.distance_capped_at_route_length(flight_distance)
+    assert_equal(2582,result_obj.in_miles.to_int)
+  end
 end
