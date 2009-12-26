@@ -65,17 +65,10 @@ class Plane < ActiveRecord::Base
   # Returns a symbol representing the plane's current status
   def current_status
     my_flight = most_recent_flight
-    case
-      when !my_flight then :available                                        # scenario: no flights exist
-      when my_flight.flight_completed_time then :available                   # scenario: last flight completed, none scheduled
-      when !my_flight.boarding_start_time then :assigned_to_route            # scenario: flight has been created, but no boarding time scheduled
-      when my_flight.time_since_takeoff >= inflight_duration then :arrived   # scenario: inflight portion is over but flight is not completed 
-      when my_flight.time_since_taxi_start >= taxi_duration then :in_flight  # scenario: flight has taken off and is inflight
-      when my_flight.time_since_boarding_start >= 
-                         boarding_duration then :departed_gate               # scenario: flight is on the ground and has not yet taken off
-      when Time.new >= my_flight.boarding_start_time then :boarding          # scenario: flight is in the boarding process
+    if !my_flight || (my_flight.update_status.status_snapshot == :completed)
+      :available                   
     else
-      :flight_scheduled                                                      # scenario: flight has been assigned a boarding time but that time has not yet arrived
+      my_flight.update_status.status_snapshot                                                     
     end
   end
   

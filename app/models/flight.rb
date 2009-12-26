@@ -53,7 +53,7 @@ class Flight < ActiveRecord::Base
   def current_status
     case
       when flight_completed_time then :completed
-      when !boarding_start_time then :not_yet_scheduled
+      when !boarding_start_time then :assigned_to_route
       when time_since_takeoff >= inflight_duration then :arrived
       when time_since_taxi_start >= taxi_duration then :in_flight
       when time_since_boarding_start >= boarding_duration then :departed_gate

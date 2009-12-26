@@ -18,7 +18,7 @@ class FlightTest < ActiveSupport::TestCase
   
   def test_status
     flight_timing_test_basics
-    assert_equal(:not_yet_scheduled,@flight_221.update_status.status_snapshot)
+    assert_equal(:assigned_to_route,@flight_221.update_status.status_snapshot)
     
     @ten_mins_from_now = Time.at(Time.now.to_i + 600)
     @flight_221.boarding_start_time = @ten_mins_from_now
