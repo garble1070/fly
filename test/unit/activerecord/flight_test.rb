@@ -7,14 +7,17 @@ class FlightTest < ActiveSupport::TestCase
     assert_equal(@jfk,@flight_220.arr_airport)
   end
   
-  def test_status
+  def flight_timing_test_basics
     load_instance_vars
     @flight_221.boarding_start_time = nil
     @flight_221.boarding_duration = 1200
     @flight_221.taxi_duration = 1200
-    @flight_221.inflight_duration = 7200
+    @flight_221.inflight_duration = 7627
     @flight_221.flight_completed_time = nil
-    
+  end
+
+  def test_status
+    flight_timing_test_basics
     assert_equal(:not_yet_scheduled,@flight_221.update_status.status_snapshot)
     
     @ten_mins_from_now = Time.at(Time.now.to_i + 600)
@@ -70,5 +73,17 @@ class FlightTest < ActiveSupport::TestCase
     flight_distance = DistanceInMiles.new(5000)
     result_obj = @flight_220.distance_capped_at_route_length(flight_distance)
     assert_equal(2582,result_obj.in_miles.to_int)
+  end
+  
+  def test_inflight_position
+    flight_timing_test_basics
+        
+    @one_hour_ago = Time.at(Time.now.to_i - 3600)
+    @flight_221.boarding_start_time = @one_hour_ago
+
+    approx_lat = 33.9
+    approx_lng = -114.8
+    assert_equal(approx_lat,@flight_221.inflight_position.lat.round(1))
+    assert_equal(approx_lng,@flight_221.inflight_position.lng.round(1))
   end
 end

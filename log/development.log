@@ -20317,3 +20317,30 @@ Completed in 125ms (View: 95, DB: 15) | 200 OK [http://flynextgennow.com/users/1
   [4;36;1mAirport Columns (15.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
   [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'sfo') LIMIT 1[0m
   [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'jfk') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mFlight Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `flights`[0m
+  [4;35;1mFlight Load (0.0ms)[0m   [0mSELECT * FROM `flights` WHERE (`flights`.`id` = 221) [0m
+  [4;36;1mPlane Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `planes`[0m
+  [4;35;1mPlane Load (0.0ms)[0m   [0mSELECT * FROM `planes` WHERE (`planes`.`id` = 2) [0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'dfw') LIMIT 1[0m
+  [4;36;1mAirport Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
+  [4;35;1mDepartureAirport Columns (15.0ms)[0m   [0mSHOW FIELDS FROM `airports`[0m
+  [4;36;1mDepartureAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'LGB') LIMIT 1[0m
+  [4;35;1mArrivalAirport Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `airports`[0m
+  [4;36;1mArrivalAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'DFW') LIMIT 1[0m
+  [4;35;1mAircrafttype Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `aircrafttypes`[0m
+  [4;36;1mAircrafttype Load (15.0ms)[0m   [0;1mSELECT * FROM `aircrafttypes` WHERE (`aircrafttypes`.`id` = 2) [0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mFlight Create (0.0ms)[0m   [0;1mINSERT INTO `flights` (`plane_id`, `inflight_duration`, `updated_at`, `boarding_start_time`, `boarding_duration`, `dep_airport_code`, `arr_airport_code`, `flight_completed_time`, `taxi_duration`, `created_at`) VALUES(2, 7627.0, '2009-12-26 05:21:56', NULL, 60.0, 'LGB', 'DFW', NULL, 70.0, '2009-12-26 05:21:56')[0m
+  [4;35;1mSQL (47.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'dfw') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'dfw') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'dfw') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
+  [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (code = 'lgb') LIMIT 1[0m
+  [4;36;1mAirport Load (0.0ms)[0m   [0;1mSELECT * FROM `airports` WHERE (code = 'dfw') LIMIT 1[0m
