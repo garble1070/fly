@@ -11,6 +11,12 @@ class Plane < ActiveRecord::Base
   attr_reader :status_snapshot, :status_snapshot_time
   attr_reader :location_snapshot, :location_snapshot_time
   
+=begin
+  named_scope :airline_is, lambda{|airline_id| {
+    :conditions=>["airline_id = ?", airline_id]
+    }}
+=end
+  
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#
@@ -50,14 +56,16 @@ class Plane < ActiveRecord::Base
     return self
   end
   
-  # 
+  # Updates the "@location_snapshot" and "@location_snapshot_time" instance variables
+  # and returns itself (i.e. the plane object)
   def update_location
     @location_snapshot = current_location
     @location_snapshot_time = Time.now
     return self
   end
   
-  # 
+  # Updates all status and location instance variables and returns itself (i.e. 
+  # the plane object)
   def update_status_and_location
     update_status.update_location
   end
@@ -72,7 +80,8 @@ class Plane < ActiveRecord::Base
     end
   end
   
-  #
+  # Returns a flight object that represents the plane's last flight. If no flight has ever
+  # been created, returns nil.
   def most_recent_flight
     all_flights = Flight.plane_is(self.id).in_order_of_creation
     if all_flights.length > 0

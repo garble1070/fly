@@ -76,7 +76,14 @@ class Airline < ActiveRecord::Base
   def all_flights
     self.flights.in_order_of_creation 
   end
-  
+
+    # Returns an array of this airline's plane objects, updated with status and location
+  def all_planes
+    self.planes.collect do |plane_obj|
+      plane_obj.update_status_and_location
+    end
+  end
+
   #
   def satisfaction_rating_decrease(amount)
     if balance_adequate_for_transaction?(amount)
