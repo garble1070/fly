@@ -51,7 +51,7 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     assert_equal(@finished_plane.starting_pax_count,60000)
     assert_equal(@finished_plane.starting_miles_count,100000)
     assert_equal(@finished_plane.name,"City of Winterthur")
-    assert_equal(@finished_plane.avg_pax_load,@a330.avg_pax_load_default)
+    assert_equal(@finished_plane.avg_pax_count,@a330.avg_pax_count_default)
     assert_equal(@finished_plane.avg_speed_knots,@a330.avg_speed_knots_default)
     assert_equal(@finished_plane.range_miles,@a330.range_miles_default)
     assert_equal(@finished_plane.acquisition_cost,@a330.cost)

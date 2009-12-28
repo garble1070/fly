@@ -17,7 +17,7 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/quantities"
   require "quantity" #superclass
   require "distance_in_miles"
   require "duration_in_seconds"
-  require "number_of_passengers"
+  require "pax_count"
   require "starting_miles_count"
   require "starting_pax_count"
   

@@ -4,8 +4,8 @@ one:
   id: 1
   code: A330-3
   name: Airbus A330-300
-  avg_pax_load_default: 240
-  avg_pax_load_max: 300
+  avg_pax_count_default: 240
+  avg_pax_count_max: 300
   avg_speed_knots_default: 500
   avg_speed_knots_max: 600
   range_miles_default: 8200
@@ -17,8 +17,8 @@ two:
   id: 2
   code: B747-4e
   name: Boeing 747-400ER
-  avg_pax_load_default: 320
-  avg_pax_load_max: 400
+  avg_pax_count_default: 320
+  avg_pax_count_max: 400
   avg_speed_knots_default: 500
   avg_speed_knots_max: 550
   range_miles_default: 7200
@@ -30,8 +30,8 @@ three:
   id: 3
   code: SR22
   name: Cirrus SR22
-  avg_pax_load_default: 3
-  avg_pax_load_max: 4
+  avg_pax_count_default: 3
+  avg_pax_count_max: 4
   avg_speed_knots_default: 140
   avg_speed_knots_max: 160
   range_miles_default: 850

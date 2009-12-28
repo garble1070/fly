@@ -5,7 +5,7 @@ one:
   name: HB-IGC
   airline_id: 1
   aircrafttype_id: 1
-  avg_pax_load: 240
+  avg_pax_count: 240
   avg_speed_knots: 500
   range_miles: 8400
   starting_airport_code: ZRH
@@ -18,7 +18,7 @@ two:
   name: N967UA
   airline_id: 3
   aircrafttype_id: 2
-  avg_pax_load: 320
+  avg_pax_count: 320
   avg_speed_knots: 500
   range_miles: 7500
   starting_airport_code: IAD
@@ -31,7 +31,7 @@ three:
   name: N8507FW
   airline_id: 2
   aircrafttype_id: 3
-  avg_pax_load: 3
+  avg_pax_count: 3
   avg_speed_knots: 140
   range_miles: 900
   starting_airport_code: IAD

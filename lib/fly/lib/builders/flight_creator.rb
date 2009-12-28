@@ -49,6 +49,10 @@ class FlightCreator < Creator
     if param_classname_present?("TaxiDurationInSeconds")
       @new_item.taxi_duration         = param_by_classname("TaxiDurationInSeconds").in_seconds
     end
+    if param_classname_present?("PaxCount")  
+      @new_item.pax_count   = param_by_classname("PaxCount").pax_count
+    end
+
   end
   
 end

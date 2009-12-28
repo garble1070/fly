@@ -1,17 +1,17 @@
 # A class that allows the user to manage passenger counts easily
-class NumberOfPassengers < Quantity
+class PaxCount < Quantity
     
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#  
   
   # Returns the value from '@quantity'
-  def number_of_passengers
+  def pax_count
     @quantity
   end
   
   # Sets the value for '@quantity'
-  def number_of_passengers=(input)
+  def pax_count=(input)
     @quantity=input
   end
 end
