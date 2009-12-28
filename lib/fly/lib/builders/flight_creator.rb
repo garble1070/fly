@@ -30,6 +30,7 @@ class FlightCreator < Creator
   end  
   
   def insert_default_params_into_new_item_object
+    dep_airport = param_by_classname("DepartureAirport")
     @new_item.boarding_duration     = param_by_classname("Plane").aircrafttype.boarding_duration_default
     @new_item.taxi_duration         = dep_airport.taxi_duration_default
     @new_item.pax_count             = param_by_classname("Plane").avg_pax_count
