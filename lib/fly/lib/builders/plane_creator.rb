@@ -17,18 +17,18 @@ class PlaneCreator < Creator
     insert_optional_params_into_new_item_object
     return @new_item
   end
-
+  
   # Inserts required params into new item object
   def insert_required_params_into_new_item_object
     @new_item.airline_id             = param_by_classname("Airline").id
     @new_item.starting_airport_code  = param_by_classname("Airport").code
     @new_item.aircrafttype_id        = param_by_classname("Aircrafttype").id
-    @new_item.avg_pax_count           = param_by_classname("Aircrafttype").avg_pax_count_default
+    @new_item.avg_pax_count          = param_by_classname("Aircrafttype").avg_pax_count_default
     @new_item.avg_speed_knots        = param_by_classname("Aircrafttype").avg_speed_knots_default
     @new_item.range_miles            = param_by_classname("Aircrafttype").range_miles_default 
     @new_item.acquisition_cost       = param_by_classname("Aircrafttype").cost     
   end
-  
+    
   # Inserts optional params into new item object
   def insert_optional_params_into_new_item_object
     if param_classname_present?("String")
