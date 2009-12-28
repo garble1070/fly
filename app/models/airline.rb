@@ -84,7 +84,8 @@ class Airline < ActiveRecord::Base
     end
   end
 
-  #
+  # Reduces the satisfaction rating by the amount provided in the argument.  If the rating
+  # would drop below zero, the transaction is canceled and the method returns false
   def satisfaction_rating_decrease(amount)
     if balance_adequate_for_transaction?(amount)
       self.satisfaction_rating = satisfaction_rating - amount
@@ -94,13 +95,13 @@ class Airline < ActiveRecord::Base
     end
   end
   
-  #
+  # Increases the satisfaction rating by the amount provided in the argument.
   def satisfaction_rating_increase(amount)
     self.satisfaction_rating = satisfaction_rating + amount
     record_transaction
   end
   
-  #
+  # Checks to see if the balance is adequate; returns "true" or "false"
   def balance_adequate_for_transaction?(amount)
     if self.satisfaction_rating > amount
       return true
@@ -109,7 +110,7 @@ class Airline < ActiveRecord::Base
     end
   end
   
-  #
+  # Saves the airline object; returns "true" if the save is successful
   def record_transaction
     if self.save
       return true

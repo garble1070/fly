@@ -43,7 +43,7 @@ class Plane < ActiveRecord::Base
     self.airline.user.my_flc_account
   end
   
-  #Charges the cost of this aircrafttype to the plane's (new) owner.
+  # Charges the cost of this aircrafttype to the plane's (new) owner.
   def charge_cost_to_owners_account
     self.owners_flc_account.debit(self.aircrafttype.cost)
   end

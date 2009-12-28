@@ -86,7 +86,7 @@ class Flight < ActiveRecord::Base
     return self
   end
   
-  # 
+  # Returns a flight object with updated status and location instance variables
   def update_status_and_location
     update_status.update_location
   end
@@ -105,7 +105,7 @@ class Flight < ActiveRecord::Base
     end
   end
     
-  # 
+  # Returns a LatLng object representing the flight's current position in-flight.
   def inflight_position
     flight_distance = DistanceInMiles.new
     flight_distance.in_nautical_miles = time_since_takeoff.quo(3600) * plane.avg_speed_knots
@@ -114,7 +114,8 @@ class Flight < ActiveRecord::Base
     return dep_airport.endpoint(heading,flight_distance.in_miles)
   end
   
-  # 
+  # Returns a flight distance that is no longer than the total route length of the 
+  # flight
   def distance_capped_at_route_length(flight_distance)
     if flight_distance.in_miles > dep_airport.distance_from(arr_airport)
       flight_distance.in_miles = dep_airport.distance_from(arr_airport)
