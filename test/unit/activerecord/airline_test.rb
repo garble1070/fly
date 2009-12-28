@@ -116,4 +116,11 @@ class AirlineTest < ActiveSupport::TestCase
     assert all_flights[1].created_at < all_flights[2].created_at
   end
   
+  def test_all_planes
+    load_instance_vars
+    all_planes = @airline_3.all_planes
+    assert_equal(:arrived,all_planes[0].status_snapshot)
+    assert_equal(@dfw,all_planes[0].location_snapshot)
+  end
+  
 end
