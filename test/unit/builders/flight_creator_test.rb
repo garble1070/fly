@@ -18,12 +18,14 @@ class FlightCreatorTest < ActiveSupport::TestCase
     assert_equal(@new_flight.dep_airport,@lax)
     assert_equal(@new_flight.arr_airport,@zrh)
     assert_equal(240,@new_flight.pax_count)
+    assert_equal(120,@new_flight.payload_value_flc)
     
     @boarding = BoardingDurationInSeconds.new(15)
     @taxi = TaxiDurationInSeconds.new(45)
     @pax_count_200 = PaxCount.new(200)
+    @payload_value_flc_150 = PayloadValueFlc.new(150)
     
-    @fc << @boarding << @taxi << @arr_airport_iad << @pax_count_200
+    @fc << @boarding << @taxi << @arr_airport_iad << @pax_count_200 << @payload_value_flc_150
     @new_flight2 = @fc.manufacture
     @new_flight2.save
     assert @new_flight2.id > 0
@@ -34,6 +36,7 @@ class FlightCreatorTest < ActiveSupport::TestCase
     assert_equal(@new_flight2.dep_airport,@lax)
     assert_equal(@new_flight2.arr_airport,@iad)
     assert_equal(200,@new_flight2.pax_count)
+    assert_equal(150,@new_flight2.payload_value_flc)
   end
 end
   

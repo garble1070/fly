@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.integer  "range_miles_default"
     t.integer  "range_miles_max"
     t.float    "boarding_duration_default", :default => 0, :null => false
-    t.float  "cost", :default => 0.0, :null => false
+    t.float    "cost", :default => 0.0, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

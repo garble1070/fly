@@ -101,4 +101,23 @@ class FlightTest < ActiveSupport::TestCase
     assert_equal(:arrived,updated_flight.status_snapshot)
     assert_equal(@dfw,updated_flight.location_snapshot)
   end
+  
+  def test_pax_count_methods
+    load_instance_vars
+    assert_equal(240,@flight_220.pax_count)
+    @flight_220.increase_pax_count(20)
+    assert_equal(260,@flight_220.pax_count)
+    @flight_220.decrease_pax_count(30)
+    assert_equal(230,@flight_220.pax_count)
+  end
+
+  def test_payload_value_flc_methods
+    load_instance_vars
+    assert_equal(120,@flight_220.payload_value_flc)
+    @flight_220.increase_payload_value_flc(20)
+    assert_equal(140,@flight_220.payload_value_flc)
+    @flight_220.decrease_payload_value_flc(30)
+    assert_equal(110,@flight_220.payload_value_flc)
+  end
+
 end

@@ -104,7 +104,7 @@ class Flight < ActiveRecord::Base
       dep_airport
     end
   end
-    
+  
   # Returns a LatLng object representing the flight's current position in-flight.
   def inflight_position
     flight_distance = DistanceInMiles.new
@@ -123,5 +123,23 @@ class Flight < ActiveRecord::Base
     return flight_distance
   end
   
+  def method_missing(name, *args)
+    if name.to_s.slice(0,8) == "increase" || name.to_s.slice(0,8) == "decrease"
+      send_quantity_method(name,*args)
+    else
+      super(name,*args)
+    end
+  end
+  
+  def send_quantity_method(name,*args)
+    column_name = name.to_s.slice(9,50)
+    action_name = name.to_s.slice(0,8)
+    classname = column_name.camelize
+    quantity_obj = Module.const_get(classname).new(self.send(column_name))
+    setter_method_name = column_name + "="
+    quantity_obj.send(action_name,(args[0]))
+    self.send(setter_method_name,quantity_obj.quantity)
+    
+  end
   
 end

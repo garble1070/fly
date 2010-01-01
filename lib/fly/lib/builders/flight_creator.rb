@@ -34,6 +34,7 @@ class FlightCreator < Creator
     @new_item.boarding_duration     = param_by_classname("Plane").aircrafttype.boarding_duration_default
     @new_item.taxi_duration         = dep_airport.taxi_duration_default
     @new_item.pax_count             = param_by_classname("Plane").avg_pax_count
+    @new_item.payload_value_flc     = PAX_PAYLOAD_VALUE_FLC_DEFAULT * @new_item.pax_count
   end
   
   # Use plane info and route info to caluclate duration of flight
@@ -58,7 +59,9 @@ class FlightCreator < Creator
     if param_classname_present?("PaxCount")  
       @new_item.pax_count   = param_by_classname("PaxCount").pax_count
     end
-
+    if param_classname_present?("PayloadValueFlc")  
+      @new_item.payload_value_flc   = param_by_classname("PayloadValueFlc").payload_value_flc
+    end
   end
   
 end

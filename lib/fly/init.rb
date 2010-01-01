@@ -18,6 +18,7 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/quantities"
   require "distance_in_miles"
   require "duration_in_seconds"
   require "pax_count"
+  require "payload_value_flc"
   require "starting_miles_count"
   require "starting_pax_count"
   
