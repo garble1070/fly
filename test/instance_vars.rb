@@ -90,6 +90,7 @@ class ActiveSupport::TestCase
   
   def load_account_vars
     vars_add("@account_1",Account.find(1))
+    vars_add("@account_2",Account.find(2))
   end
   
   def load_plane_vars

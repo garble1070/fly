@@ -139,7 +139,20 @@ class Flight < ActiveRecord::Base
     setter_method_name = column_name + "="
     quantity_obj.send(action_name,(args[0]))
     self.send(setter_method_name,quantity_obj.quantity)
-    
   end
   
+  def complete
+    if self.update_status.status_snapshot == :arrived
+      execute_complete
+    end
+    return self
+  end
+  
+  def execute_complete
+    self.flight_completed_time = Time.now
+    self.save
+    self.update_status
+    account = self.plane.owners_flc_account
+    account.credit(self.payload_value_flc)
+  end
 end

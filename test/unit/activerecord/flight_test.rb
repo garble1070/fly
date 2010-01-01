@@ -119,5 +119,15 @@ class FlightTest < ActiveSupport::TestCase
     @flight_220.decrease_payload_value_flc(30)
     assert_equal(110,@flight_220.payload_value_flc)
   end
+  
+  def test_complete
+    load_instance_vars
+    assert_equal(:arrived,@flight_221.update_status.status_snapshot)
+    assert_equal(250.50,@account_2.balance)
+    @flight_221.complete
+    assert_equal(:completed,@flight_221.update_status.status_snapshot)
+    load_instance_vars
+    assert_equal(400.50,@account_2.balance)
+  end
 
 end
