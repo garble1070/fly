@@ -96,4 +96,10 @@ class QuantityTest < ActiveSupport::TestCase
     @miles.starting_miles_count = 75000
     assert_equal(75000,@miles.starting_miles_count)
   end
+  
+  def test_payload_value_flc
+    @payload_value_flc = PayloadValueFlc.new
+    @payload_value_flc.payload_value_flc = 20
+    assert_equal(20,@payload_value_flc.payload_value_flc)
+  end
 end
