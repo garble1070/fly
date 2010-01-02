@@ -143,16 +143,25 @@ class Flight < ActiveRecord::Base
   
   def complete
     if self.update_status.status_snapshot == :arrived
-      execute_complete
+      update_flight_completed_time
+      credit_account_for_completed_flight
+      update_status_and_location 
+      update_plane_status_and_location
     end
     return self
   end
   
-  def execute_complete
+  def update_flight_completed_time
     self.flight_completed_time = Time.now
     self.save
-    self.update_status
+  end
+  
+  def credit_account_for_completed_flight
     account = self.plane.owners_flc_account
     account.credit(self.payload_value_flc)
+  end
+
+  def update_plane_status_and_location
+    self.plane.update_status_and_location 
   end
 end

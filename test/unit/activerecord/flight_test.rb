@@ -125,7 +125,7 @@ class FlightTest < ActiveSupport::TestCase
     assert_equal(:arrived,@flight_221.update_status.status_snapshot)
     assert_equal(250.50,@account_2.balance)
     @flight_221.complete
-    assert_equal(:completed,@flight_221.update_status.status_snapshot)
+    assert_equal(:completed,@flight_221.status_snapshot)
     load_instance_vars
     assert_equal(400.50,@account_2.balance)
   end
