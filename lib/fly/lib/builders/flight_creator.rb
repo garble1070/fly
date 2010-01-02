@@ -29,12 +29,14 @@ class FlightCreator < Creator
     @new_item.inflight_duration     = calculate_inflight_duration
   end  
   
+  # Inserts default params into new item object
   def insert_default_params_into_new_item_object
     dep_airport = param_by_classname("DepartureAirport")
+    payload_value_obj = PayloadValueFlc.new_by_flight_creator_object(self)
     @new_item.boarding_duration     = param_by_classname("Plane").aircrafttype.boarding_duration_default
     @new_item.taxi_duration         = dep_airport.taxi_duration_default
     @new_item.pax_count             = param_by_classname("Plane").avg_pax_count
-    @new_item.payload_value_flc     = PAX_PAYLOAD_VALUE_FLC_DEFAULT * @new_item.pax_count
+    @new_item.payload_value_flc     = payload_value_obj.payload_value_flc
   end
   
   # Use plane info and route info to caluclate duration of flight

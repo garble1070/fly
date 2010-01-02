@@ -18,7 +18,7 @@ class FlightCreatorTest < ActiveSupport::TestCase
     assert_equal(@new_flight.dep_airport,@lax)
     assert_equal(@new_flight.arr_airport,@zrh)
     assert_equal(240,@new_flight.pax_count)
-    assert_equal(120,@new_flight.payload_value_flc)
+    assert_equal(45.47,@new_flight.payload_value_flc)
     
     @boarding = BoardingDurationInSeconds.new(15)
     @taxi = TaxiDurationInSeconds.new(45)
