@@ -139,4 +139,9 @@ class AirlineTest < ActiveSupport::TestCase
     assert_equal(4,@airline_3.flight_segment_tally)
   end
   
+  def test_my_account
+    load_instance_vars
+    assert_equal(@account_1,@airline_1.my_account)
+  end
+
 end

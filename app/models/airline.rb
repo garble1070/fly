@@ -87,6 +87,11 @@ class Airline < ActiveRecord::Base
     end
   end
 
+  # Returns the account that is ultimately responsible for this airline.
+  def my_account
+    self.user.my_account
+  end
+
   # Reduces the satisfaction rating by the amount provided in the argument.  If the rating
   # would drop below zero, the transaction is canceled and the method returns false
   def satisfaction_rating_decrease(amount)
