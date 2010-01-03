@@ -47,7 +47,21 @@ class PlaneTest < ActiveSupport::TestCase
     updated_plane = @new_plane.update_status_and_location
     assert_equal(:available,updated_plane.status_snapshot)
     assert_equal(@iad,updated_plane.location_snapshot)
-    
   end
   
+  def test_pax_count_tally
+    load_instance_vars
+    assert_equal(960,@plane_2.get_tally_by_column_name("pax_count"))
+  end
+
+  def test_flight_miles_tally
+    load_instance_vars
+    assert_equal(11405,@plane_2.get_tally_by_column_name("flight_miles"))
+  end
+
+  def test_flight_segment_tally
+    load_instance_vars
+    assert_equal(3,@plane_2.flight_segment_tally)
+  end
+
 end

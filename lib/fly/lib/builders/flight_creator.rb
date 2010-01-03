@@ -1,13 +1,16 @@
 # Used to create a flight using configuration objects
 class FlightCreator < Creator
-    
+  
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#  
   
   # Sets the instance variables '@required_param_types'
   def set_expected_param_types
-   @required_param_types = ["DepartureAirport","ArrivalAirport","Plane"]
+    @required_param_types = ["DepartureAirport","ArrivalAirport","Plane"]
+    @possible_param_types = @required_param_types.clone
+    @possible_param_types << "BoardingDurationInSeconds" << "TaxiDurationInSeconds"
+    @possible_param_types << "FlightMiles" << "PaxCount" << "PayloadValueFlc"
   end
   
   # Instantiates a new item object; inserts params; returns object
@@ -18,51 +21,56 @@ class FlightCreator < Creator
     insert_optional_params_into_new_item_object
     return @new_item
   end
-
+  
+    
   # Inserts required params into new item object
   def insert_required_params_into_new_item_object
-    dep_airport = param_by_classname("DepartureAirport")
-    arr_airport = param_by_classname("ArrivalAirport")
-    @new_item.plane_id              = param_by_classname("Plane").id
-    @new_item.dep_airport_code      = dep_airport.code
-    @new_item.arr_airport_code      = arr_airport.code
+    @new_item.plane_id              = plane.id
+    @new_item.dep_airport_code      = departure_airport.code
+    @new_item.arr_airport_code      = arrival_airport.code
     @new_item.inflight_duration     = calculate_inflight_duration
   end  
   
   # Inserts default params into new item object
   def insert_default_params_into_new_item_object
-    dep_airport = param_by_classname("DepartureAirport")
     payload_value_obj = PayloadValueFlc.new_by_flight_creator_object(self)
-    @new_item.boarding_duration     = param_by_classname("Plane").aircrafttype.boarding_duration_default
-    @new_item.taxi_duration         = dep_airport.taxi_duration_default
-    @new_item.pax_count             = param_by_classname("Plane").avg_pax_count
+    @new_item.boarding_duration     = plane.aircrafttype.boarding_duration_default
+    @new_item.taxi_duration         = departure_airport.taxi_duration_default
+    @new_item.flight_miles          = route_length_in_miles_not_rounded.to_int
+    @new_item.pax_count             = plane.avg_pax_count
     @new_item.payload_value_flc     = payload_value_obj.payload_value_flc
   end
   
   # Use plane info and route info to caluclate duration of flight
   def calculate_inflight_duration
-    dep_airport = param_by_classname("DepartureAirport")
-    arr_airport = param_by_classname("ArrivalAirport")
-    flight_distance = DistanceInMiles.new(dep_airport.distance_from(arr_airport))
+    flight_distance = DistanceInMiles.new(route_length_in_miles_not_rounded)
     distance_nautical_miles = flight_distance.in_nautical_miles
-    speed_knots = param_by_classname("Plane").avg_speed_knots
+    speed_knots = plane.avg_speed_knots
     output = distance_nautical_miles.quo(speed_knots) * 3600
     return output.to_int
   end
-
+  
+  # Returns an integer representing the route length in miles, rounded to 0 places.
+  def route_length_in_miles_not_rounded
+    departure_airport.distance_from(arrival_airport)
+  end
+  
   # Inserts optional params into new item object
   def insert_optional_params_into_new_item_object
-    if param_classname_present?("BoardingDurationInSeconds")
-      @new_item.boarding_duration     = param_by_classname("BoardingDurationInSeconds").in_seconds
+    if boarding_duration_in_seconds
+      @new_item.boarding_duration     = boarding_duration_in_seconds.quantity
     end
-    if param_classname_present?("TaxiDurationInSeconds")
-      @new_item.taxi_duration         = param_by_classname("TaxiDurationInSeconds").in_seconds
+    if taxi_duration_in_seconds
+      @new_item.taxi_duration         = taxi_duration_in_seconds.quantity
     end
-    if param_classname_present?("PaxCount")  
-      @new_item.pax_count   = param_by_classname("PaxCount").pax_count
+    if flight_miles 
+      @new_item.flight_miles   = flight_miles.quantity
     end
-    if param_classname_present?("PayloadValueFlc")  
-      @new_item.payload_value_flc   = param_by_classname("PayloadValueFlc").payload_value_flc
+    if pax_count 
+      @new_item.pax_count   = pax_count.quantity
+    end
+    if payload_value_flc
+      @new_item.payload_value_flc   = payload_value_flc.quantity
     end
   end
   
@@ -71,7 +79,7 @@ end
 # Subclasses 'Airport' to create a 'DepartureAirport' class
 class DepartureAirport < Airport
 end
- 
+
 # Subclasses 'Airport' to create a 'ArrivalAirport' class
 class ArrivalAirport < Airport
 end

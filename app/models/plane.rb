@@ -101,4 +101,17 @@ class Plane < ActiveRecord::Base
     end
   end
   
+  # Returns the total pax transported by this aircraft for all flights that exist
+    def get_tally_by_column_name(column_name)
+    output = 0
+    flights.each do |flight_obj|
+      output += flight_obj.send(column_name)
+    end
+    return output
+  end
+  
+  # Returns the total number of flights flown by this aircraft
+  def flight_segment_tally
+    flights.length
+  end
 end

@@ -107,22 +107,33 @@ class Flight < ActiveRecord::Base
   
   # Returns a LatLng object representing the flight's current position in-flight.
   def inflight_position
-    flight_distance = DistanceInMiles.new
-    flight_distance.in_nautical_miles = time_since_takeoff.quo(3600) * plane.avg_speed_knots
-    flight_distance = distance_capped_at_route_length(flight_distance)
+    flight_distance_obj = DistanceInMiles.new
+    flight_distance_obj.in_nautical_miles = time_since_takeoff.quo(3600) * plane.avg_speed_knots
+    flight_distance_obj = distance_capped_at_route_length(flight_distance_obj)
     heading = dep_airport.heading_to(arr_airport)
-    return dep_airport.endpoint(heading,flight_distance.in_miles)
+    return dep_airport.endpoint(heading,flight_distance_obj.in_miles)
   end
   
-  # Returns a flight distance that is no longer than the total route length of the 
-  # flight
-  def distance_capped_at_route_length(flight_distance)
-    if flight_distance.in_miles > dep_airport.distance_from(arr_airport)
-      flight_distance.in_miles = dep_airport.distance_from(arr_airport)
+  # Returns a DistanceInMiles object that is no longer than the total route length of 
+  # the flight
+  def distance_capped_at_route_length(distance_in_miles_obj)
+    if distance_in_miles_obj.in_miles > route_length_in_miles_as_integer
+      distance_in_miles_obj.in_miles = route_length_in_miles_as_integer
     end
-    return flight_distance
+    return distance_in_miles_obj
   end
   
+  # Returns an integer representing the route length in miles.
+  def route_length_in_miles_as_integer
+    dep_airport.distance_from(arr_airport).to_int
+  end
+  
+  # This method allows the user to call certain "magic" methods that relate to
+  # number-oriented database columns, i.e. "pax_count", "payload_value_flc", etc.
+  # Just call @instance.increase_pax_count(50) to up the pax count by 50.
+  # For this to work, a class PaxCount needs to exist that is a subclass of the
+  # Quantity class.
+  # TODO: This can probably be abstracted to ActiveRecord::Base
   def method_missing(name, *args)
     if name.to_s.slice(0,8) == "increase" || name.to_s.slice(0,8) == "decrease"
       send_quantity_method(name,*args)
@@ -131,6 +142,8 @@ class Flight < ActiveRecord::Base
     end
   end
   
+  # A method that performs the actions necessary for the "magic" increase and
+  # decrease methods outlined in "method_missing" above
   def send_quantity_method(name,*args)
     column_name = name.to_s.slice(9,50)
     action_name = name.to_s.slice(0,8)
@@ -141,27 +154,27 @@ class Flight < ActiveRecord::Base
     self.send(setter_method_name,quantity_obj.quantity)
   end
   
+  #
   def complete
     if self.update_status.status_snapshot == :arrived
       update_flight_completed_time
       credit_account_for_completed_flight
       update_status_and_location 
-      update_plane_status_and_location
+      self.plane.update_status_and_location 
     end
     return self
   end
   
+  #
   def update_flight_completed_time
     self.flight_completed_time = Time.now
     self.save
   end
   
+  #
   def credit_account_for_completed_flight
     account = self.plane.owners_flc_account
     account.credit(self.payload_value_flc)
   end
-
-  def update_plane_status_and_location
-    self.plane.update_status_and_location 
-  end
+  
 end

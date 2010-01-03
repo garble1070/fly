@@ -21,6 +21,7 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/quantities"
   require "payload_value_flc"
   require "starting_miles_count"
   require "starting_pax_count"
+  require "flight_miles"
   
 $:.unshift "#{File.dirname(__FILE__)}/lib/queries"
   require "query_collection" #superclass

@@ -19,6 +19,17 @@ class Creator
   # in the subclass
   def set_expected_param_types
     @required_param_types = []
+    @possible_param_types = []
+  end
+  
+  # Returns the param using its 'lowercase_' name as a method call
+  def method_missing(name, *args)
+    param_name = name.to_s.camelize
+    if @possible_param_types.include?(param_name)
+      param_by_classname(param_name)
+    else
+      super(name,*args)
+    end
   end
   
   # Stores the object in the '@config_params' hash

@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.float    "taxi_duration"
     t.float    "inflight_duration"
     t.datetime "flight_completed_time"
+    t.integer  "flight_miles"
     t.integer  "pax_count"
     t.float    "payload_value_flc"
     t.datetime "created_at"
