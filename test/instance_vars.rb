@@ -13,7 +13,7 @@ class ActiveSupport::TestCase
   # Returns an array of loader method names that will be called
   def loader_method_names
     ["country","aircrafttype","terminal","user","airline","currency",
-        "airport","flight","account","plane","quantity"]  
+        "airport","flight","account","plane","quantity","string"]  
   end
   
   # Sets each instance variable, as specified in the "@to_load" array
@@ -101,5 +101,9 @@ class ActiveSupport::TestCase
   def load_quantity_vars
     vars_add("@sixty_thousand_pax",StartingPaxCount.new(60000))
     vars_add("@one_hundred_k_miles",StartingMilesCount.new(100000))
+  end
+  
+  def load_string_vars
+    vars_add("@city_of_winterthur",Name.new("City of Winterthur"))    
   end
 end

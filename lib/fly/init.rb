@@ -11,6 +11,7 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/mapping"
   require "map_path"
   
 $:.unshift "#{File.dirname(__FILE__)}/lib/other"
+  require "flight_identifier"
   require "fly_error"
 
 $:.unshift "#{File.dirname(__FILE__)}/lib/quantities"

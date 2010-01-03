@@ -5,12 +5,12 @@ class FlightCreator < Creator
   #               INSTANCE METHODS               #
   #**********************************************#  
   
-  # Sets the instance variables '@required_param_types'
+  # Sets the instance variable '@required_param_types'
   def set_required_param_types
     @required_param_types = ["DepartureAirport","ArrivalAirport","Plane"]
   end
   
-  # Sets the instance variables '@optional_param_types'
+  # Sets the instance variable '@optional_param_types'
   def set_optional_param_types
     @optional_param_types = @required_param_types.clone
     @optional_param_types << "BoardingDurationInSeconds" << "TaxiDurationInSeconds"

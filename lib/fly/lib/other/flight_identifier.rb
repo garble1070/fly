@@ -1,0 +1,4 @@
+#
+class FlightIdentifier < String
+  
+end

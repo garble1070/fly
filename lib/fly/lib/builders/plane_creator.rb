@@ -5,15 +5,15 @@ class PlaneCreator < Creator
   #               INSTANCE METHODS               #
   #**********************************************#  
   
-  # Sets the instance variables '@required_param_types'
+  # Sets the instance variable '@required_param_types'
   def set_required_param_types
     @required_param_types = ["Aircrafttype","Airline","Airport"]
   end
   
-  # Sets the instance variables '@optional_param_types'
+  # Sets the instance variable '@optional_param_types'
   def set_optional_param_types
     @optional_param_types = @required_param_types.clone
-    @optional_param_types << "String" << "StartingPaxCount" << "StartingMilesCount"
+    @optional_param_types << "Name" << "StartingPaxCount" << "StartingMilesCount"
   end
   
   # Instantiates a new item object; inserts params; returns object
@@ -38,7 +38,7 @@ class PlaneCreator < Creator
   # Inserts optional params into new item object
   def insert_optional_params_into_new_item_object
     if string
-      @new_item.name                 = string
+      @new_item.name                 = name.to_s
     end
     if starting_pax_count
       @new_item.starting_pax_count   = starting_pax_count.quantity

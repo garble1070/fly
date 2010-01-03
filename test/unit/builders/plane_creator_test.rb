@@ -36,7 +36,7 @@ class PlaneCreatorTest < ActiveSupport::TestCase
     load_instance_vars
     
     config_params = [@airline_1,@a330,@lax, @sixty_thousand_pax, 
-                          @one_hundred_k_miles, "City of Winterthur"]
+                          @one_hundred_k_miles, @city_of_winterthur]
     @plane_creator = PlaneCreator.new(config_params)
     assert_not_nil(@plane_creator)
     assert_equal(@plane_creator.required_param_types_present?,true)
