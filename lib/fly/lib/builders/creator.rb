@@ -7,7 +7,8 @@ class Creator
   
   # Constructor; accepts optional array of config param objects
   def initialize(param_array=[])
-    set_expected_param_types
+    set_required_param_types
+    set_optional_param_types
     @config_params = {}
     param_array.each do |obj|
       insert_param_using_object(obj)
@@ -15,17 +16,22 @@ class Creator
     return self
   end
   
-  # Sets the instance variables '@required_param_types'.  Meant to be overwritten
+  # Sets the instance variable '@required_param_types'.  Meant to be overwritten
   # in the subclass
-  def set_expected_param_types
+  def set_required_param_types
     @required_param_types = []
-    @possible_param_types = []
   end
   
+  # Sets the instance variable '@optional_param_types'.  Meant to be overwritten
+  # in the subclass
+  def set_optional_param_types
+    @optional_param_types = []
+  end
+
   # Returns the param using its 'lowercase_' name as a method call
   def method_missing(name, *args)
     param_name = name.to_s.camelize
-    if @possible_param_types.include?(param_name)
+    if @optional_param_types.include?(param_name)
       param_by_classname(param_name)
     end
   end

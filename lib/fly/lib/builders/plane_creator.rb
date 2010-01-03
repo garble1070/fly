@@ -6,9 +6,13 @@ class PlaneCreator < Creator
   #**********************************************#  
   
   # Sets the instance variables '@required_param_types'
-  def set_expected_param_types
+  def set_required_param_types
     @required_param_types = ["Aircrafttype","Airline","Airport"]
-    @possible_param_types = @required_param_types.clone
+  end
+  
+  # Sets the instance variables '@optional_param_types'
+  def set_optional_param_types
+    @optional_param_types = @required_param_types.clone
     @possible_param_types << "String" << "StartingPaxCount" << "StartingMilesCount"
   end
   

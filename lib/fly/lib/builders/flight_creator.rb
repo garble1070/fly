@@ -6,13 +6,17 @@ class FlightCreator < Creator
   #**********************************************#  
   
   # Sets the instance variables '@required_param_types'
-  def set_expected_param_types
+  def set_required_param_types
     @required_param_types = ["DepartureAirport","ArrivalAirport","Plane"]
-    @possible_param_types = @required_param_types.clone
-    @possible_param_types << "BoardingDurationInSeconds" << "TaxiDurationInSeconds"
-    @possible_param_types << "FlightMiles" << "PaxCount" << "PayloadValueFlc"
   end
   
+  # Sets the instance variables '@optional_param_types'
+  def set_optional_param_types
+    @optional_param_types = @required_param_types.clone
+    @optional_param_types << "BoardingDurationInSeconds" << "TaxiDurationInSeconds"
+    @optional_param_types << "FlightMiles" << "PaxCount" << "PayloadValueFlc"
+  end
+
   # Instantiates a new item object; inserts params; returns object
   def generate_new_item_object
     @new_item = Flight.new
