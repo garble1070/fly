@@ -27,12 +27,37 @@ class Creator
   def set_optional_param_types
     @optional_param_types = []
   end
-
+  
   # Returns the param using its 'lowercase_' name as a method call
   def method_missing(name, *args)
     param_name = name.to_s.camelize
     if @optional_param_types.include?(param_name)
       param_by_classname(param_name)
+    end
+  end
+  
+  # Inserts optional params into new item object
+  def insert_optional_params_into_new_item_object(subclass_object)
+    @optional_param_types.each do |param_name|
+      method_name = "insert_param_based_on_"
+      method_name << Module.const_get(param_name).superclass.name.underscore
+      subclass_object.send(method_name,param_name.underscore)
+    end
+  end
+  
+  #
+  def insert_param_based_on_string(param_name)
+    setter_method = param_name + "="
+    if send(param_name)
+      @new_item.send(setter_method,send(param_name).to_s)
+    end
+  end
+  
+  #
+  def insert_param_based_on_quantity(param_name)
+    setter_method = param_name + "="
+    if send(param_name)
+      @new_item.send(setter_method,send(param_name).quantity)
     end
   end
   
@@ -118,10 +143,6 @@ class Creator
     FlyError::raise_superclass_error
   end
   
-  # Meant to be overridden
-  def insert_optional_params_into_new_item_object
-    FlyError::raise_superclass_error
-  end
   
 end
 

@@ -17,17 +17,17 @@ class FlightCreator < Creator
     @optional_param_types << "FlightMiles" << "PaxCount" << "PayloadValueFlc"
     @optional_param_types << "FlightIdentifier"
   end
-
+  
   # Instantiates a new item object; inserts params; returns object
   def generate_new_item_object
     @new_item = Flight.new
     insert_required_params_into_new_item_object
     insert_default_params_into_new_item_object
-    insert_optional_params_into_new_item_object
+    insert_optional_params_into_new_item_object(self)
     return @new_item
   end
   
-    
+  
   # Inserts required params into new item object
   def insert_required_params_into_new_item_object
     @new_item.plane_id              = plane.id
@@ -49,9 +49,9 @@ class FlightCreator < Creator
   
   #
   def generate_flight_identifier
-   output = plane.airline.short_code.upcase
-   output << random_four_digit_number_from_0001_to_1999
-   return output
+    output = plane.airline.short_code.upcase
+    output << random_four_digit_number_from_0001_to_1999
+    return output
   end
   
   #
@@ -76,34 +76,16 @@ class FlightCreator < Creator
     departure_airport.distance_from(arrival_airport)
   end
   
-  # Inserts optional params into new item object
-  def insert_optional_params_into_new_item_object
-    if boarding_duration_in_seconds
-      @new_item.boarding_duration_in_seconds     = boarding_duration_in_seconds.quantity
-    end
-    if taxi_duration_in_seconds
-      @new_item.taxi_duration_in_seconds         = taxi_duration_in_seconds.quantity
-    end
-    if flight_miles 
-      @new_item.flight_miles          = flight_miles.quantity
-    end
-    if pax_count 
-      @new_item.pax_count             = pax_count.quantity
-    end
-    if payload_value_flc
-      @new_item.payload_value_flc     = payload_value_flc.quantity
-    end
-    if flight_identifier
-      @new_item.flight_identifier     = flight_identifier.to_s
-    end
+  #
+  def insert_param_based_on_duration_in_seconds(param_name)
+    insert_param_based_on_quantity(param_name)
+  end
+end  
+  
+  # Subclasses 'Airport' to create a 'DepartureAirport' class
+  class DepartureAirport < Airport
   end
   
-end
-
-# Subclasses 'Airport' to create a 'DepartureAirport' class
-class DepartureAirport < Airport
-end
-
-# Subclasses 'Airport' to create a 'ArrivalAirport' class
-class ArrivalAirport < Airport
-end
+  # Subclasses 'Airport' to create a 'ArrivalAirport' class
+  class ArrivalAirport < Airport
+  end

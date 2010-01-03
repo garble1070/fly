@@ -20,7 +20,7 @@ class PlaneCreator < Creator
   def generate_new_item_object
     @new_item = Plane.new
     insert_required_params_into_new_item_object
-    insert_optional_params_into_new_item_object
+    insert_optional_params_into_new_item_object(self)
     return @new_item
   end
   
@@ -34,19 +34,6 @@ class PlaneCreator < Creator
     @new_item.range_miles            = aircrafttype.range_miles_default 
     @new_item.acquisition_cost       = aircrafttype.cost     
   end
-    
-  # Inserts optional params into new item object
-  def insert_optional_params_into_new_item_object
-    if name
-      @new_item.name                 = name.to_s
-    end
-    if starting_pax_count
-      @new_item.starting_pax_count   = starting_pax_count.quantity
-    end
-    if starting_miles_count
-      @new_item.starting_miles_count = starting_miles_count.quantity
-    end    
-  end
-  
+      
 end
 
