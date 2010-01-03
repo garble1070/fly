@@ -39,7 +39,7 @@ class Airline < ActiveRecord::Base
   # account. If charge goes through, and if the new plane record saves into the database, returns 
   # the updated item object. Otherwise, returns nil.
   def finalize_acquisition_and_save(item)
-    if item.charge_cost_to_owners_account && item.save 
+    if item.charge_cost_to_my_account && item.save 
       return item
     else
       return nil
