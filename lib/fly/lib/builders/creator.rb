@@ -40,9 +40,19 @@ class Creator
   def insert_optional_params_into_new_item_object(subclass_object)
     @optional_param_types.each do |param_name|
       method_name = "insert_param_based_on_"
-      method_name << Module.const_get(param_name).superclass.name.underscore
+      method_name << get_penultimate_superclass_from_camlized_string(param_name).underscore
       subclass_object.send(method_name,param_name.underscore)
     end
+  end
+  
+  #
+  def get_penultimate_superclass_from_camlized_string(param_name)
+    superclass = Module.const_get(param_name)
+    while superclass.name != "Object"
+      penultiamte_class = superclass
+      superclass = superclass.superclass
+    end
+    return penultiamte_class
   end
   
   #
@@ -60,13 +70,7 @@ class Creator
       @new_item.send(setter_method,send(param_name).quantity)
     end
   end
-  
-  #
-  def insert_param_based_on_duration_in_seconds(param_name)
-    insert_param_based_on_quantity(param_name)
-  end
-
-  
+    
   # Stores the object in the '@config_params' hash
   def insert_param_using_object(obj)
     key = generate_key_from_object(obj)
