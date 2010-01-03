@@ -4,24 +4,6 @@ class DurationInSecondsTest < ActiveSupport::TestCase
   
   def test_basics
     
-    a = DurationInSeconds.new(15)
-    assert_equal(a.in_seconds,15)
-    
-    a.increase(20)
-    assert_equal(a.in_seconds,35)
-    
-    b = a + 30
-    assert_equal(b.in_seconds,65)
-    
-    c = a + b
-    assert_equal(c.in_seconds,100)
-    
-    c.decrease(10)    
-    assert_equal(c.in_seconds,90)
-    
-    d = c - b
-    assert_equal(d.in_seconds,25)
-    
     e = DurationInSeconds.new(3600)
     assert_equal(e.in_seconds,3600)
     assert_equal(e.in_minutes,60)
