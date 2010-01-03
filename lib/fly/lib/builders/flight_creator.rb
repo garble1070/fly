@@ -15,6 +15,7 @@ class FlightCreator < Creator
     @optional_param_types = @required_param_types.clone
     @optional_param_types << "BoardingDurationInSeconds" << "TaxiDurationInSeconds"
     @optional_param_types << "FlightMiles" << "PaxCount" << "PayloadValueFlc"
+    @optional_param_types << "FlightIdentifier"
   end
 
   # Instantiates a new item object; inserts params; returns object
@@ -43,6 +44,22 @@ class FlightCreator < Creator
     @new_item.flight_miles          = route_length_in_miles_not_rounded.to_int
     @new_item.pax_count             = plane.avg_pax_count
     @new_item.payload_value_flc     = payload_value_obj.payload_value_flc
+    @new_item.flight_identifier     = generate_flight_identifier
+  end
+  
+  #
+  def generate_flight_identifier
+   output = plane.airline.short_code.upcase
+   output << random_four_digit_number_from_0001_to_1999
+   return output
+  end
+  
+  #
+  def random_four_digit_number_from_0001_to_1999
+    random_num = rand(2000)+ 1
+    string = "000" + random_num.to_s
+    output = string.slice(string.length-4,4)
+    return output
   end
   
   # Use plane info and route info to caluclate duration of flight
@@ -68,13 +85,16 @@ class FlightCreator < Creator
       @new_item.taxi_duration         = taxi_duration_in_seconds.quantity
     end
     if flight_miles 
-      @new_item.flight_miles   = flight_miles.quantity
+      @new_item.flight_miles          = flight_miles.quantity
     end
     if pax_count 
-      @new_item.pax_count   = pax_count.quantity
+      @new_item.pax_count             = pax_count.quantity
     end
     if payload_value_flc
-      @new_item.payload_value_flc   = payload_value_flc.quantity
+      @new_item.payload_value_flc     = payload_value_flc.quantity
+    end
+    if flight_identifier
+      @new_item.flight_identifier     = flight_identifier.to_s
     end
   end
   
