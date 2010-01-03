@@ -37,7 +37,7 @@ class PlaneCreator < Creator
     
   # Inserts optional params into new item object
   def insert_optional_params_into_new_item_object
-    if string
+    if name
       @new_item.name                 = name.to_s
     end
     if starting_pax_count
