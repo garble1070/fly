@@ -40,19 +40,19 @@ class Creator
   def insert_optional_params_into_new_item_object(subclass_object)
     @optional_param_types.each do |param_name|
       method_name = "insert_param_based_on_"
-      method_name << get_penultimate_superclass_from_camlized_string(param_name).underscore
+      method_name << get_penultimate_superclass_name_from_camlized_string(param_name).underscore
       subclass_object.send(method_name,param_name.underscore)
     end
   end
   
   #
-  def get_penultimate_superclass_from_camlized_string(param_name)
+  def get_penultimate_superclass_name_from_camlized_string(param_name)
     superclass = Module.const_get(param_name)
     while superclass.name != "Object"
       penultiamte_class = superclass
       superclass = superclass.superclass
     end
-    return penultiamte_class
+    return penultiamte_class.name
   end
   
   #
