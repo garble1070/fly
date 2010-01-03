@@ -13,7 +13,7 @@ class PlaneCreator < Creator
   # Sets the instance variables '@optional_param_types'
   def set_optional_param_types
     @optional_param_types = @required_param_types.clone
-    @possible_param_types << "String" << "StartingPaxCount" << "StartingMilesCount"
+    @optional_param_types << "String" << "StartingPaxCount" << "StartingMilesCount"
   end
   
   # Instantiates a new item object; inserts params; returns object
