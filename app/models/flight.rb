@@ -24,6 +24,9 @@ class Flight < ActiveRecord::Base
     :conditions=>["plane_id = ?", plane_id]
     }}
   
+  named_scope :flight_identifier_is , lambda{|flight_identifier| { :conditions => {:flight_identifier => flight_identifier}
+    }}
+
   named_scope :ops_airport_is, lambda{|airport| {
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
@@ -173,7 +176,7 @@ class Flight < ActiveRecord::Base
   
   #
   def credit_account_for_completed_flight
-    account = self.plane.owners_flc_account
+    account = self.plane.owners_account
     account.credit(self.payload_value_flc)
   end
   

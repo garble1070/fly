@@ -11,8 +11,8 @@ class UserTest < ActiveSupport::TestCase
     
     assert_equal(@account_1.user,@user_15)
     
-    assert_not_nil(@user_15.my_flc_account)
-    assert_equal(@user_15.my_flc_account.currency_code,"FLC")
+    assert_not_nil(@user_15.my_account)
+    assert_equal(@user_15.my_account.currency_code,"FLC")
   end
   
   def test_associations_with_airline_class

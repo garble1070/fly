@@ -10,4 +10,5 @@ module ApplicationHelper
   # Returns an integer representing the record ID if one is specified in the URL
   attr_reader :id
   
+  
 end

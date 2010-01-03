@@ -18,6 +18,9 @@ class Airline < ActiveRecord::Base
     :conditions=>["`terminals`.airport_code = ?", airport.code]
     }}
   
+  named_scope :short_code_is , lambda{|short_code| { :conditions => {:short_code => short_code}
+    }}
+
   validates_presence_of  :user_id
   
   #**********************************************#

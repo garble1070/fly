@@ -76,7 +76,7 @@ class User < ActiveRecord::Base
   end
   
   # Retrieves the account object associated with this user that is denominated in FLC
-  def my_flc_account
+  def my_account
     accounts.currency_is("flc")[0]
   end
 end
