@@ -176,7 +176,7 @@ class Flight < ActiveRecord::Base
   
   #
   def credit_account_for_completed_flight
-    account = self.plane.owners_account
+    account = self.plane.my_account
     account.credit(self.payload_value_flc)
   end
   

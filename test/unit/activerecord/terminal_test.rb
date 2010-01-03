@@ -12,15 +12,15 @@ class TerminalTest < ActiveSupport::TestCase
     assert_equal(@airline_2,@terminal_6.airline)
   end
   
-  def test_owners_account
+  def test_my_account
     load_instance_vars
-    assert_equal(@account_1,@terminal_1.owners_account)
+    assert_equal(@account_1,@terminal_1.my_account)
   end
   
-  def test_charge_cost_to_owners_account
+  def test_charge_cost_to_my_account
     load_instance_vars
     assert_equal(300.50,@account_1.balance)
-    @terminal_1.charge_cost_to_owners_account
+    @terminal_1.charge_cost_to_my_account
     load_instance_vars
     assert_equal(200.50,@account_1.balance)
   end

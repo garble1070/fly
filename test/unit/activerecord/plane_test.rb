@@ -27,7 +27,7 @@ class PlaneTest < ActiveSupport::TestCase
   
   def test_account
     load_instance_vars
-    assert_equal(@plane_1.owners_account,@account_1)
+    assert_equal(@plane_1.my_account,@account_1)
   end
   
   def test_update_status_and_location

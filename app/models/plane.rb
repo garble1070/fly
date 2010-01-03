@@ -39,13 +39,13 @@ class Plane < ActiveRecord::Base
   end
   
   # Returns the account that is ultimately responsible for this plane.
-  def owners_account
+  def my_account
     self.airline.user.my_account
   end
   
   # Charges the cost of this aircrafttype to the plane's (new) owner.
-  def charge_cost_to_owners_account
-    self.owners_account.debit(self.aircrafttype.cost)
+  def charge_cost_to_my_account
+    self.my_account.debit(self.aircrafttype.cost)
   end
   
   # Updates the current status and stores it in the "@status_snapshot" instance
