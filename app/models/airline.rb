@@ -119,6 +119,20 @@ class Airline < ActiveRecord::Base
     end   
   end
   
+  # Returns the total quantity of <some quantity class> transported by this airline for 
+  # all flights that exist
+    def get_tally_by_flight_column_name(column_name)
+    output = 0
+    all_flights.each do |flight_obj|
+      output += flight_obj.send(column_name)
+    end
+    return output
+  end
+  
+  # Returns the total number of flights flown by this airline
+  def flight_segment_tally
+    all_flights.length
+  end
 
 
 

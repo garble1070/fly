@@ -39,3 +39,15 @@ three:
   starting_miles_count: 0
   acquisition_cost: 50.0
 
+four:
+  id: 4
+  name: N133UA
+  airline_id: 3
+  aircrafttype_id: 1
+  avg_pax_count: 240
+  avg_speed_knots: 500
+  range_miles: 8400
+  starting_airport_code: IAD
+  starting_pax_count: 0
+  starting_miles_count: 0.0
+  acquisition_cost: 150.0
