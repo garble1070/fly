@@ -61,6 +61,12 @@ class Creator
     end
   end
   
+  #
+  def insert_param_based_on_duration_in_seconds(param_name)
+    insert_param_based_on_quantity(param_name)
+  end
+
+  
   # Stores the object in the '@config_params' hash
   def insert_param_using_object(obj)
     key = generate_key_from_object(obj)

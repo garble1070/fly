@@ -75,17 +75,13 @@ class FlightCreator < Creator
   def route_length_in_miles_not_rounded
     departure_airport.distance_from(arrival_airport)
   end
-  
-  #
-  def insert_param_based_on_duration_in_seconds(param_name)
-    insert_param_based_on_quantity(param_name)
-  end
-end  
-  
-  # Subclasses 'Airport' to create a 'DepartureAirport' class
-  class DepartureAirport < Airport
-  end
-  
-  # Subclasses 'Airport' to create a 'ArrivalAirport' class
-  class ArrivalAirport < Airport
-  end
+end
+
+
+# Subclasses 'Airport' to create a 'DepartureAirport' class
+class DepartureAirport < Airport
+end
+
+# Subclasses 'Airport' to create a 'ArrivalAirport' class
+class ArrivalAirport < Airport
+end
