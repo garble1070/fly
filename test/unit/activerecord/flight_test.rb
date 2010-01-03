@@ -10,9 +10,9 @@ class FlightTest < ActiveSupport::TestCase
   def flight_timing_test_basics
     load_instance_vars
     @flight_221.boarding_start_time = nil
-    @flight_221.boarding_duration = 1200
-    @flight_221.taxi_duration = 1200
-    @flight_221.inflight_duration = 7627
+    @flight_221.boarding_duration_in_seconds = 1200
+    @flight_221.taxi_duration_in_seconds = 1200
+    @flight_221.inflight_duration_in_seconds = 7627
     @flight_221.flight_completed_time = nil
   end
   

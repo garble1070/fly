@@ -57,9 +57,9 @@ class Flight < ActiveRecord::Base
     case
       when flight_completed_time then :completed
       when !boarding_start_time then :assigned_to_route
-      when time_since_takeoff >= inflight_duration then :arrived
-      when time_since_taxi_start >= taxi_duration then :in_flight
-      when time_since_boarding_start >= boarding_duration then :departed_gate
+      when time_since_takeoff >= inflight_duration_in_seconds then :arrived
+      when time_since_taxi_start >= taxi_duration_in_seconds then :in_flight
+      when time_since_boarding_start >= boarding_duration_in_seconds then :departed_gate
       when Time.new >= boarding_start_time then :boarding
     else
     :scheduled
@@ -73,12 +73,12 @@ class Flight < ActiveRecord::Base
   
   # Returns an integer representing the duration since the flight began taxiing
   def time_since_taxi_start
-   (Time.new - boarding_start_time - boarding_duration).to_int
+   (Time.new - boarding_start_time - boarding_duration_in_seconds).to_int
   end
   
   # Returns an integer representing the duration since the flight took off
   def time_since_takeoff
-   (Time.new - boarding_start_time - boarding_duration - taxi_duration).to_int
+   (Time.new - boarding_start_time - boarding_duration_in_seconds - taxi_duration_in_seconds).to_int
   end
   
   # Updates the current status and stores it in the "@status_snapshot" instance
@@ -99,9 +99,9 @@ class Flight < ActiveRecord::Base
     case
       when flight_completed_time then arr_airport
       when !boarding_start_time then dep_airport
-      when time_since_takeoff >= inflight_duration then arr_airport
-      when time_since_taxi_start >= taxi_duration then inflight_position
-      when time_since_boarding_start >= boarding_duration then dep_airport.latlng
+      when time_since_takeoff >= inflight_duration_in_seconds then arr_airport
+      when time_since_taxi_start >= taxi_duration_in_seconds then inflight_position
+      when time_since_boarding_start >= boarding_duration_in_seconds then dep_airport.latlng
       when Time.new >= boarding_start_time then dep_airport
     else
       dep_airport

@@ -33,14 +33,14 @@ class FlightCreator < Creator
     @new_item.plane_id              = plane.id
     @new_item.dep_airport_code      = departure_airport.code
     @new_item.arr_airport_code      = arrival_airport.code
-    @new_item.inflight_duration     = calculate_inflight_duration
+    @new_item.inflight_duration_in_seconds     = calculate_inflight_duration
   end  
   
   # Inserts default params into new item object
   def insert_default_params_into_new_item_object
     payload_value_obj = PayloadValueFlc.new_by_flight_creator_object(self)
-    @new_item.boarding_duration     = plane.aircrafttype.boarding_duration_default
-    @new_item.taxi_duration         = departure_airport.taxi_duration_default
+    @new_item.boarding_duration_in_seconds     = plane.aircrafttype.boarding_duration_default
+    @new_item.taxi_duration_in_seconds         = departure_airport.taxi_duration_default
     @new_item.flight_miles          = route_length_in_miles_not_rounded.to_int
     @new_item.pax_count             = plane.avg_pax_count
     @new_item.payload_value_flc     = payload_value_obj.payload_value_flc
@@ -79,10 +79,10 @@ class FlightCreator < Creator
   # Inserts optional params into new item object
   def insert_optional_params_into_new_item_object
     if boarding_duration_in_seconds
-      @new_item.boarding_duration     = boarding_duration_in_seconds.quantity
+      @new_item.boarding_duration_in_seconds     = boarding_duration_in_seconds.quantity
     end
     if taxi_duration_in_seconds
-      @new_item.taxi_duration         = taxi_duration_in_seconds.quantity
+      @new_item.taxi_duration_in_seconds         = taxi_duration_in_seconds.quantity
     end
     if flight_miles 
       @new_item.flight_miles          = flight_miles.quantity

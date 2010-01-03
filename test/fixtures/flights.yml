@@ -7,9 +7,9 @@ one:
   arr_airport_code: jfk
   flight_identifier: LX0041
   boarding_start_time: 2009-12-02 20:55:04
-  boarding_duration: 60
-  taxi_duration: 65
-  inflight_duration: 19800
+  boarding_duration_in_seconds: 60
+  taxi_duration_in_seconds: 65
+  inflight_duration_in_seconds: 19800
   flight_completed_time: 2009-12-03 01:55:04
   flight_miles: 2582
   pax_count: 240
@@ -23,9 +23,9 @@ two:
   arr_airport_code: dfw
   flight_identifier: UA1217
   boarding_start_time: 2009-12-02 20:55:04
-  boarding_duration: 60
-  taxi_duration: 65
-  inflight_duration: 7200
+  boarding_duration_in_seconds: 60
+  taxi_duration_in_seconds: 65
+  inflight_duration_in_seconds: 7200
   flight_completed_time: 
   flight_miles: 1219
   pax_count: 320
@@ -39,9 +39,9 @@ three:
   arr_airport_code: zrh
   flight_identifier: UA0967
   boarding_start_time: 2009-12-02 20:55:04
-  boarding_duration: 60
-  taxi_duration: 65
-  inflight_duration: 24000
+  boarding_duration_in_seconds: 60
+  taxi_duration_in_seconds: 65
+  inflight_duration_in_seconds: 24000
   flight_completed_time: 2009-12-03 01:55:04
   flight_miles: 5930
   pax_count: 320
@@ -55,9 +55,9 @@ four:
   arr_airport_code: muc
   flight_identifier: UA0923
   boarding_start_time: 2009-12-02 20:55:04
-  boarding_duration: 60
-  taxi_duration: 65
-  inflight_duration: 18000
+  boarding_duration_in_seconds: 60
+  taxi_duration_in_seconds: 65
+  inflight_duration_in_seconds: 18000
   flight_completed_time: 2009-12-03 01:55:04
   flight_miles: 4256
   pax_count: 320
@@ -71,9 +71,9 @@ five:
   arr_airport_code: jfk
   flight_identifier: UA2716
   boarding_start_time: 2009-12-02 20:55:04
-  boarding_duration: 60
-  taxi_duration: 65
-  inflight_duration: 19800
+  boarding_duration_in_seconds: 60
+  taxi_duration_in_seconds: 65
+  inflight_duration_in_seconds: 19800
   flight_completed_time: 2009-12-03 01:55:04
   flight_miles: 2582
   pax_count: 240

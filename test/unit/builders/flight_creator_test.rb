@@ -12,9 +12,9 @@ class FlightCreatorTest < ActiveSupport::TestCase
     @new_flight.save
     assert @new_flight.id > 0
     
-    assert_equal(60,@new_flight.boarding_duration)
-    assert_equal(70,@new_flight.taxi_duration)
-    assert_equal(37100,@new_flight.inflight_duration.to_int)
+    assert_equal(60,@new_flight.boarding_duration_in_seconds)
+    assert_equal(70,@new_flight.taxi_duration_in_seconds)
+    assert_equal(37100,@new_flight.inflight_duration_in_seconds.to_int)
     assert_equal(@lax,@new_flight.dep_airport)
     assert_equal(@zrh,@new_flight.arr_airport)
     assert_equal(5930,@new_flight.flight_miles)
@@ -37,9 +37,9 @@ class FlightCreatorTest < ActiveSupport::TestCase
     @new_flight2.save
     assert @new_flight2.id > 0
     
-    assert_equal(@new_flight2.boarding_duration,15)
-    assert_equal(@new_flight2.taxi_duration,45)
-    assert_equal(@new_flight2.inflight_duration.to_int,14296)
+    assert_equal(@new_flight2.boarding_duration_in_seconds,15)
+    assert_equal(@new_flight2.taxi_duration_in_seconds,45)
+    assert_equal(@new_flight2.inflight_duration_in_seconds.to_int,14296)
     assert_equal(@new_flight2.dep_airport,@lax)
     assert_equal(@new_flight2.arr_airport,@iad)
     assert_equal(200,@new_flight2.pax_count)
