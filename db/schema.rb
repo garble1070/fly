@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
   create_table "airlines", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
+    t.string   "short_code", :limit => 2
     t.string   "country_code",                 :limit => 2
     t.float    "satisfaction_rating",                       :default => 0.0, :null => false
     t.string   "home_airport_code_game"
@@ -89,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.integer  "plane_id"
     t.string   "dep_airport_code"
     t.string   "arr_airport_code"
+    t.string   "flight_identifier", :limit => 6
     t.datetime "boarding_start_time"
     t.float    "boarding_duration"
     t.float    "taxi_duration"

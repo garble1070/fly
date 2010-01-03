@@ -3,6 +3,7 @@
 one:
   id: 1
   name: Swiss Int'l Air Lines
+  short_code: LX
   country_code: CH
   user_id: 15
   satisfaction_rating: 9.0
@@ -11,6 +12,7 @@ one:
 two:
   id: 2
   name: Lufthansa
+  short_code: LH
   country_code: DE
   user_id: 16
   satisfaction_rating: 3.5
@@ -19,9 +21,18 @@ two:
 three:
   id: 3
   name: United Airlines
+  short_code: UA
   country_code: US
   user_id: 17
   satisfaction_rating: 3.5
   home_airport_code_game: IAD
 
+four:
+  id: 4
+  name: Northwest Airlines
+  short_code: NW
+  country_code: US
+  user_id: 18
+  satisfaction_rating: 9
+  home_airport_code_game: JFK
   

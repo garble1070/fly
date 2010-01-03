@@ -17,3 +17,9 @@ three:
   user_id: 17
   currency_code: USD
   balance: 20.50
+
+four:
+  id: 4
+  user_id: 18
+  currency_code: FLC
+  balance: 200
