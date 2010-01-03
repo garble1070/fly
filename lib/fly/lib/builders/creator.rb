@@ -27,8 +27,6 @@ class Creator
     param_name = name.to_s.camelize
     if @possible_param_types.include?(param_name)
       param_by_classname(param_name)
-    else
-      super(name,*args)
     end
   end
   
