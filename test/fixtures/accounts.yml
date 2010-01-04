@@ -23,3 +23,9 @@ four:
   user_id: 18
   currency_code: FLC
   balance: 200
+
+five:
+  id: 5
+  user_id: 16
+  currency_code: FLC
+  balance: 200
