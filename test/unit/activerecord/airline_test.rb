@@ -126,12 +126,12 @@ class AirlineTest < ActiveSupport::TestCase
   
   def test_pax_count_tally
     load_instance_vars
-    assert_equal(1200,@airline_3.get_tally_by_flight_column_name("pax_count"))
+    assert_equal(1200,@airline_3.pax_count_tally)
   end
 
   def test_flight_miles_tally
     load_instance_vars
-    assert_equal(13987,@airline_3.get_tally_by_flight_column_name("flight_miles"))
+    assert_equal(13987,@airline_3.flight_miles_tally)
   end
 
   def test_flight_segment_tally
