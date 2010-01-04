@@ -11,9 +11,11 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/mapping"
   require "map_path"
   
 $:.unshift "#{File.dirname(__FILE__)}/lib/other"
+  require "arrival_airport"
+  require "departure_airport"
   require "flight_identifier"
-  require "name"
   require "fly_error"
+  require "name"
 
 $:.unshift "#{File.dirname(__FILE__)}/lib/quantities"
   require "quantity" #superclass

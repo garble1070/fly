@@ -28,7 +28,8 @@ class Creator
     @optional_param_types = []
   end
   
-  # Returns the param using its 'lowercase_' name as a method call
+  # Returns the param using its underscore-formatted name (i.e. "@instance.my_param")
+  # as a method call
   def method_missing(name, *args)
     param_name = name.to_s.camelize
     if @optional_param_types.include?(param_name)
@@ -36,18 +37,18 @@ class Creator
     end
   end
   
-  # Inserts optional params into new item object
+  # Triggers insertion of optional params into a new item object
   def insert_optional_params_into_new_item_object(subclass_object)
     @optional_param_types.each do |param_name|
       method_name = "insert_param_based_on_"
-      method_name << get_penultimate_superclass_name_from_camelized_string(param_name).underscore
+      method_name << get_penultimate_superclass_name_from_string(param_name).underscore
       subclass_object.send(method_name,param_name.underscore)
     end
   end
   
   # Returns a string representing the name of the top-level class (below "Object" level)
   # that is the ultimate parent of the classname provided by argument.
-  def get_penultimate_superclass_name_from_camelized_string(param_name)
+  def get_penultimate_superclass_name_from_string(param_name)
     superclass_constant = Module.const_get(param_name)
     while superclass_constant.name != "Object"
       penultiamte_class = superclass_constant
@@ -56,41 +57,28 @@ class Creator
     return penultiamte_class.name
   end
   
-  # 
+  # Executes insertion of optional params into a new item object. Used in cases where the
+  # param in question descends from the "String" class
   def insert_param_based_on_string(param_name)
-    insert_generic_method(param_name,"to_s")
+    insert_param_method_generic(param_name,"to_s")
   end
   
-  # 
+  # Executes insertion of optional params into a new item object. Used in cases where the
+  # param in question descends from the "Quantity" class
   def insert_param_based_on_quantity(param_name)
-    insert_generic_method(param_name,"quantity")
+    insert_param_method_generic(param_name,"quantity")
   end
 
-  def insert_generic_method(param_name,method_name)
+  # Takes the name of the parameter to insert and the name of the method to call against that 
+  # parameter. When executed, sets the attribute of @new_item with the same name as the param 
+  # class.
+  def insert_param_method_generic(param_name,method_name)
     setter_method = param_name + "="
     if send(param_name)
       @new_item.send(setter_method,send(param_name).send(method_name))
     end
   end
-  
-=begin
-  # 
-  def insert_param_based_on_string(param_name)
-    setter_method = param_name + "="
-    if send(param_name)
-      @new_item.send(setter_method,send(param_name).to_s)
-    end
-  end
-  
-  #
-  def insert_param_based_on_quantity(param_name)
-    setter_method = param_name + "="
-    if send(param_name)
-      @new_item.send(setter_method,send(param_name).quantity)
-    end
-  end
-=end
-  
+    
   # Stores the object in the '@config_params' hash
   def insert_param_using_object(obj)
     key = generate_key_from_object(obj)
