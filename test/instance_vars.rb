@@ -86,6 +86,7 @@ class ActiveSupport::TestCase
     vars_add("@flight_220",Flight.find(220))
     vars_add("@flight_221",Flight.find(221))
     vars_add("@flight_222",Flight.find(222))
+    vars_add("@flight_223",Flight.find(223))
   end
   
   def load_account_vars
