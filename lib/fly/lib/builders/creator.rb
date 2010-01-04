@@ -58,6 +58,24 @@ class Creator
   
   # 
   def insert_param_based_on_string(param_name)
+    insert_generic_method(param_name,"to_s")
+  end
+  
+  # 
+  def insert_param_based_on_quantity(param_name)
+    insert_generic_method(param_name,"quantity")
+  end
+
+  def insert_generic_method(param_name,method_name)
+    setter_method = param_name + "="
+    if send(param_name)
+      @new_item.send(setter_method,send(param_name).send(method_name))
+    end
+  end
+  
+=begin
+  # 
+  def insert_param_based_on_string(param_name)
     setter_method = param_name + "="
     if send(param_name)
       @new_item.send(setter_method,send(param_name).to_s)
@@ -71,7 +89,8 @@ class Creator
       @new_item.send(setter_method,send(param_name).quantity)
     end
   end
-    
+=end
+  
   # Stores the object in the '@config_params' hash
   def insert_param_using_object(obj)
     key = generate_key_from_object(obj)
