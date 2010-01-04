@@ -40,22 +40,23 @@ class Creator
   def insert_optional_params_into_new_item_object(subclass_object)
     @optional_param_types.each do |param_name|
       method_name = "insert_param_based_on_"
-      method_name << get_penultimate_superclass_name_from_camlized_string(param_name).underscore
+      method_name << get_penultimate_superclass_name_from_camelized_string(param_name).underscore
       subclass_object.send(method_name,param_name.underscore)
     end
   end
   
-  #
-  def get_penultimate_superclass_name_from_camlized_string(param_name)
-    superclass = Module.const_get(param_name)
-    while superclass.name != "Object"
-      penultiamte_class = superclass
-      superclass = superclass.superclass
+  # Returns a string representing the name of the top-level class (below "Object" level)
+  # that is the ultimate parent of the classname provided by argument.
+  def get_penultimate_superclass_name_from_camelized_string(param_name)
+    superclass_constant = Module.const_get(param_name)
+    while superclass_constant.name != "Object"
+      penultiamte_class = superclass_constant
+      superclass_constant = superclass_constant.superclass
     end
     return penultiamte_class.name
   end
   
-  #
+  # 
   def insert_param_based_on_string(param_name)
     setter_method = param_name + "="
     if send(param_name)
