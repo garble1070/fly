@@ -1,7 +1,42 @@
 #
-class CommandLineReport
+class CL
+  require "highline/import"
   
+  class << self
+    
+    
+    def method_missing(name, *args)
+      if methods.include?(name.to_s)
+        super(name,*args)
+      else
+        instance = look_for_airline_short_code_and_create_instance(name, *args)
+        instance.main_menu
+      end
+    end
+    
+    def look_for_airline_short_code_and_create_instance(name, *args)
+      results = Airline.short_code_is(name.to_s)
+      if results.length > 0
+        CL.new(results[0])
+      end
+    end
+    
+  end
   #
+  
+  def main_menu
+    say("\nWelcome to the Fly NextGen game!\n")
+    loop do
+      choose do |menu|
+        menu.prompt = "\nWhat would you like to do?"
+        
+        menu.choice("see overview of your airline and account.") { self.output }
+        menu.choice("schedule a flight.") { say("ok\n") }
+        menu.choice("quit program.") { exit }
+      end
+    end
+  end
+  
   def initialize(airline_obj)
     @airline = airline_obj  
     @items_to_update = ["my_account","all_planes","active_flights","ops_airports"]
@@ -23,9 +58,9 @@ class CommandLineReport
     output_ops_airports
     output_active_flights
     output_activity_to_date
-    14.times {output_blank_line}; :ok
+    10.times {output_blank_line}; :ok
   end
-
+  
   def output_account_balance
     output = "ACCOUNT BALANCE:  ".ljust(18) + @my_account.balance.to_s
     puts output
@@ -75,7 +110,7 @@ class CommandLineReport
   
   #
   def output_blank_line
-    puts " "
+    say("\n")
   end
   
 end
