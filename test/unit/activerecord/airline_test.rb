@@ -144,4 +144,8 @@ class AirlineTest < ActiveSupport::TestCase
     assert_equal(@account_1,@airline_1.my_account)
   end
 
+  def test_method_missing_class_method
+    load_instance_vars
+    assert_equal(@airline_3,Airline.UA)
+  end
 end

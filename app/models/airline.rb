@@ -20,8 +20,34 @@ class Airline < ActiveRecord::Base
   
   named_scope :short_code_is , lambda{|short_code| { :conditions => {:short_code => short_code}
     }}
-
+  
   validates_presence_of  :user_id
+  
+  
+   
+  #**********************************************#
+  #            CLASS INSTANCE METHODS            #
+  #**********************************************#
+  
+  class << self
+    
+    def method_missing(name, *args)
+      if methods.include?(name.to_s)
+        super(name,*args)
+      else
+        look_for_airline_short_code(name, *args)
+      end
+    end
+    
+    def look_for_airline_short_code(name, *args)
+      results = Airline.short_code_is(name.to_s)
+      if results.length > 0
+        results[0]
+      end
+    end
+    
+  end
+  
   
   #**********************************************#
   #               INSTANCE METHODS               #
@@ -79,19 +105,19 @@ class Airline < ActiveRecord::Base
   def all_flights
     self.flights.in_order_of_creation 
   end
-
-    # Returns an array of this airline's plane objects, updated with status and location
+  
+  # Returns an array of this airline's plane objects, updated with status and location
   def all_planes
     self.planes.collect do |plane_obj|
       plane_obj.update_status_and_location
     end
   end
-
+  
   # Returns the account that is ultimately responsible for this airline.
   def my_account
     self.user.my_account
   end
-
+  
   # Reduces the satisfaction rating by the amount provided in the argument.  If the rating
   # would drop below zero, the transaction is canceled and the method returns false
   def satisfaction_rating_decrease(amount)
@@ -129,7 +155,7 @@ class Airline < ActiveRecord::Base
   
   # Returns the total quantity of <some quantity class> transported by this airline for 
   # all flights that exist
-    def get_tally_by_flight_column_name(column_name)
+  def get_tally_by_flight_column_name(column_name)
     output = 0
     all_flights.each do |flight_obj|
       output += flight_obj.send(column_name)
@@ -141,8 +167,15 @@ class Airline < ActiveRecord::Base
   def flight_segment_tally
     all_flights.length
   end
-
-
-
   
+  # Returns the total number of passengers flown by this airline
+  def pax_count_tally
+    get_tally_by_flight_column_name("pax_count")
+  end  
+  
+  # Returns the total number of miles flown by this airline
+  def flight_miles_tally
+    get_tally_by_flight_column_name("flight_miles")
+  end  
+
 end

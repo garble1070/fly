@@ -130,4 +130,8 @@ class FlightTest < ActiveSupport::TestCase
     assert_equal(400.50,@account_2.balance)
   end
 
+  def test_method_missing_class_method
+    load_instance_vars
+    assert_equal(@flight_223,Flight.UA0923)
+  end
 end

@@ -26,7 +26,7 @@ class Flight < ActiveRecord::Base
   
   named_scope :flight_identifier_is , lambda{|flight_identifier| { :conditions => {:flight_identifier => flight_identifier}
     }}
-
+  
   named_scope :ops_airport_is, lambda{|airport| {
     :select=>"`airlines`.*",
     :joins=>"INNER JOIN `terminals` on `airlines`.id = `terminals`.airline_id",
@@ -39,6 +39,28 @@ class Flight < ActiveRecord::Base
   
   attr_reader :status_snapshot, :status_snapshot_time
   attr_reader :location_snapshot, :location_snapshot_time
+  
+   
+  #**********************************************#
+  #            CLASS INSTANCE METHODS            #
+  #**********************************************#
+  
+  class << self
+    def method_missing(name, *args)
+      if methods.include?(name.to_s)
+        super(name,*args)
+      else
+        look_for_flight_identifier(name, *args)
+      end
+    end
+    
+    def look_for_flight_identifier(name, *args)
+      results = Flight.flight_identifier_is(name.to_s)
+      if results.length > 0
+        results[0]
+      end
+    end
+  end
   
   #**********************************************#
   #               INSTANCE METHODS               #
