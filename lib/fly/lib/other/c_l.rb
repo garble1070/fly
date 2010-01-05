@@ -25,16 +25,29 @@ class CL
   #
   
   def main_menu
-    say("\n<%= color('Welcome to the Fly NextGen game!', :yellow ) %> \n")
+    set_up_color_scheme
+    say("\n<%= color('Welcome to the Fly NextGen game!', :headline ) %> \n")
     loop do
       choose do |menu|
-        menu.prompt = "\n<%= color('What would you like to do?', :green )"
+        menu.prompt = "What would you like to do?"
         
         menu.choice("see overview of your airline and account.") { self.output }
         menu.choice("schedule a flight.") { say("ok\n") }
         menu.choice("quit program.") { exit }
       end
     end
+  end
+  
+  def set_up_color_scheme
+    ft = HighLine::ColorScheme.new do |cs|
+      cs[:headline]        = [ :bold, :yellow, :on_black ]
+      cs[:horizontal_line] = [ :bold, :white, :on_blue]
+      cs[:even_row]        = [ :green ]
+      cs[:odd_row]         = [ :magenta ]
+    end
+    
+    # Assign that color scheme to HighLine...
+    HighLine.color_scheme = ft
   end
   
   def initialize(airline_obj)
