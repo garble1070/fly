@@ -9,13 +9,13 @@ class CL
       if methods.include?(name.to_s)
         super(name,*args)
       else
-        instance = look_for_airline_short_code_and_create_instance(name, *args)
+        instance = look_for_user_firstname_and_create_instance(name, *args)
         instance.main_menu
       end
     end
     
-    def look_for_airline_short_code_and_create_instance(name, *args)
-      results = Airline.short_code_is(name.to_s)
+    def look_for_user_firstname_and_create_instance(name, *args)
+      results = User.first_name_is(name.to_s)
       if results.length > 0
         CL.new(results[0])
       end
@@ -41,18 +41,17 @@ class CL
   
   def set_up_color_scheme
     ft = HighLine::ColorScheme.new do |cs|
-      cs[:headline]        = [ :bold, :yellow, :on_black ]
-      cs[:horizontal_line] = [ :bold, :white]
-      cs[:even_row]        = [ :bold, :green ]
-      cs[:odd_row]         = [ :bold, :magenta ]
+      cs[:headline]        = [ :bold, :yellow ]
+      cs[:horizontal_line] = [ :bold, :white ]
     end
     
     # Assign that color scheme to HighLine...
     HighLine.color_scheme = ft
   end
   
-  def initialize(airline_obj)
-    @airline = airline_obj  
+  def initialize(user_obj)
+    @user = user_obj  
+    @airline = @user.my_airline
     @items_to_update = ["my_account","all_planes","active_flights","ops_airports"]
     @items_to_update.concat(["flight_segment_tally","pax_count_tally","flight_miles_tally"])
     update

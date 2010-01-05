@@ -41,9 +41,7 @@ class Airline < ActiveRecord::Base
     
     def look_for_airline_short_code(name, *args)
       results = Airline.short_code_is(name.to_s)
-      if results.length > 0
-        results[0]
-      end
+      results.first
     end
     
   end

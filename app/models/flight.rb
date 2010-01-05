@@ -56,9 +56,7 @@ class Flight < ActiveRecord::Base
     
     def look_for_flight_identifier(name, *args)
       results = Flight.flight_identifier_is(name.to_s)
-      if results.length > 0
-        results[0]
-      end
+      results.first
     end
   end
   

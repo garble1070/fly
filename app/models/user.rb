@@ -31,6 +31,10 @@ class User < ActiveRecord::Base
            :conditions => "status = 'pending'", 
            :order => :created_at
     
+  
+  named_scope :first_name_is , lambda{|first_name| { :conditions => {:first_name => first_name}
+    }}
+    
   validates_presence_of     :email
   validates_presence_of     :password,                   :if => :password_required?
   validates_presence_of     :password_confirmation,      :if => :password_required?
@@ -72,11 +76,11 @@ class User < ActiveRecord::Base
   # Retrieves the airline object associated with this user (there is only one for now but the
   # data model allows more)
   def my_airline
-    airlines[0]
+    airlines.first
   end
   
   # Retrieves the account object associated with this user that is denominated in FLC
   def my_account
-    accounts.currency_is("flc")[0]
+    accounts.currency_is("flc").first
   end
 end

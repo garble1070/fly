@@ -16,6 +16,7 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/other"
   require "departure_airport"
   require "flight_identifier"
   require "fly_error"
+  require "login"
   require "name"
 
 $:.unshift "#{File.dirname(__FILE__)}/lib/quantities"

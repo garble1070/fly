@@ -12,8 +12,8 @@ class Country < ActiveRecord::Base
 
     # Returns a country object based on its code (passed as a string by argument)
     def find(*args)
-      if args[0].is_a?(String)
-        find(:first, :conditions => "code = '#{args[0]}'")
+      if args.first.is_a?(String)
+        find(:first, :conditions => "code = '#{args.first}'")
       else
         super(*args)
       end
