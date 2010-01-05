@@ -25,7 +25,7 @@ class CL
   #
   
   def main_menu
-    say("\nWelcome to the Fly NextGen game!\n")
+    say("\n<%= color('Welcome to the Fly NextGen game!', :red )=>\n")
     loop do
       choose do |menu|
         menu.prompt = "\nWhat would you like to do?"
