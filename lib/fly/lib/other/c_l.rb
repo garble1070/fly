@@ -2,32 +2,67 @@
 class CL
   require "highline/import"
   
+  #**********************************************#
+  #            CLASS INSTANCE METHODS            #
+  #**********************************************#
+  
   class << self
     
-    
+    #
     def method_missing(name, *args)
       if methods.include?(name.to_s)
         super(name,*args)
       else
-        instance = look_for_user_firstname_and_create_instance(name, *args)
-        instance.main_menu
+        start_shell(name, *args)
       end
     end
     
-    def look_for_user_firstname_and_create_instance(name, *args)
+    #
+    def start_shell(name, *args)
+      set_up_color_scheme
       results = User.first_name_is(name.to_s)
-      if results.length > 0
-        CL.new(results[0])
+      if results.first
+        CL.new(results.first).main_menu
+      else
+        say_error("Sorry, that username is not valid.")
+        return :try_again
       end
+    end
+        
+    #
+    def set_up_color_scheme
+      HighLine.color_scheme = HighLine::ColorScheme.new do |cs|
+        cs[:notice]          = [ :bold, :green ]
+        cs[:error]           = [ :bold, :red ]
+      end
+    end
+    
+    #
+    def say_notice(string)
+      say("\n<%= color('#{string}', :notice ) %>\n")
+    end
+    
+    #
+    def say_error(string)
+      say("\n<%= color('#{string}', :error ) %>\n")
     end
     
   end
-  #
+  
+  
+  #**********************************************#
+  #               INSTANCE METHODS               #
+  #**********************************************#
+  
+  def method_missing(name,*args)
+    if name.to_s.slice(0,3) == "say"
+      self.class.send(name,*args)
+    end
+  end
   
   def main_menu
-    set_up_color_scheme
     17.times {output_blank_line}
-    say("\n<%= color('Welcome to the Fly NextGen game!', :headline ) %> \n")
+    say_notice("Welcome to the Fly NextGen game!")
     loop do
       choose do |menu|
         menu.prompt = "\nWhat would you like to do?\n"
@@ -39,15 +74,6 @@ class CL
     end
   end
   
-  def set_up_color_scheme
-    ft = HighLine::ColorScheme.new do |cs|
-      cs[:headline]        = [ :bold, :yellow ]
-      cs[:horizontal_line] = [ :bold, :white ]
-    end
-    
-    # Assign that color scheme to HighLine...
-    HighLine.color_scheme = ft
-  end
   
   def initialize(user_obj)
     @user = user_obj  
