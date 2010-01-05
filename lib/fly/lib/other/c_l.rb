@@ -25,10 +25,10 @@ class CL
   #
   
   def main_menu
-    say("\n<%= color('Welcome to the Fly NextGen game!', :red ) %> \n")
+    say("\n<%= color('Welcome to the Fly NextGen game!', :yellow ) %> \n")
     loop do
       choose do |menu|
-        menu.prompt = "\nWhat would you like to do?"
+        menu.prompt = "\n<%= color('What would you like to do?', :green )"
         
         menu.choice("see overview of your airline and account.") { self.output }
         menu.choice("schedule a flight.") { say("ok\n") }
