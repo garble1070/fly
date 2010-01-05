@@ -12,15 +12,10 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/mapping"
   
 $:.unshift "#{File.dirname(__FILE__)}/lib/other"
   require "arrival_airport"
-  require "c_l"
-  require "c_l_with_color"
-  require "c_l_no_color"
   require "departure_airport"
   require "flight_identifier"
   require "fly_error"
-  require "login"
   require "name"
-  require "n_c_login"
 
 $:.unshift "#{File.dirname(__FILE__)}/lib/quantities"
   require "quantity" #superclass
@@ -42,4 +37,11 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/routing"
   require "flight_plan"
   require "flight_segment"
   require "segment_series"
+
+$:.unshift "#{File.dirname(__FILE__)}/lib/shell"
+  require "c_l"
+  require "c_l_with_color"
+  require "c_l_no_color"
+  require "login"
+  require "n_c_login"
 
