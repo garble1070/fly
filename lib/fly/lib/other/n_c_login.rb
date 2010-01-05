@@ -1,6 +1,6 @@
 #
-class Login
+class NCLogin
   def self.method_missing(name, *args)
-    CLWithColor.start_shell(name)
+    CLNoColor.start_shell(name)
   end
 end
