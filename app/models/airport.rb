@@ -58,9 +58,10 @@ class Airport < ActiveRecord::Base
       end
     end
     
-    # Retrieve the airport object from the code
+    # Retrieve the airport object from the code. (Reminder that this has to work for subclasses
+    # too ... thus using 'self' instead of 'Airport').
     def get_airport_from_code(symbol)
-      results = Airport.code_is(symbol.to_s)
+      results = self.code_is(symbol.to_s)
       results.first
     end
     
