@@ -16,10 +16,13 @@ class CLTest < ActiveSupport::TestCase
     assert_equal("\nHello World!\n", output)
   end
   
+=begin
   def test_launch_main_menu_routine
     assert_raise(RuntimeError) { CL.launch_main_menu_routine(nil) }
   end
-  
+=end
+
+=begin
   def test_instance_method_missing
     load_instance_vars
     output = capture_stdout do 
@@ -27,6 +30,7 @@ class CLTest < ActiveSupport::TestCase
     end
     assert_equal("\nHello World!\n", output)
   end
+=end
   
   def test_class_method_missing
     output = capture_stdout do 

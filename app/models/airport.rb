@@ -43,13 +43,6 @@ class Airport < ActiveRecord::Base
   
   validates_presence_of     :code
   
-  #**********************************************#
-  #            CLASS INSTANCE METHODS            #
-  #**********************************************#
-  
-  class << self
-    
-  end
   
   #**********************************************#
   #               INSTANCE METHODS               #

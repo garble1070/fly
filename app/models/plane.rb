@@ -10,13 +10,7 @@ class Plane < ActiveRecord::Base
   
   attr_reader :status_snapshot, :status_snapshot_time
   attr_reader :location_snapshot, :location_snapshot_time
-  
-=begin
-  named_scope :airline_is, lambda{|airline_id| {
-    :conditions=>["airline_id = ?", airline_id]
-    }}
-=end
-  
+    
   #**********************************************#
   #               INSTANCE METHODS               #
   #**********************************************#

@@ -8,11 +8,6 @@ class CLWithColor < CL
   
   class << self
     
-    # Instantiates a new object and calls the "main_menu" method
-    def launch_main_menu_routine(user_obj)
-        CLWithColor.new(user_obj).main_menu
-    end
-    
     # Establishes the ANSI presentation parameters for this session
     def set_up_color_scheme
       HighLine.color_scheme = HighLine::ColorScheme.new do |cs|
