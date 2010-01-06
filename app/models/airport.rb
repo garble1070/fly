@@ -60,7 +60,7 @@ class Airport < ActiveRecord::Base
     
     # Retrieve the airport object from the code
     def get_airport_from_code(string)
-      results = Airport.short_code_is(string.to_s)
+      results = Airport.code_is(string.to_s)
       results.first
     end
     
