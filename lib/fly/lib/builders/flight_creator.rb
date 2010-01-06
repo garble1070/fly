@@ -44,11 +44,11 @@ class FlightCreator < Creator
     @new_item.flight_miles          = route_length_in_miles_not_rounded.to_int
     @new_item.pax_count             = plane.avg_pax_count
     @new_item.payload_value_flc     = payload_value_obj.payload_value_flc
-    @new_item.flight_identifier     = generate_flight_identifier
+    @new_item.code     = generate_flight_code
   end
   
   #
-  def generate_flight_identifier
+  def generate_flight_code
     output = plane.airline.code.upcase
     output << random_four_digit_number_from_0001_to_1999
     return output
