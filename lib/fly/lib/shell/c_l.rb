@@ -8,17 +8,8 @@ class CL
   
   class << self
     
-    # Triggers the "setup_shell" method, unless the method name exists already
-    def method_missing(name, *args)
-      if methods.include?(name.to_s)
-        super(name,*args)
-      else
-        setup_shell(name)
-      end
-    end
-    
     # Sets the color scheme (if needed) and retrieves a User object
-    def setup_shell(name)
+    def method_missing(name, *args)
       set_up_color_scheme
       user_obj = User.first_name_is(name.to_s).first
       attempt_to_launch_shell(user_obj)
