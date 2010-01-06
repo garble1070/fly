@@ -33,8 +33,8 @@ class Plane < ActiveRecord::Base
   # Returns an array of parameters that can be used to manufacture a new flight object
   def generate_param_array_from_airport_objects(dep_airport_obj, arr_airport_obj)
     param_array = [self]
-    param_array << DepartureAirport.find(dep_airport_obj.code)
-    param_array << ArrivalAirport.find(arr_airport_obj.code)
+    param_array << DepartureAirport.send(dep_airport_obj.code)
+    param_array << ArrivalAirport.send(arr_airport_obj.code)
     return param_array
   end
   
