@@ -51,6 +51,35 @@ module ActiveRecord
           raise ArgumentError.new("Argument class mismatch for #{object.to_s}.")
         end
       end
+      
+      alias :old_method_missing :method_missing
+      
+      def method_missing(name,*args)
+        if self.new.attributes.has_key?("code")
+          find_item_when_method_missing(name,*args)
+        else
+          old_method_missing(name,*args)
+        end
+      end
+      
+      
+    # Try to find an object using the code; if not, pass it on
+    def find_item_when_method_missing(name, *args)
+      item = get_item_from_code(name)
+      if item
+        item
+      else
+        old_method_missing(name,*args)
+      end
+    end
+    
+    # Retrieve the object using the code. 
+    def get_item_from_code(symbol)
+      results = self.code_is(symbol.to_s)
+      results.first
+    end
+      
+      
     end
     
     
