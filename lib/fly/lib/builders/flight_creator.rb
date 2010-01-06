@@ -15,7 +15,7 @@ class FlightCreator < Creator
     @optional_param_types = @required_param_types.clone
     @optional_param_types << "BoardingDurationInSeconds" << "TaxiDurationInSeconds"
     @optional_param_types << "FlightMiles" << "PaxCount" << "PayloadValueFlc"
-    @optional_param_types << "FlightIdentifier"
+    @optional_param_types << "Code"
   end
   
   # Instantiates a new item object; inserts params; returns object
