@@ -24,7 +24,7 @@ class Flight < ActiveRecord::Base
     :conditions=>["plane_id = ?", plane.id]
     }}
   
-  named_scope :flight_identifier_is , lambda{|flight_identifier| { :conditions => {:flight_identifier => flight_identifier}
+  named_scope :code_is , lambda{|code| { :conditions => {:code => code}
     }}
   
   named_scope :ops_airport_is, lambda{|airport| {
@@ -46,18 +46,6 @@ class Flight < ActiveRecord::Base
   #**********************************************#
   
   class << self
-    def method_missing(name, *args)
-      if methods.include?(name.to_s)
-        super(name,*args)
-      else
-        look_for_flight_identifier(name, *args)
-      end
-    end
-    
-    def look_for_flight_identifier(name, *args)
-      results = Flight.flight_identifier_is(name.to_s)
-      results.first
-    end
   end
   
   #**********************************************#

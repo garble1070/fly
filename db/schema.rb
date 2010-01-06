@@ -90,7 +90,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
     t.integer  "plane_id"
     t.string   "dep_airport_code"
     t.string   "arr_airport_code"
-    t.string   "flight_identifier", :limit => 6
+    t.string   "code", :limit => 6
     t.datetime "boarding_start_time"
     t.float    "boarding_duration_in_seconds"
     t.float    "taxi_duration_in_seconds"
