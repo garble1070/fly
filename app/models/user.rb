@@ -81,6 +81,6 @@ class User < ActiveRecord::Base
   
   # Retrieves the account object associated with this user that is denominated in FLC
   def my_account
-    accounts.currency_is("flc").first
+    accounts.currency_code_is("flc").first
   end
 end

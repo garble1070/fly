@@ -36,8 +36,8 @@ class ActiveSupport::TestCase
   end
   
   def load_country_vars
-    vars_add("@us",Country.find("US"))
-    vars_add("@ch",Country.find("CH"))    
+    vars_add("@us",Country.US)
+    vars_add("@ch",Country.CH)    
   end
   
   def load_aircrafttype_vars
@@ -59,7 +59,7 @@ class ActiveSupport::TestCase
   end
   
   def load_currency_vars
-    vars_add("@flc",Currency.find("FLC"))
+    vars_add("@flc",Currency.FLC)
   end
   
   def load_airport_vars

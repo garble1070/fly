@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(:version => 20091209053835) do
   create_table "airlines", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
-    t.string   "short_code", :limit => 2
+    t.string   "code", :limit => 2
     t.string   "country_code",                 :limit => 2
     t.float    "satisfaction_rating",                       :default => 0.0, :null => false
     t.string   "home_airport_code_game"

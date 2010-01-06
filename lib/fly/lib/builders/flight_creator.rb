@@ -49,7 +49,7 @@ class FlightCreator < Creator
   
   #
   def generate_flight_identifier
-    output = plane.airline.short_code.upcase
+    output = plane.airline.code.upcase
     output << random_four_digit_number_from_0001_to_1999
     return output
   end

@@ -44,23 +44,21 @@ class Airport < ActiveRecord::Base
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
-  
- 
+
   class << self
     
-    # Try to find the airport object using the code; if not, pass on to ActiveRecord::Base
+    # Try to find an object using the code; if not, pass on to ActiveRecord::Base
     def method_missing(name, *args)
-      airport = get_airport_from_code(name)
-      if airport
-        airport
+      item = get_item_from_code(name)
+      if item
+        item
       else
         super(name,*args)
       end
     end
     
-    # Retrieve the airport object from the code. (Reminder that this has to work for subclasses
-    # too ... thus using 'self' instead of 'Airport').
-    def get_airport_from_code(symbol)
+    # Retrieve the object using the code. 
+    def get_item_from_code(symbol)
       results = self.code_is(symbol.to_s)
       results.first
     end

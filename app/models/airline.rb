@@ -18,7 +18,7 @@ class Airline < ActiveRecord::Base
     :conditions=>["`terminals`.airport_code = ?", airport.code]
     }}
   
-  named_scope :short_code_is , lambda{|short_code| { :conditions => {:short_code => short_code}
+  named_scope :code_is , lambda{|code| { :conditions => {:code => code}
     }}
   
   validates_presence_of  :user_id
@@ -31,19 +31,19 @@ class Airline < ActiveRecord::Base
   
   class << self
     
-    # Try to find the airline object using the short code; if not, pass on to ActiveRecord::Base
+    # Try to find an object using the code; if not, pass on to ActiveRecord::Base
     def method_missing(name, *args)
-      airline = get_airline_from_short_code(name)
-      if airline
-        airline
+      item = get_item_from_code(name)
+      if item
+        item
       else
         super(name,*args)
       end
     end
     
-    # Retrieve the airline object from the short code
-    def get_airline_from_short_code(symbol)
-      results = Airline.short_code_is(symbol.to_s)
+    # Retrieve the object using the code. 
+    def get_item_from_code(symbol)
+      results = self.code_is(symbol.to_s)
       results.first
     end
     

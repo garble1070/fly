@@ -3,7 +3,7 @@ class Account < ActiveRecord::Base
   belongs_to :user
   belongs_to :currency, :foreign_key => "currency_code" 
   
-  named_scope :currency_is , lambda{|currency_code| { :conditions => {:currency_code => currency_code}
+  named_scope :currency_code_is , lambda{|currency_code| { :conditions => {:currency_code => currency_code}
     }}
   
    validates_presence_of     :currency_code

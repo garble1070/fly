@@ -83,7 +83,7 @@ class Plane < ActiveRecord::Base
   # Returns a flight object that represents the plane's last flight. If no flight has ever
   # been created, returns nil.
   def most_recent_flight
-    all_flights = Flight.plane_is(self.id).in_order_of_creation
+    all_flights = Flight.plane_is(self).in_order_of_creation
     if all_flights.length > 0
       return all_flights.last.update_status_and_location
     else
