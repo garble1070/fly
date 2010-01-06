@@ -10,7 +10,7 @@ class CLWithColor < CL
     
     # Instantiates a new object and calls the "main_menu" method
     def launch_main_menu_routine(user_obj)
-        CLNoColor.new(user_obj).main_menu
+        CLWithColor.new(user_obj).main_menu
     end
     
     # Establishes the ANSI presentation parameters for this session
