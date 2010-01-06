@@ -2,14 +2,14 @@ module ActiveRecord
   class Base
     named_scope :ordered_by, lambda { |s| { :order => s } }
     named_scope :has_link, lambda { |x_model,x| {:conditions => { "#{x_model}_id" => x }}}
-
+    
     plugins_base_url = File::join RAILS_ROOT, "vendor", "plugins"
     geokit_init_file = File::join plugins_base_url, "geokit", "init"
     geokit_rails_init_file = File::join plugins_base_url, "geokit-rails", "init"
-
+    
     require geokit_init_file
     require geokit_rails_init_file
-
+    
     #**********************************************#
     #            CLASS INSTANCE METHODS            #
     #**********************************************#
@@ -54,6 +54,8 @@ module ActiveRecord
       
       alias :old_method_missing :method_missing
       
+      # Looks for the "code" database column in the ActiveRecord table in order to automate
+      # code-based record retrieval
       def method_missing(name,*args)
         if self.new.attributes.has_key?("code")
           find_item_when_method_missing(name,*args)
@@ -63,21 +65,21 @@ module ActiveRecord
       end
       
       
-    # Try to find an object using the code; if not, pass it on
-    def find_item_when_method_missing(name, *args)
-      item = get_item_from_code(name)
-      if item
-        item
-      else
-        old_method_missing(name,*args)
+      # Try to find an object using the code; if not, pass it to the default method_missing
+      def find_item_when_method_missing(name, *args)
+        item = get_item_from_code(name)
+        if item
+          item
+        else
+          old_method_missing(name,*args)
+        end
       end
-    end
-    
-    # Retrieve the object using the code. 
-    def get_item_from_code(symbol)
-      results = self.code_is(symbol.to_s)
-      results.first
-    end
+      
+      # Retrieve the object using the code. 
+      def get_item_from_code(symbol)
+        results = self.code_is(symbol.to_s)
+        results.first
+      end
       
       
     end

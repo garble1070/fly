@@ -11,7 +11,9 @@ class Airport < ActiveRecord::Base
       :foreign_key => "home_airport_code_game",
       :primary_key => "code"
   
-  belongs_to :country, :foreign_key => "country_code"
+  belongs_to :country, 
+      :foreign_key => "country_code", 
+      :primary_key => "code"
   
   has_many :terminals, 
      :foreign_key => "airport_code", 
@@ -36,15 +38,15 @@ class Airport < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
     }}
   
-    named_scope :code_is , lambda{|code| { :conditions => {:code => code}
+  named_scope :code_is , lambda{|code| { :conditions => {:code => code}
     }}
-
+  
   validates_presence_of     :code
   
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
-
+  
   class << self
     
   end

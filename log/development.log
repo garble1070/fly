@@ -22885,3 +22885,21 @@ Completed in 125ms (View: 95, DB: 15) | 200 OK [http://flynextgennow.com/users/1
   [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
   [4;36;1mAirport Columns (16.0ms)[0m   [0;1mSHOW FIELDS FROM `airports`[0m
   [4;35;1mAirport Load (0.0ms)[0m   [0mSELECT * FROM `airports` WHERE (`airports`.`code` = 'lax') LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mCurrency Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `currencies`[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`code` = 'flc') LIMIT 1[0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`code` = 'flc') LIMIT 1[0m
+  [4;35;1mAccount Load (15.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.currency_code = 'FLC') [0m
+  [4;36;1mAccount Columns (0.0ms)[0m   [0;1mSHOW FIELDS FROM `accounts`[0m
+  [4;35;1mAccount Load (0.0ms)[0m   [0mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;36;1mAccount Load (16.0ms)[0m   [0;1mSELECT * FROM `accounts` WHERE (`accounts`.`id` = 1) [0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`id` = 0) [0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` LIMIT 1[0m
+  [4;35;1mAccount Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `accounts`[0m
+  [4;36;1mAccount Load (0.0ms)[0m   [0;1mSELECT * FROM `accounts` LIMIT 1[0m
+  [4;35;1mCurrency Columns (0.0ms)[0m   [0mSHOW FIELDS FROM `currencies`[0m
+  [4;36;1mCurrency Load (0.0ms)[0m   [0;1mSELECT * FROM `currencies` WHERE (`currencies`.`code` = 'find_by_code') LIMIT 1[0m
+  [4;35;1mCurrency Load (0.0ms)[0m   [0mSELECT * FROM `currencies` WHERE (`currencies`.`code` = 'FLC') LIMIT 1[0m

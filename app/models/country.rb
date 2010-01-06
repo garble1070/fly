@@ -7,17 +7,4 @@ class Country < ActiveRecord::Base
     named_scope :code_is , lambda{|code| { :conditions => {:code => code}
     }}
 
-  #**********************************************#
-  #            CLASS INSTANCE METHODS            #
-  #**********************************************#
-
-  class << self
- 
-  end
-  
-  
-  #**********************************************#
-  #               INSTANCE METHODS               #
-  #**********************************************#
-
 end

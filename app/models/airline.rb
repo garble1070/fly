@@ -1,7 +1,9 @@
 # An airline, can be only owned by one user at a time.
 class Airline < ActiveRecord::Base
   belongs_to :user
-  belongs_to :country, :foreign_key => "country_code"
+  belongs_to :country, 
+      :foreign_key => "country_code", 
+      :primary_key => "code"
   has_many :planes
   has_many :terminals
   has_many :flights, :through => :planes
@@ -23,15 +25,6 @@ class Airline < ActiveRecord::Base
   
   validates_presence_of  :user_id
   
-  
-  
-  #**********************************************#
-  #            CLASS INSTANCE METHODS            #
-  #**********************************************#
-  
-  class << self
- 
-  end
   
   
   #**********************************************#
