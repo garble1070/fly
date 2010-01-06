@@ -2,11 +2,6 @@
 # provide color text to the terminal
 class CLWithColor < CL
   
-  #**********************************************#
-  #            CLASS INSTANCE METHODS            #
-  #**********************************************#
-  
-  class << self
     
     # Establishes the ANSI presentation parameters for this session
     def set_up_color_scheme
@@ -26,7 +21,5 @@ class CLWithColor < CL
       HighLine.new.say("\n<%= color('#{string}', :error ) %>\n")
     end    
     
-  end
-  
-  
+    
 end

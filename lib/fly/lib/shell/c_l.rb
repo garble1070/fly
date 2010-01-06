@@ -3,13 +3,11 @@ class CL
   require "highline/import"
   
   #**********************************************#
-  #            CLASS INSTANCE METHODS            #
+  #                  INSTANCE METHODS            #
   #**********************************************#
-  
-  class << self
     
     # Sets the color scheme (if needed) and retrieves a User object
-    def method_missing(name, *args)
+    def initialize(name)
       set_up_color_scheme
       user_obj = User.first_name_is(name.to_s).first
       attempt_to_launch_shell(user_obj)
@@ -59,20 +57,6 @@ class CL
       return :try_again
     end
     
-  end
-  
-  
-  #**********************************************#
-  #               INSTANCE METHODS               #
-  #**********************************************#
 
-=begin
-    # Looks for method calls that begin with "say_" and hands them off to the class object
-  def method_missing(name,*args)
-    if name.to_s.slice(0,4) == "say_"
-      self.class.send(name,*args)
-    end
-  end
-=end
 
 end

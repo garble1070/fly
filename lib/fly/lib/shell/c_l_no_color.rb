@@ -2,18 +2,15 @@
 class CLNoColor < CL
   
   #**********************************************#
-  #            CLASS INSTANCE METHODS            #
+  #                  INSTANCE METHODS            #
   #**********************************************#
   
-  class << self
-    
+
     # Sends a formatted string to the user that is appropriate for an error
     def say_error(string)
       HighLine.new.say("\nERROR: " + string)
     end    
     
-  end
-  
   
   
 end

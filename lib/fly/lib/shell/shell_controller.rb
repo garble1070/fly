@@ -4,8 +4,8 @@ class ShellController
   #**********************************************#
   
   # Constructor.  Takes a valid User object
-  def initialize(user_obj,c_l_subclass)
-    @c_l_subclass = c_l_subclass
+  def initialize(user_obj,c_l_subclass_inst)
+    @shell_view = ShellView.new(c_l_subclass_inst)
     @user = user_obj  
     @airline = @user.my_airline
     @items_to_update = ["my_account","all_planes","active_flights","ops_airports"]
@@ -22,5 +22,15 @@ class ShellController
     return self
   end
   
+  #
+  def acquire_new_plane
+    aircrafttype = @shell_view.ask_which_aircrafttype_to_buy
+    if @airline.acquire_new_plane(aircrafttype)
+      @shell_view.say_transaction_success
+      @shell_view.say_account_balance
+    else
+      @shell_view.say_transaction_failure
+    end
+  end
 
 end

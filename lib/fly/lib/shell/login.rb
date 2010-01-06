@@ -1,8 +1,8 @@
 # Convenience class that hands over to CLNoColor
 class Login
   
-  # Calls CLNoColor.setup_shell
+  # Instantiates a new CLNoColor object
   def self.method_missing(name, *args)
-    CLWithColor.setup_shell(name)
+    CLWithColor.new(name)
   end
 end
