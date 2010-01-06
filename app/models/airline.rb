@@ -24,23 +24,26 @@ class Airline < ActiveRecord::Base
   validates_presence_of  :user_id
   
   
-   
+  
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
   
   class << self
     
+    # Try to find the airline object using the short code; if not, pass on to ActiveRecord::Base
     def method_missing(name, *args)
-      if methods.include?(name.to_s)
-        super(name,*args)
+      airline = get_airline_from_short_code(name)
+      if airline
+        airline
       else
-        look_for_airline_short_code(name, *args)
+        super(name,*args)
       end
     end
     
-    def look_for_airline_short_code(name, *args)
-      results = Airline.short_code_is(name.to_s)
+    # Retrieve the airline object from the short code
+    def get_airline_from_short_code(string)
+      results = Airline.short_code_is(string.to_s)
       results.first
     end
     
@@ -175,5 +178,5 @@ class Airline < ActiveRecord::Base
   def flight_miles_tally
     get_tally_by_flight_column_name("flight_miles")
   end  
-
+  
 end

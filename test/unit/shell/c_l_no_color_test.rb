@@ -6,7 +6,7 @@ class CLNoColorTest < ActiveSupport::TestCase
     output = capture_stdout do 
       CLNoColor.say_error("Hello World!")
     end
-    assert_equal("ERROR: Hello World!\n", output)
+    assert_equal("\nERROR: Hello World!\n", output)
   end
 
 

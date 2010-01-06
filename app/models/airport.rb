@@ -36,34 +36,35 @@ class Airport < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
     }}
   
+    named_scope :code_is , lambda{|short_code| { :conditions => {:code => code}
+    }}
+
   validates_presence_of     :code
   
   #**********************************************#
   #            CLASS INSTANCE METHODS            #
   #**********************************************#
   
+ 
   class << self
     
-    # Returns an airport object based on its code (passed as a string by argument)
-    def find(*args)
-      if args.first.is_a?(String)
-        find(:first, :conditions => "code = '#{args.first}'")
+    # Try to find the airport object using the code; if not, pass on to ActiveRecord::Base
+    def method_missing(name, *args)
+      airport = get_airport_from_code(name)
+      if airport
+        airport
       else
-        super(*args)
+        super(name,*args)
       end
     end
     
-    # Executes a find if the method name is three letters long
-    def method_missing(name, *args)
-      if (name.is_a?(Symbol)) && (name.to_s.length == 3)
-        Airport.find(name.to_s)
-      else
-        super(name, *args)
-      end
+    # Retrieve the airport object from the code
+    def get_airport_from_code(string)
+      results = Airport.short_code_is(string.to_s)
+      results.first
     end
     
   end
-  
   
   #**********************************************#
   #               INSTANCE METHODS               #

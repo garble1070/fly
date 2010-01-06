@@ -46,13 +46,13 @@ class CL
     # Sends an unformatted notice string to the user (may be overridden in subclass to add
     # formatting)
     def say_notice(string)
-      HighLine.new.say(string)
+      HighLine.new.say("\n" + string)
     end
     
     # Sends an unformatted error string to the user (may be overridden in subclass to add
     # formatting)
     def say_error(string)
-      HighLine.new.say(string)
+      HighLine.new.say("\n" + string)
     end    
     
     # Sends a message to the user stating that the username could not be found

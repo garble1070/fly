@@ -14,7 +14,7 @@ class CLNoColor < CL
         
     # Sends a formatted string to the user that is appropriate for an error
     def say_error(string)
-      HighLine.new.say("ERROR: " + string)
+      HighLine.new.say("\nERROR: " + string)
     end    
     
   end
