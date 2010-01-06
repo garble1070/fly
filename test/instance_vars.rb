@@ -63,17 +63,17 @@ class ActiveSupport::TestCase
   end
   
   def load_airport_vars
-    vars_add("@lgb",Airport.find("LGB"))
-    vars_add("@lax",Airport.find("LAX"))
-    vars_add("@zrh",Airport.find("ZRH"))
-    vars_add("@sfo",Airport.find("SFO"))
-    vars_add("@iad",Airport.find("IAD"))
-    vars_add("@dfw",Airport.find("DFW"))
-    vars_add("@jfk",Airport.find("JFK"))
-    vars_add("@cdg",Airport.find("CDG"))
-    vars_add("@dep_airport_lax",DepartureAirport.find("LAX"))
-    vars_add("@arr_airport_zrh",ArrivalAirport.find("ZRH"))
-    vars_add("@arr_airport_iad",ArrivalAirport.find("IAD"))
+    vars_add("@lgb",Airport.LGB)
+    vars_add("@lax",Airport.LAX)
+    vars_add("@zrh",Airport.ZRH)
+    vars_add("@sfo",Airport.SFO)
+    vars_add("@iad",Airport.IAD)
+    vars_add("@dfw",Airport.DFW)
+    vars_add("@jfk",Airport.JFK)
+    vars_add("@cdg",Airport.CDG)
+    vars_add("@dep_airport_lax",DepartureAirport.LAX)
+    vars_add("@arr_airport_zrh",ArrivalAirport.ZRH)
+    vars_add("@arr_airport_iad",ArrivalAirport.IAD)
   end
   
   def load_airline_vars

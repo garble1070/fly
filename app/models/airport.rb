@@ -36,7 +36,7 @@ class Airport < ActiveRecord::Base
     :conditions=>["`airlines`.user_id = ?", user.id]
     }}
   
-    named_scope :code_is , lambda{|short_code| { :conditions => {:code => code}
+    named_scope :code_is , lambda{|code| { :conditions => {:code => code}
     }}
 
   validates_presence_of     :code
@@ -59,8 +59,8 @@ class Airport < ActiveRecord::Base
     end
     
     # Retrieve the airport object from the code
-    def get_airport_from_code(string)
-      results = Airport.code_is(string.to_s)
+    def get_airport_from_code(symbol)
+      results = Airport.code_is(symbol.to_s)
       results.first
     end
     

@@ -42,8 +42,8 @@ class Airline < ActiveRecord::Base
     end
     
     # Retrieve the airline object from the short code
-    def get_airline_from_short_code(string)
-      results = Airline.short_code_is(string.to_s)
+    def get_airline_from_short_code(symbol)
+      results = Airline.short_code_is(symbol.to_s)
       results.first
     end
     
