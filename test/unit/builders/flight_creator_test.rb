@@ -20,19 +20,19 @@ class FlightCreatorTest < ActiveSupport::TestCase
     assert_equal(5930,@new_flight.flight_miles)
     assert_equal(240,@new_flight.pax_count)
     assert_equal(45.47,@new_flight.payload_value_flc)
-    assert_equal(6,@new_flight.flight_identifier.length)
-    assert_equal("LX",@new_flight.flight_identifier.slice(0,2))
-    assert @new_flight.flight_identifier.slice(2,4).to_i > 0
+    assert_equal(6,@new_flight.code.length)
+    assert_equal("LX",@new_flight.code.slice(0,2))
+    assert @new_flight.code.slice(2,4).to_i > 0
     
     @boarding = BoardingDurationInSeconds.new(15)
     @taxi = TaxiDurationInSeconds.new(45)
     @pax_count_200 = PaxCount.new(200)
     @payload_value_flc_150 = PayloadValueFlc.new(150)
     @flight_miles_4000 = FlightMiles.new(4000)
-    @flight_identifier = FlightIdentifier.new("NW0022")
+    @code = Code.new("NW0022")
     
     @fc << @boarding << @taxi << @arr_airport_iad << @flight_miles_4000
-    @fc << @pax_count_200 << @payload_value_flc_150 << @flight_identifier
+    @fc << @pax_count_200 << @payload_value_flc_150 << @code
     @new_flight2 = @fc.manufacture
     @new_flight2.save
     assert @new_flight2.id > 0
@@ -44,7 +44,7 @@ class FlightCreatorTest < ActiveSupport::TestCase
     assert_equal(@new_flight2.arr_airport,@iad)
     assert_equal(200,@new_flight2.pax_count)
     assert_equal(150,@new_flight2.payload_value_flc)
-    assert_equal("NW0022",@new_flight2.flight_identifier)
+    assert_equal("NW0022",@new_flight2.code)
   end
 end
   

@@ -12,8 +12,8 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/mapping"
   
 $:.unshift "#{File.dirname(__FILE__)}/lib/other"
   require "arrival_airport"
+  require "code"
   require "departure_airport"
-  require "flight_identifier"
   require "fly_error"
   require "name"
 
