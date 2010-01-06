@@ -44,4 +44,5 @@ $:.unshift "#{File.dirname(__FILE__)}/lib/shell"
   require "c_l_no_color"
   require "login"
   require "n_c_login"
+  require "shell_controller"
 
